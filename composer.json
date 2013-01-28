@@ -3,7 +3,7 @@
   "type": "library",
   "description": "HTML objects creator",
   "homepage": "https://github.com/ronan-gloo/HtmlNode",
-  "keywords": ["php", "html", "jquery"],
+  "keywords": ["css", "html"],
   "require" : {
     "php" : ">=5.4.0"
   },

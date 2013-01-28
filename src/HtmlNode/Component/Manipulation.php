@@ -89,7 +89,7 @@ trait Manipulation {
 		$node	= $this->createNodeWith($input, $attrs, $text);
 		$this->children->append($node);
 		$node->parent = $this;
-		
+				
 		return $this;
 	}
 	
@@ -123,6 +123,12 @@ trait Manipulation {
 		$node = $this->createNodeWith($input, $attrs, $text);
 		$this->children->prepend($node);
 		
+		// set the new text position
+		if ($this->text->get())
+		{
+			$this->text->position($this->text->position() + 1);
+		}
+		
 		return $this;
 	}
 
@@ -140,6 +146,12 @@ trait Manipulation {
 			$clone->parent = $node;
 		}
 		
+		// set the new text position
+		if ($node->text->get())
+		{
+			$node->text->position($node->text->position() + 1);
+		}
+		
 		return $clone;
 	}
 	
@@ -152,12 +164,19 @@ trait Manipulation {
 	 */
 	public function insertBefore(Node $node)
 	{
-		if (! $node->parent) return false;
+		if (! $parent = $node->parent) return false;
 		
 		$clone = clone $this;
 		
-		$node->parent->children()->insertBefore($node, $clone);
+		$parent->children()->insertBefore($node, $clone);
 		$clone->parent = $node->parent;
+				
+		\Debug::dump($node->index(), $parent->text()->position());
+		
+		if ($node->index() >= ($position = $parent->text()->position()))
+		{
+			$parent->text()->position(++$position);
+		}
 		
 		return $clone;
 	}

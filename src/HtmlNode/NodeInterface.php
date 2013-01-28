@@ -24,7 +24,7 @@ interface NodeInterface {
 	
 	public function parent();
 	
-	public function render();
+	public function render($childs = true);
 	
 	public function __toString();
 	

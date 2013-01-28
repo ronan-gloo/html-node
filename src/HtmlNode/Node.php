@@ -6,63 +6,24 @@ use
 	HtmlNode\Component,
 	HtmlNode\Dependency,
 	HtmlNode\Util,
+	InvalidArgumentException,
 	LogicException,
-	InvalidArgumentException
+	OutOfBoundsException
 ;
 
 class Node implements NodeInterface {
 	
-	use Component\Css,
-			Component\Attribute,
-			Component\Manipulation,
-			Component\Traversing,
+	use	Component\Attribute,
+			Component\Css,
 			Component\Config,
-			Component\Seek {
+			Component\Manipulation,
+			Component\Rendering,
+			Component\Seek,
+			Component\Tag,
+			Component\Traversing {
 				Component\Attribute::build as protected attributes;
 				Component\Manipulation::init as protected manipulation;
 			}
-
-	/**
-	 * Tagname string.
-	 * 
-	 * @var mixed
-	 * @access protected
-	 */
-	protected $tagname;
-	
-	/**
-	 * Element autclosed or not
-	 * 
-	 * @var mixed
-	 * @access protected
-	 */
-	protected $autoclose;
-	
-	/**
-	 * Autoclosed tags.
-	 * 
-	 * @var mixed
-	 * @access protected
-	 * @static
-	 */
-	protected static $autoclosed = [
-		'area',
-		'base',
-		'br',
-		'col',
-		'command',
-		'embed',
-		'hr',
-		'img',
-		'input',
-		'keygen',
-		'link',
-		'meta',
-		'param',
-		'source',
-		'track',
-		'wbr',
-	];
 
 	/**
 	 * Text instance
@@ -125,6 +86,23 @@ class Node implements NodeInterface {
 		return Util\Master::each($c);
 	}
 	
+	
+	/**
+	 * Catch property then check if its a dependency
+	 * 
+	 * @access public
+	 * @param mixed $key
+	 * @return void
+	 */
+	public function __get($key)
+	{
+		if (isset($this->$key) and $this->$key instanceof Dependency\Node)
+		{	
+			return $this->$key;
+		}
+		throw new OutOfBoundsException(__CLASS__."::$$key property doesn t exists");
+	}
+	
 	/**
 	 * 
 	 * @access public
@@ -169,43 +147,6 @@ class Node implements NodeInterface {
 	}
 	
 	/**
-	 * Set / Get tagname.
-	 * 
-	 * @access public
-	 * @param string $tag (default: "")
-	 * @return void
-	 */
-	public function tag($tagname = "")
-	{
-		if (func_num_args() === 0) return $this->tagname;
-		
-		// Only strings are accepted
-		if (! is_string($tagname))
-		{
-			throw new InvalidArgumentException("Tagname must be a string");
-		}
-		
-		// Set the tagname: be sure there is no html elements
-		$this->tagname = strip_tags(trim($tagname));
-		
-		// Define if Node should be autoclosed or not
-		$this->autoclose = in_array($this->tagname, static::$autoclosed);
-	
-		return $this;
-	}
-	
-	/**
-	 * Ask for autoclosed tag.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function autoclose()
-	{
-		return $this->autoclose;
-	}
-
-	/**
 	 * Set the node text.
 	 * 
 	 * @access public
@@ -233,51 +174,5 @@ class Node implements NodeInterface {
 	public function contains($str, $case = false, $strict = false)
 	{
 		return $this->text->contains($str, $case, $strict);
-	}
-	
-	/**
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function html($data)
-	{
-		if (! $data)
-		{
-			return (new Compiler($this))->children();
-		}
-		
-		$this->children->replaceWith((array)$data);
-		
-		return $this;
-	}
-
-	/**
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function contents()
-	{
-		return (new Compiler($this))->contents();
-	}
-
-	/**
-	 * @access public
-	 * @return void
-	 */
-	public function render($childs = true)
-	{
-		return (new Compiler($this))->node();
-	}
-	
-	/**
-	 * @access public
-	 * @return void
-	 */
-	public function __toString()
-	{
-		return $this->render();
-	}
-	
+	}	
 }

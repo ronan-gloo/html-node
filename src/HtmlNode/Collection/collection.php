@@ -209,9 +209,9 @@ class Collection implements CollectionInterface {
 		! is_array($new) and $new = [$new];
 
 		$this->items = array_merge(
-			array_slice($this->items, 0, $pos, true),
+			array_slice($this->items, 0, $pos),
 			$new,
-			array_slice($this->items, $pos, null, true)
+			array_slice($this->items, $pos, null)
 		);
 		
 		return true;
