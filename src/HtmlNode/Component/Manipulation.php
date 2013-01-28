@@ -164,15 +164,13 @@ trait Manipulation {
 	 */
 	public function insertBefore(Node $node)
 	{
-		if (! $parent = $node->parent) return false;
+		if (! $parent = $node->parent()) return false;
 		
 		$clone = clone $this;
 		
 		$parent->children()->insertBefore($node, $clone);
 		$clone->parent = $node->parent;
 				
-		\Debug::dump($node->index(), $parent->text()->position());
-		
 		if ($node->index() >= ($position = $parent->text()->position()))
 		{
 			$parent->text()->position(++$position);
@@ -191,9 +189,10 @@ trait Manipulation {
 	 */
 	public function insertAfter(Node $node)
 	{
-		if (! $parent = $node->parent) return false;
-		
+		if (! $parent = $node->parent()) return false;
+
 		$clone = clone $this;
+		\Debug::dump($this);
 		
 		$parent->children()->insertAfter($node, $clone);
 		$clone->parent = $node->parent;
@@ -238,7 +237,8 @@ trait Manipulation {
 	 */
 	public function __clone()
 	{
-		$this->children 	= new Collection\Collection;
+		// Deep cloning of childrens
+		$this->children 	= unserialize(serialize($this->children));
 		$this->parent			= null;
 		$this->text				= clone $this->text;
 		$this->attributes	= clone $this->attributes;
@@ -264,9 +264,9 @@ trait Manipulation {
 		}
 		
 		// The node is a  string ? instaciate it
-		if (is_string($input) and trim($input))
+		if (is_string($input) and $tag = trim($input))
 		{
-			$input = new Node($input, $attrs, $text);
+			$input = new Node($tag, $attrs, $text);
 		}
 		
 		// Nothing valid at this point

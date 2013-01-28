@@ -42,28 +42,6 @@ class Text implements Node {
 	}
 	
 	/**
-	 * Set the node text.
-	 * 
-	 * @access public
-	 * @param bool $text (default: false)
-	 * @return void
-	 */
-	public function __invoke($text = false)
-	{
-		if (func_num_args() === 0) return $this->text;
-		
-		if ($this->autoclose === true or ! $this->config("text"))
-		{
-			throw new LogicException("Cannot add text on ".$this->tagname." element");
-		}
-		
-		$this->text->position($this->children()->length() - 1);
-		$this->text->set($text);
-	
-		return $this;
-	}
-
-	/**
 	 * The relative text position.
 	 * If will be used by the compiler, in order
 	 * to set the text position relative to the node childs

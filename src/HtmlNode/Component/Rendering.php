@@ -2,7 +2,10 @@
 
 namespace HtmlNode\Component;
 
-use HtmlNode\Compiler;
+use
+	HtmlNode\Compiler,
+	HtmlNode\Collection
+;
 
 trait Rendering {
 
@@ -17,8 +20,17 @@ trait Rendering {
 		{
 			return (new Compiler($this))->children();
 		}
+		if ($data instanceof Collection\Collection)
+		{
+			$this->children = $data;
+		}
+		// force the element to be 
+		elseif (! is_array($data))
+		{
+			$data = [$data];
+		}
 		
-		$this->children->replaceWith((array)$data);
+		$this->children->replaceWith($data);
 		
 		return $this;
 	}

@@ -150,7 +150,7 @@ class Collection implements CollectionInterface {
 	 */
 	public function replaceWith($items)
 	{
-		$this->items = (array)$items;
+		$this->items = $items;
 		
 		return $this;
 	}

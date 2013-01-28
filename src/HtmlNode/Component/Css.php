@@ -48,7 +48,8 @@ trait Css {
 			if (is_numeric($value) and ! in_array($name, static::$cssNumber)) {
 				$value = strval($value)."px";
 			}
-			$this->attributes->set("style.".str_replace(".", "-", $name), $value);
+			// Add css rule
+			$this->attributes->eq("style")[$name] = $value;
 		}
 		return $this;
 	}
