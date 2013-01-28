@@ -30,14 +30,6 @@ class Collection implements CollectionInterface {
 	/**
 	 * @access public
 	 */
-	public function current()
-	{
-		return current($this->items);
-	}
-	
-	/**
-	 * @access public
-	 */
 	public function first()
 	{
 		return reset($this->items);

@@ -6,7 +6,7 @@ use
 	Closure,
 	InvalidArgumentException,
 	HtmlNode\Collection,
-	HtmlNode\	Node,
+	HtmlNode\Node,
 	HtmlNode\Query
 ;
 
@@ -42,7 +42,7 @@ class Master {
 		{
 			throw new InvalidArgumentException("The node is already register");
 		}
-		self::$nodes->append($node);
+		self::$nodes[] = $node;
 	}
 	
 	/**
@@ -70,6 +70,22 @@ class Master {
 		foreach (self::$nodes as $key => $node)
 		{
 			$c($node, $key);
+		}
+	}
+	
+	/**
+	 * Delete a node rom the collection.
+	 * 
+	 * @access public
+	 * @static
+	 * @param Node $node
+	 * @return void
+	 */
+	public static function delete(Node $node)
+	{
+		if (self::$nodes->has($node))
+		{
+			return self::$nodes->remove($node);
 		}
 	}
 	

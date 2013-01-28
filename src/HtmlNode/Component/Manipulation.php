@@ -7,6 +7,7 @@ use
 	InvalidArgumentException,
 	HtmlNode\Collection,
 	HtmlNode\Node,
+	HtmlNode\Util,
 	LogicException
 ;
 
@@ -146,7 +147,6 @@ trait Manipulation {
 		{
 			$clone->parent = $node;
 		}
-		
 		// set the new text position
 		if ($node->text->get())
 		{
@@ -193,7 +193,6 @@ trait Manipulation {
 		if (! $parent = $node->parent()) return false;
 
 		$clone = clone $this;
-		\Debug::dump($this);
 		
 		$parent->children()->insertAfter($node, $clone);
 		$clone->parent = $node->parent;
@@ -218,13 +217,15 @@ trait Manipulation {
 	}
 			
 	/**
-	 * Delete a node from it parents.
+	 * Delete a node from it parents and its reference
+	 * in the master collection
 	 * 
 	 * @access public
 	 * @return $this
 	 */
 	public function detach()
 	{
+		//Util\Master::delete($this);
 		return $this->unwrap();
 	}
 		

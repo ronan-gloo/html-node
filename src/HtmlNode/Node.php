@@ -24,7 +24,7 @@ class Node implements NodeInterface {
 				Component\Attribute::build as protected attributes;
 				Component\Manipulation::init as protected manipulation;
 			}
-
+	
 	/**
 	 * Text instance
 	 * @var mixed
@@ -68,42 +68,6 @@ class Node implements NodeInterface {
 	}
 	
 	/**
-	 * @access public
-	 * @static
-	 */
-	public static function all()
-	{
-		return Util\Master::all();
-	}
-	
-	/**
-	 * @access public
-	 * @static
-	 * @param mixed $c
-	 */
-	public static function each($c)
-	{
-		return Util\Master::each($c);
-	}
-	
-	
-	/**
-	 * Catch property then check if its a dependency
-	 * 
-	 * @access public
-	 * @param mixed $key
-	 * @return void
-	 */
-	public function __get($key)
-	{
-		if (isset($this->$key) and $this->$key instanceof Dependency\Node)
-		{	
-			return $this->$key;
-		}
-		throw new OutOfBoundsException(__CLASS__."::$$key property doesn t exists");
-	}
-	
-	/**
 	 * 
 	 * @access public
 	 * @static
@@ -141,9 +105,22 @@ class Node implements NodeInterface {
 		
 		// instanciate dependencies
 		$this->text = new Dependency\Text($text);
-		
-		// register node to the manager
-		Util\Master::register($this);
+	}
+	
+	/**
+	 * Catch property then check if its a dependency
+	 * 
+	 * @access public
+	 * @param mixed $key
+	 * @return void
+	 */
+	public function __get($key)
+	{
+		if (isset($this->$key) and $this->$key instanceof Dependency\Node)
+		{	
+			return $this->$key;
+		}
+		throw new OutOfBoundsException(__CLASS__."::$$key property doesn t exists");
 	}
 	
 	/**

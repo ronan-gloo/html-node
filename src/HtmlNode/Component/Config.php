@@ -11,8 +11,8 @@ trait Config {
 	 * @access protected
 	 */
 	protected $config = [
-		"text"			=> true, // Accepts text
-		//"autoclone" => true, // Clone Node when appending, inserting... etc
+		"text" => true, // Accepts text
+		//"register" 	=> true, // Register the object
 	];
 	
 	/**
