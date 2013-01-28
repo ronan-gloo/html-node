@@ -14,9 +14,9 @@ trait Rendering {
 	 * @access public
 	 * @return void
 	 */
-	public function html($data)
+	public function html($data = null)
 	{
-		if (! $data)
+		if (is_null($data))
 		{
 			return (new Compiler($this))->children();
 		}

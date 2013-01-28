@@ -76,9 +76,9 @@ class Node implements NodeInterface {
 	 * @param array $attrs (default: array())
 	 * @return void
 	 */
-	public static function make($tag = "", $attrs = [], $text = "")
+	public static function make($tag = "div", $text = "", $attrs = [])
 	{
-		return new static($tag, $attrs, $text);
+		return new static($tag, $text, $attrs);
 	}
 	
 	/**
@@ -89,15 +89,8 @@ class Node implements NodeInterface {
 	 * @param array $attrs (default: array())
 	 * @return void
 	 */
-	public function __construct($tag = "", $attrs = [], $text = "")
-	{
-		if (! is_array($attrs))
-		{
-			$temp		= $attrs;
-			$attrs	= is_array($text) ? $text : [];
-			$text		= $temp;
-		}
-		
+	public function __construct($tag = "div", $text = "", $attrs = [])
+	{		
 		// Init components
 		$this->tag($tag);
 		$this->attributes($attrs);

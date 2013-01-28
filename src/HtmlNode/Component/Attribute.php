@@ -18,10 +18,10 @@ trait Attribute {
 	 * @access protected
 	 */
 	private static $attributeKeys = [
-		"style", 	// css inline styles
-		"class",	// css classes
-		"data",		// html5 data based
-		"aria"		// html5 aria based
+		"style"	=> [], 	// css inline styles
+		"class"	=> [],	// css classes
+		"data"	=> [],	// html5 data based
+		"aria"	=> []		// html5 aria based
 	];
 	
 	/**
@@ -45,12 +45,8 @@ trait Attribute {
 			throw new InvalidArgumentException("Argument should be an array");
 		}
 		
-		foreach (static::$attributeKeys as $key)
-		{
-			$data[$key] = [];
-		}
-		
-		$this->attributes = new Collection\Attribute($data);
+		// Setup keys
+		$this->attributes = new Collection\Attribute(static::$attributeKeys);
 		
 		$attributes and $this->attr($attributes);
 	}
