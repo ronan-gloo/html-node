@@ -38,27 +38,6 @@ class Compiler {
 	 */
 	public function node()
 	{
-		$this->attrs = new Collection\Collection();
-
-		foreach ($this->node->attr() as $key => $data)
-		{
-			switch ($key)
-			{
-				case "class":
-				$this->classes($data);
-				break;
-				case "style":
-				$this->styles($data);
-				break;
-				case "data":
-				case "aria":
-				$this->data($data, $key);
-				break;
-				default:
-				$this->attributes($data, $key);
-				break;
-			}
-		}
 		// Open the tag
 		$this->open();
 		$this->contents();
@@ -114,7 +93,29 @@ class Compiler {
 	 * @return String
 	 */
 	public function open()
-	{
+	{		
+		$this->attrs = new Collection\Collection();
+
+		foreach ($this->node->attr() as $key => $data)
+		{
+			switch ($key)
+			{
+				case "class":
+				$this->classes($data);
+				break;
+				case "style":
+				$this->styles($data);
+				break;
+				case "data":
+				case "aria":
+				$this->data($data, $key);
+				break;
+				default:
+				$this->attributes($data, $key);
+				break;
+			}
+		}
+		
 		$attrs = "";
 
 		foreach ($this->attrs->filter() as $property => $value)

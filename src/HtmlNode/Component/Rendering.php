@@ -10,7 +10,7 @@ use
 trait Rendering {
 
 	/**
-	 * 
+	 * Node children
 	 * @access public
 	 * @return void
 	 */
@@ -36,7 +36,7 @@ trait Rendering {
 	}
 
 	/**
-	 * 
+	 * Node html + text
 	 * @access public
 	 * @return void
 	 */
@@ -49,9 +49,23 @@ trait Rendering {
 	 * @access public
 	 * @return void
 	 */
-	public function render($childs = true)
+	public function render()
 	{
 		return (new Compiler($this))->node();
+	}
+	
+	/**
+	 * Only node, no text and html
+	 * 
+	 * @access public
+	 * @return void
+	 */
+	public function self()
+	{
+		$compiler = new Compiler($this);
+		$compiler->open();
+		
+		return $compiler->close();
 	}
 	
 	/**

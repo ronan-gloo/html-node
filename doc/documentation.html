@@ -19,11 +19,11 @@ $node->contains("Chapter");
 // $2: case insensitive or not. $3: type checking
 $node->contains(10, true, true);
 // Replace part of the text
-$node->text()->replace("10", "20");
+$node->text->replace("10", "20");
 // Check if text match the expression
-$node->text()->match("/^\d+$/");
+$node->text->match("/^\d+$/");
 // Text length
-$node->text()->length();
+$node->text->length();
 
 </pre><h4>Node attributes</h4><p>Once the node is instanciated, its easy to customize it. Several methods allow you to set options in the "jQuery way".</p><pre class="prettyprint">$node->attr("rel", "tooltip");
 // With an array
@@ -130,6 +130,17 @@ $e = $list->children(".even");
 $c = $anchor->closest("ul");
 // find in next / prev
 $p = $temp->prevAll(".even");
+
+</pre></div><div class="contents"><h4>Node rendering</h4><p>Node object can be echoed, the <code>__toString</code> method calls <code>render()</code></p><pre class="prettyprint">// Render a node with all its contents:
+echo $node->render();
+// or simply:
+echo $node;
+// Render the node html (the text is skipped):
+echo $node->html();
+// Render the node contents (node children + text)
+echo $node->contents();
+// Render the node, whithout its html / text
+echo $node->self();
 
 </pre></div><div class="contents"><h4>Build your own nodes !</h4><p>Register a custom node instance, that you can re-use later. Add <code>true</code> as third parameter in order to prevent further instanciation (act as a singleton):</p><pre class="prettyprint">// register the	custom node:
 Node::macro("input", function($name, $value = null, $attrs = []){

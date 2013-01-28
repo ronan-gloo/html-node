@@ -6,7 +6,8 @@ use
 	Closure,
 	InvalidArgumentException,
 	HtmlNode\Collection,
-	HtmlNode\Node
+	HtmlNode\Node,
+	LogicException
 ;
 
 trait Manipulation {
@@ -237,9 +238,13 @@ trait Manipulation {
 	 */
 	public function __clone()
 	{
-		// Deep cloning of childrens
-		$this->children 	= unserialize(serialize($this->children));
-		$this->parent			= null;
+		// Deep cloning children
+		$this->children = unserialize(serialize($this->children));
+		
+		// reset the current parent
+		$this->parent = null;
+		
+		// and clone dependecies
 		$this->text				= clone $this->text;
 		$this->attributes	= clone $this->attributes;
 	}
@@ -257,6 +262,12 @@ trait Manipulation {
 	 */
 	protected function createNodeWith($input, $attrs, $text)
 	{
+		// Do not append / prepend autoclosed elements
+		if (in_array($this->tagname, static::$autoclosed))
+		{
+			throw new LogicException("You cannot add Node on self closed element");
+		}
+		
 		// Get the closure results
 		if ($input instanceof Closure)
 		{
@@ -272,7 +283,7 @@ trait Manipulation {
 		// Nothing valid at this point
 		if (! $input instanceof Node)
 		{
-			throw new InvalidArgumentException("You Can wrap: a string, a node, or a compativle callback results");
+			throw new InvalidArgumentException("You Can wrap: a string, a node, or a compatible callback result");
 		}
 		
 		return $input;

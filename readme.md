@@ -36,11 +36,11 @@ Setting text on autoclosed elements (input, meta... etc) will throw an `LogicExc
     // $2: case insensitive or not. $3: type checking
     $node->contains(10, true, true);
     // Replace part of the text
-    $node->text()->replace("10", "20");
+    $node->text->replace("10", "20");
     // Check if text match the expression
-    $node->text()->match("/^d%2B$/");
+    $node->text->match("/^d%2B$/");
     // Text length
-    $node->text()->length();
+    $node->text->length();
     
     
 
@@ -221,6 +221,23 @@ Now, we can start to get collections from our elements:
     $c = $anchor->closest("ul");
     // find in next / prev
     $p = $temp->prevAll(".even");
+    
+    
+
+#### Node rendering
+
+Node object can be echoed, the `__toString` method calls `render()`
+
+    // Render a node with all its contents:
+    echo $node->render();
+    // or simply:
+    echo $node;
+    // Render the node html (the text is skipped):
+    echo $node->html();
+    // Render the node contents (node children %2B text)
+    echo $node->contents();
+    // Render the node, whithout its html / text
+    echo $node->self();
     
     
 
