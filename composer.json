@@ -1,0 +1,13 @@
+{
+  "name": "HtmlNode/HtmlNode",
+  "type": "library",
+  "description": "HTML objects creator",
+  "homepage": "https://github.com/ronan-gloo/HtmlNode",
+  "keywords": ["php", "html", "jquery"],
+  "require" : {
+    "php" : ">=5.4.0"
+  },
+  "autoload": {
+    "psr-0": {"HtmlNode": "src/"}
+  }
+}
