@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><link href="http://bootswatch.com/superhero/bootstrap.min.css" rel="stylesheet" type="text/css" /><link href="http://google-code-prettify.googlecode.com/svn/trunk/styles/sunburst.css" rel="stylesheet" type="text/css" /><script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js" type="text/javascript"></script><style>.contents, h4 {margin-top:2em}
+
+</style></head><body onload="prettyPrint()"><div class="container"><h2> <span>HtmlNode</span>  <small>Documentation</small> </h2><div class="contents"><p>HtmlNode is a "bootsrap library" to create and manipulate html elements in PHP.<br /> <strong>This Library is written in PHP 5.4, there is no support for previous versions.</strong> </p></div><div class="contents"><h4>Creation and options</h4><p>Create your first node:</p><pre class="prettyprint">$node = Node::make("h1", "Hello World", ["class" => "title"]);
+
+</pre><h4>Node tag</h4><p>Change or get the tag of the node:</p><pre class="prettyprint">// Setter:
+$node->tag("h2");
+// Getter:
+$node->tag();
+// Ask if the node is an autoclosed element:
+$node->autoclose();
+
+</pre><h4>Node text Object</h4><p>Setting text on autoclosed elements (input, meta... etc) will throw an <code>LogicException</code></p><pre class="prettyprint">$node->text("Chapter 10");
+// The getter
+$node->text();
+// Check if text contains the string:
+$node->contains("Chapter");
+// $2: case insensitive or not. $3: type checking
+$node->contains(10, true, true);
+// Replace part of the text
+$node->text()->replace("10", "20");
+// Check if text match the expression
+$node->text()->match("/^\d+$/");
+// Text length
+$node->text()->length();
+
+</pre><h4>Node attributes</h4><p>Once the node is instanciated, its easy to customize it. Several methods allow you to set options in the "jQuery way".</p><pre class="prettyprint">$node->attr("rel", "tooltip");
+// With an array
+$node->attr(["rel" => "tooltip", "id" => "hello-world"]);
+// Get an attribute
+$node->attr("id");
+
+</pre><p>Search against an attribute. It is a very basic support, only <code>:</code> <code>.</code> and <code>#</code> expressions are supported:</p><pre class="prettyprint">$node->is(":disabled");
+$node->is(".active");
+$node->not("h1");
+
+</pre><p><code>data</code> and <code>aria</code> attributes custom supports:</p><pre class="prettyprint">$node->data("position", "left");
+// multi-level setter
+$node->data(["position" => ["before" => "left", "after" => "right"]]);
+// An other way is to make use of dotted notation
+$node->data("position.before", "left");
+// It also workds with the getter
+$node->data("position.before");
+
+</pre><p>Add / remove classes.</p><pre class="prettyprint">$node->addClass("active");
+// With an array
+$node->addClass(["active", "title"])
+// conditionnal: value not false in second parameter determines if the class should be added
+$node->addClassIf("active", true)
+// With 3 parameters, the class is added if third $2 match $3
+$node->removeClassIf("active", true, false) // nothing is added
+
+</pre><p>Css inline styles:</p><pre class="prettyprint">$node->css("color", "red");
+// With an array
+$node->css(["color" => "red", "margin" => 20])
+// With an array
+$node->css(["color" => "red", "margin" => 20])
+
+</pre></div><div class="contents"><h4>Node Manipulation</h4><p>Wrap or unwrap Node into a new node.</p><pre class="prettyprint">$node->wrap("hgroup", ["class" => "group"]);
+$node->unwrap();
+
+</pre><p>If you want to put nodes into an another node, use <code>append()</code> or <code>prepend()</code> instead:</p><pre class="prettyprint">// Append to an existing node
+$node->appendTo($parent);
+// An other way to achieve this is
+$parent->append($node);
+// Or creates node on-the-fly
+$node->prependTo("hgroup", [["class" => "group"]);
+
+</pre><p>Note that <strong>the moved node is a clone</strong>, the original node modifications wil not be proagated. So if you want to store the new node, do this:</p><pre class="prettyprint">$appended = $node->appendTo($parent);
+
+</pre><p>You can also insert nodes to the parent, with <code>insertBefore()</code> or <code>insertAfter()</code> methods:</p><pre class="prettyprint">$new = Node::make("h3")->insertAfter($appended);
+// Detach node from $parent
+$new->detach();
+
+</pre><p>Replace a node with an other:</p><pre class="prettyprint">$new = Node::make("h3");
+$node->replaceWith($new);
+
+</pre></div><div class="contents"><h4>Node traversing</h4><p>A set of node childrens is a collection object which implements ArrayAccess and Tarversable in ordre to manipulate the collection:</p><pre class="prettyprint">// Loop throught node childs:
+if ($parent->hasChildren()) {
+  foreach ($parent->children() as $key => $child) {
+    $child->addClassIf("active", $key % 2);
+  }
+}
+// Get the parent:
+if ($child->hasParent()) {
+  $parent = $child->parent();
+}
+// You can also check for the child:
+if ($parent->isParentOf($child)) {
+  $child->detach();
+}
+// And the parent:
+if (! $child->isChildOf($parent)) {
+  $parent->append($child);
+}
+
+</pre><p>Get the current position of a child (returns an int):</p><pre class="prettyprint">$child->index();
+// or from the parent node
+$parent->children->indexOf($child);
+
+</pre><p>Get the child by its position in the collection:</p><pre class="prettyprint">$child = $parent->children()->eq(2);
+
+</pre><p>Visits node siblings inside a collection:</p><pre class="prettyprint">if ($sibling = $child->next()) {
+  $child = $silbing->prev();
+}
+
+</pre><p>There is different ways to get a collection of siblings:</p><pre class="prettyprint">// The collection, whithout the node:
+$siblings = $child->siblings();
+// All next / prev silbings
+$na = $child->nextAll();
+$pa = $child->prevAll();
+
+</pre></div><div class="contents"><h4>Node iterations and search</h4><pre class="prettyprint">$list = Node::make("ul");
+$item = Node::make("li");
+// Populate the list:
+foreach ($items as $key => $val) {
+  $temp = $item->appendTo($list)->addClassIf("even", $key % 2);
+  // Set only 1 &lt;a&gt;foo&lt;/a&gt;:
+  if ($key == 4) {
+    $anchor = Node::make("a", "foo")->appendTo($temp);
+  }
+}
+
+</pre><p>Now, we can start to get collections from our elements:</p><pre class="prettyprint">// Find all &lt;a&gt; tags:
+$a = $list->find("a");
+// find childrens with class .even
+$e = $list->children(".even");
+// or a single result (a node)
+$c = $anchor->closest("ul");
+// find in next / prev
+$p = $temp->prevAll(".even");
+
+</pre></div><div class="contents"><h4>Build your own nodes !</h4><p>Register a custom node instance, that you can re-use later. Add <code>true</code> as third parameter in order to prevent further instanciation (act as a singleton):</p><pre class="prettyprint">// register the	custom node:
+Node::macro("input", function($name, $value = null, $attrs = []){
+  return Node::make("input", compact("name", "value") + $attrs);
+});
+// use it:
+Node::input("email", null, ["placeholder" => "Email"]);
+
+</pre></div></div></body></html>
