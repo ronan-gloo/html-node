@@ -60,7 +60,7 @@ trait Traversing {
 		
 			foreach ($this->children as $node)
 			{
-				$node->tag() == $input and $childrens->append($node);
+				$node->is($input) and $childrens->append($node);
 			}
 			return $childrens;
 		}
