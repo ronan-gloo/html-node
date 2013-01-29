@@ -11,7 +11,7 @@ trait Css {
 	 * @access private
 	 * @static
 	 */
-	private static $cssNumber = [
+	protected static $cssNumber = [
 		'column-count',
 		'fill-opacity',
 		'font-height',
