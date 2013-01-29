@@ -1,8 +1,10 @@
 <?php
+
 require dirname(__DIR__)."/bootstrap.php";
 require "Form.php";
 
 $start = microtime(true);
+
 ?>
 
 <!DOCTYPE html>

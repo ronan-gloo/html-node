@@ -27,7 +27,11 @@ class Compiler {
 	 */
 	public function __construct(Node $node)
 	{
-		$this->node = $node;
+		$this->node				= $node;
+		$this->children		= $node->children();
+		$this->autoclose 	= $node->autoclose();
+		$this->text				= $node->text();
+		$this->tag				= $node->tag();
 	}
 
 	/**
@@ -52,14 +56,16 @@ class Compiler {
 	 */
 	public function contents()
 	{
+		$text = $this->text->get();
+		
 		// Get chiildren contents
-		if ($this->node->children()->length())
+		if ($this->children->length())
 		{
-			$this->children(!! $this->node->text()->get());	
+			$this->children(!! $text);
 		}
 		else
 		{
-			$this->html .= $this->node->text()->get();
+			$this->html .= $text;
 		}
 		return $this->html;
 	}
@@ -72,10 +78,9 @@ class Compiler {
 	*/
 	public function children($text = false)
 	{
-		$node = $this->node;
-		$pos	= $node->text()->position();
+		$pos	= $this->text->position();
 		
-		foreach ($node->children() as $key => $child)
+		foreach ($this->children as $key => $child)
 		{
 			$this->html .= $child instanceof Node ? $child->render() : $child;
 			
@@ -83,7 +88,7 @@ class Compiler {
 			// we insert the text at the current index.
 			if ($text === true and $pos == $key)
 			{
-				$this->html .= $node->text->get();
+				$this->html .= $this->text->get();
 			}
 		}
 		return $this->html;
@@ -97,7 +102,7 @@ class Compiler {
 	 */
 	public function open()
 	{		
-		$this->attrs = new Collection\Collection();
+		$this->attrs = [];
 
 		foreach ($this->node->attr() as $key => $data)
 		{
@@ -121,14 +126,14 @@ class Compiler {
 		
 		$attrs = "";
 
-		foreach ($this->attrs->filter() as $property => $value)
+		foreach ($this->attrs as $property => $value)
 		{
 			$attrs .= $property.'="'.$value.'" ';
 		}
 
-		$this->html .= '<'.$this->node->tag();
+		$this->html .= '<'.$this->tag;
 		$this->html .= $attrs ? ' '.trim($attrs) : '';
-		$this->html .= $this->node->autoclose() ? ' />' : '>';
+		$this->html .= $this->autoclose ? ' />' : '>';
 		
 		return $this->html;
 	}
@@ -139,7 +144,7 @@ class Compiler {
 	 */
 	public function close()
 	{
-		$this->html .= $this->node->autoclose() ? '' : '</'.$this->node->tag().'>';
+		$this->html .= $this->autoclose ? '' : '</'.$this->tag.'>';
 		
 		return $this->html;
 	}
@@ -153,14 +158,10 @@ class Compiler {
 	*/
 	public function attributes($data, $key)
 	{
-		if (is_array($data))
-		{
-			$data = key($data);
-		}
-		if (! is_numeric($key))
-		{
-			$this->attrs->set($key, $data);
-		}
+		is_array($data) and $data = key($data);
+
+		$this->attrs[$key] = $data;
+
 		return $this->attrs;
 	}
 	
@@ -172,7 +173,7 @@ class Compiler {
 	{
 		if ($classes = $this->node->attr("class"))
 		{
-			$this->attrs->set("class", implode(" ", $classes));
+			$this->attrs["class"] = implode(" ", $classes);
 		}
 		return $this->attrs;
 	}
@@ -199,7 +200,7 @@ class Compiler {
 			}
 			else
 			{
-				$this->attrs->set($bkey."-".implode("-", $ckey), $val);
+				$this->attrs[$bkey."-".implode("-", $ckey)] = $val;
 			}
 			array_pop($ckey);
 		}
@@ -221,7 +222,7 @@ class Compiler {
 			$out .= $key.':'.$val.';';
 		}
 		
-		$out and $this->attrs->set("style", $out);
+		$out and $this->attrs["style"] = $out;
 		
 		return $this->attrs;
 	}
