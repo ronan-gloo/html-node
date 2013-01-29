@@ -107,11 +107,7 @@ class Collection implements CollectionInterface {
 	 */
 	public function indexOf($item)
 	{
-		if ($key = array_search($item, $this->items, true))
-		{
-			return $key;
-		}
-		return -1;
+		return array_search($item, $this->items, true);
 	}
 	
 	/**
@@ -146,6 +142,9 @@ class Collection implements CollectionInterface {
 		return $this;
 	}
 	
+	/**
+	 * @access public
+	 */
 	public function copy()
 	{
 		return new self(unserialize(serialize($this->items)));

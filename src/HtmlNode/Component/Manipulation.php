@@ -170,6 +170,7 @@ trait Manipulation {
 		$clone = clone $this;
 		
 		$parent->children()->insertBefore($node, $clone);
+		
 		$clone->parent = $node->parent;
 				
 		if ($node->index() >= ($position = $parent->text()->position()))
@@ -210,7 +211,7 @@ trait Manipulation {
 	{
 		if ($parent = $this->parent and $node !== $this)
 		{
-			$parent->children()->set($this->index(), $node);
+			$parent->children()[$this->index()]  = $node;
 		}
 		
 		return $this;

@@ -59,14 +59,8 @@ class Compiler {
 		$text = $this->text->get();
 		
 		// Get chiildren contents
-		if ($this->children->length())
-		{
-			$this->children(!! $text);
-		}
-		else
-		{
-			$this->html .= $text;
-		}
+		$this->children->length() ? $this->children((bool)$text) : $this->html .= $text;
+		
 		return $this->html;
 	}
 	
@@ -82,8 +76,7 @@ class Compiler {
 		
 		foreach ($this->children as $key => $child)
 		{
-			$this->html .= $child instanceof Node ? $child->render() : $child;
-			
+			$this->html .= $child;
 			// If the node contains text, and we accept text rendering,
 			// we insert the text at the current index.
 			if ($text === true and $pos === $key)
