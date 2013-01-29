@@ -133,7 +133,7 @@ class Collection implements CollectionInterface {
 	 */
 	public function set($key, $val = null)
 	{		
-		return $this->items[$key] = $val;
+		return !!$this->items[$key] = $val;
 	}
 	
 	/**
@@ -143,8 +143,12 @@ class Collection implements CollectionInterface {
 	public function replaceWith($items)
 	{
 		$this->items = $items;
-		
 		return $this;
+	}
+	
+	public function copy()
+	{
+		return new self(unserialize(serialize($this->items)));
 	}
 
 	/**
@@ -160,7 +164,7 @@ class Collection implements CollectionInterface {
 	 */
 	public function append($data)
 	{
-		return !! $this->items[] = $data;
+		return !!$this->items[] = $data;
 	}
 	
 	/**

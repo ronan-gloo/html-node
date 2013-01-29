@@ -75,6 +75,16 @@ interface CollectionInterface extends \ArrayAccess, \IteratorAggregate {
 	public function replaceWith($items);
 
 	/**
+	 * Return a new copy of the current instance,
+	 * with deep clone of items
+	 * 
+	 * @access public
+	 * @param mixed $items
+	 * @return $this
+	 */
+	public function copy();
+
+	/**
 	 * Push an item or an array of items.
 	 * if the input contains named keys, this
 	 * method will set it.

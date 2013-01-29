@@ -8,7 +8,8 @@ use
 	HtmlNode\Util,
 	InvalidArgumentException,
 	LogicException,
-	OutOfBoundsException
+	OutOfBoundsException,
+	BadMethodCallException
 ;
 
 class Node implements NodeInterface {
@@ -20,10 +21,7 @@ class Node implements NodeInterface {
 			Component\Rendering,
 			Component\Seek,
 			Component\Tag,
-			Component\Traversing {
-				Component\Attribute::build as protected attributes;
-				Component\Manipulation::init as protected manipulation;
-			}
+			Component\Traversing;
 	
 	/**
 	 * Text instance

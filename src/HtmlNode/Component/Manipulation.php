@@ -37,7 +37,7 @@ trait Manipulation {
 	 * @access public
 	 * @return void
 	 */
-	public function init()
+	public function manipulation()
 	{
 		$this->children = new Collection\Collection;
 		$this->parent		= null;
@@ -240,7 +240,7 @@ trait Manipulation {
 	public function __clone()
 	{
 		// Deep cloning children
-		$this->children = unserialize(serialize($this->children));
+		$this->children = $this->children->copy();
 		
 		// reset the current parent
 		$this->parent = null;
@@ -275,8 +275,14 @@ trait Manipulation {
 			$input = clone $input($this);
 		}
 		
+		// Get the closure results
+		elseif ($input instanceof Node)
+		{
+			$input = clone $input;
+		}
+
 		// The node is a  string ? instaciate it
-		if (is_string($input) and $tag = trim($input))
+		elseif (is_string($input) and $tag = trim($input))
 		{
 			$input = new Node($tag, $text, $attrs);
 		}

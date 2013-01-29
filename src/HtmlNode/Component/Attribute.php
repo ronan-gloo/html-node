@@ -38,7 +38,7 @@ trait Attribute {
 	 * @access public
 	 * @return void
 	 */
-	public function build($attributes = [])
+	public function attributes($attributes = [])
 	{
 		if (! is_array($attributes))
 		{
@@ -71,7 +71,7 @@ trait Attribute {
 			return $this->attributes->find($name);
 		}
 		// Setter
-		if ($name and ! is_array($name))
+		if (! is_array($name))
 		{
 			$name = [$name => $val];
 		}
@@ -81,18 +81,17 @@ trait Attribute {
 			switch($key)
 			{
 				case "style":
-				$this->attributes->set($key, []);
 				$this->css($value);
 				break;
 				case "class":
-				$this->attributes->set($key, $this->parseClass($value));
+				$this->attributes[$key] = $this->parseClass($value);
 				break;
 				case "data":
 				case "aria":
 				$this->$key($value);
 				break;
 				default:
-				$this->attributes->set($key, ($value === true) ? $key : $value);
+				$this->attributes[$key] = ($value === true) ? $key : $value;
 				break;
 			}
 		}
@@ -210,12 +209,8 @@ trait Attribute {
 	 */
 	public function data($key = null, $val = null)
 	{
-		// We need to keep the args number, in order to check
-		// for Set / Get methods
-		return call_user_func_array(
-			[$this, "recursiveAttr"],
-			array_merge(["data"], func_get_args())
-		);
+		// We need to keep the args number, in order to check for Set / Get methods
+		return call_user_func_array([$this, "recursiveAttr"], array_merge(["data"], func_get_args()));
 	}
 	
 	/**
@@ -226,10 +221,7 @@ trait Attribute {
 	 */
 	public function aria($key = null, $val = null)
 	{
-		return call_user_func_array(
-			[$this, "recursiveAttr"],
-			array_merge(["aria"], func_get_args())
-		);
+		return call_user_func_array([$this, "recursiveAttr"], array_merge(["aria"], func_get_args()));
 	}
 	
 	/**
@@ -302,18 +294,21 @@ trait Attribute {
 	{
 		$splitted = [];
 		
-		foreach ((array)$data as $val)
+		! is_array($data) and $data = [$data];
+		
+		foreach ($data as $val)
 		{
-			$splitted = array_merge(preg_split('/[\s,]+/', $val), $splitted);
+			$splitted = array_merge($splitted, preg_split('/[\s,]+/', $val));
 		}
 		
-		foreach ($splitted as $key => &$val)
+		foreach ($splitted as $key => $val)
 		{
-			if (! is_string($val) or ! trim($val))
+			if (! is_string($val))
 			{
-				unset($splitted[$val]);
+				unset($splitted[$key]);
 			}
 		}
+		
 		return $splitted;
 	}
 

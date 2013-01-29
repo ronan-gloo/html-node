@@ -93,17 +93,15 @@ class Form extends HtmlNode\Node {
 		! is_array($values) and $values = [$values];
 		
 		// prepare variables
-		$selected	= ["selected" => true];
-		$select		= static::make("select", null, $attrs);
+		$select	= static::make("select", null, $attrs);
 
 		// Loop throught values to populate the select
 		foreach ($opts as $val => $name)
 		{
-			static::option($name, $val)
-				->appendTo($select)
-				->addAttrIf($selected, in_array($val, $values));
+			$opt[] = static::option($val, $name)->addAttrIf(["selected" => true], in_array($val, $values));
 		}
-		return $select;
+
+		return $select->html($opt);
 	}
 	
 	/**
