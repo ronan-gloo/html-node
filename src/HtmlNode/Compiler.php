@@ -10,16 +10,15 @@ class Compiler {
 	 * @var mixed
 	 * @access protected
 	 */
-	protected $node;
-	
-	/**
-	 * (default value: "")
-	 * 
-	 * @var string
-	 * @access protected
-	 */
-	protected $hml;
-	
+	protected
+		$node,
+		$html,
+		$attrs,
+		$children,
+		$autoclose,
+		$text,
+		$tag;
+		
 	/**
 	 * @access public
 	 * @param Node $node
@@ -32,6 +31,7 @@ class Compiler {
 		$this->autoclose 	= $node->autoclose();
 		$this->text				= $node->text();
 		$this->tag				= $node->tag();
+		$this->attrs			= [];
 	}
 
 	/**
@@ -78,7 +78,7 @@ class Compiler {
 	*/
 	public function children($text = false)
 	{
-		$pos	= $this->text->position();
+		$pos = $this->text->position();
 		
 		foreach ($this->children as $key => $child)
 		{
@@ -86,7 +86,7 @@ class Compiler {
 			
 			// If the node contains text, and we accept text rendering,
 			// we insert the text at the current index.
-			if ($text === true and $pos == $key)
+			if ($text === true and $pos === $key)
 			{
 				$this->html .= $this->text->get();
 			}
@@ -102,8 +102,6 @@ class Compiler {
 	 */
 	public function open()
 	{		
-		$this->attrs = [];
-
 		foreach ($this->node->attr() as $key => $data)
 		{
 			switch ($key)

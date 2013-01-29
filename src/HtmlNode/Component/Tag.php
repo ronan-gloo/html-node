@@ -66,7 +66,7 @@ trait Tag {
 		}
 
 		// Set the tagname: be sure there is no html elements
-		$this->tagname = strip_tags(trim($tagname));
+		$this->tagname = trim(strip_tags($tagname));
 
 		// Define if Node should be autoclosed or not
 		$this->autoclose = in_array($this->tagname, static::$autoclosed);
