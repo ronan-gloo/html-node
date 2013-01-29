@@ -127,7 +127,7 @@ class Node implements NodeInterface {
 	{
 		if (func_num_args() === 0) return $this->text;
 		
-		if ($this->autoclose === true or ! $this->config("text"))
+		if ($this->autoclose === true or $this->config["text"] === false)
 		{
 			throw new LogicException("Cannot add text on ".$this->tagname." element");
 		}

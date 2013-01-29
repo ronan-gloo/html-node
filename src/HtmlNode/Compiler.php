@@ -72,15 +72,18 @@ class Compiler {
 	*/
 	public function children($text = false)
 	{
-		foreach ($this->node->children() as $key => $child)
+		$node = $this->node;
+		$pos	= $node->text()->position();
+		
+		foreach ($node->children() as $key => $child)
 		{
 			$this->html .= $child instanceof Node ? $child->render() : $child;
 			
 			// If the node contains text, and we accept text rendering,
 			// we insert the text at the current index.
-			if ($text === true and $this->node->text()->position() == $key)
+			if ($text === true and $pos == $key)
 			{
-				$this->html .= $this->node->text()->get();
+				$this->html .= $node->text->get();
 			}
 		}
 		return $this->html;

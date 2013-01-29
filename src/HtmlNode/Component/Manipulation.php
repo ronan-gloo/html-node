@@ -50,9 +50,9 @@ trait Manipulation {
 	 * @param string $tag (default: "")
 	 * @return void
 	 */
-	public function wrap($input = null, $attrs = [], $text = null)
+	public function wrap($input = null, $text = null, $attrs = [])
 	{
-		$node = $this->createNodeWith($input, $attrs, $text);
+		$node = $this->createNodeWith($input, $text, $attrs, false);
 		
 		// register current node node to the parent childs
 		$node->children()->append($this);
@@ -86,9 +86,9 @@ trait Manipulation {
 	 * @param Node $node
 	 * @return void
 	 */
-	public function append($input = null, $attrs = [], $text = null)
+	public function append($input = null, $text = null, $attrs = [])
 	{
-		$node	= $this->createNodeWith($input, $attrs, $text);
+		$node	= $this->createNodeWith($input, $text, $attrs);
 		$this->children->append($node);
 		$node->parent = $this;
 				
@@ -120,9 +120,9 @@ trait Manipulation {
 	 * @param Node $node
 	 * @return void
 	 */
-	public function prepend($input = null, $attrs = [], $text = null)
+	public function prepend($input = null, $text = null, $attrs = [])
 	{
-		$node = $this->createNodeWith($input, $attrs, $text);
+		$node = $this->createNodeWith($input, $text, $attrs);
 		$this->children->prepend($node);
 		
 		// set the new text position
@@ -261,10 +261,10 @@ trait Manipulation {
 	 * @param mixed $input
 	 * @return Node or thrown InvalidArgumentException
 	 */
-	protected function createNodeWith($input, $attrs, $text)
+	protected function createNodeWith($input, $text, $attrs, $checkClose = true)
 	{
 		// Do not append / prepend autoclosed elements
-		if (in_array($this->tagname, static::$autoclosed))
+		if ($checkClose === true and in_array($this->tagname, static::$autoclosed))
 		{
 			throw new LogicException("You cannot add Node on self closed element");
 		}
@@ -278,7 +278,7 @@ trait Manipulation {
 		// The node is a  string ? instaciate it
 		if (is_string($input) and $tag = trim($input))
 		{
-			$input = new Node($tag, $attrs, $text);
+			$input = new Node($tag, $text, $attrs);
 		}
 		
 		// Nothing valid at this point

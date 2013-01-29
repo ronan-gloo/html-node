@@ -17,7 +17,7 @@ trait Attribute {
 	 * @var mixed
 	 * @access protected
 	 */
-	private static $attributeKeys = [
+	protected static $attributeKeys = [
 		"style"	=> [], 	// css inline styles
 		"class"	=> [],	// css classes
 		"data"	=> [],	// html5 data based
@@ -30,7 +30,7 @@ trait Attribute {
 	 * @var mixed
 	 * @access protected
 	 */
-	private $attributes = [];
+	protected $attributes = [];
 	
 	/**
 	 * Initialize attributes
@@ -106,6 +106,24 @@ trait Attribute {
 	 * @param mixed $name
 	 * @return void
 	 */
+	public function addAttrIf($attr, $left, $right = null)
+	{
+		$numa = func_num_args();
+		
+		if (($left and $numa === 2) xor ($numa === 3 and ($left === $right)))
+		{
+			$this->attr($attr, $left);
+		}
+		return $this;
+	}
+
+	/**
+	 * Delete an attribute.
+	 * 
+	 * @access public
+	 * @param mixed $name
+	 * @return void
+	 */
 	public function removeAttr($name)
 	{
 		return $this->attributes->delete($name);
@@ -140,11 +158,7 @@ trait Attribute {
 	{
 		$numa = func_num_args();
 		
-		if ($left and $numa === 2)
-		{
-			$this->addClass($class);
-		}
-		elseif ($numa === 3 and ($left === $right))
+		if (($left and $numa === 2) xor ($numa === 3 and ($left === $right)))
 		{
 			$this->addClass($class);
 		}
@@ -181,11 +195,7 @@ trait Attribute {
 	{
 		$numa = func_num_args();
 		
-		if ($left and $numa === 2)
-		{
-			$this->removeClass($class);
-		}
-		elseif ($numa === 3 and ($left === $right))
+		if (($left and $numa === 2) xor ($numa === 3 and ($left === $right)))
 		{
 			$this->removeClass($class);
 		}
