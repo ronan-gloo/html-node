@@ -11,12 +11,12 @@ trait FormInput {
 	 * @param mixed $attrs (default: [])
 	 * @return $this
 	 */
-	public function input($name, $value = null, array $attrs = [])
+	public static function input($name, $value = null, array $attrs = [])
 	{
 		// force default input type if no exists
 		! isset($attrs["type"]) and $attrs["type"] = "text";
 		
-		return self::make("input", null, compact("name", "value") + $attrs);
+		return static::make("input", null, compact("name", "value") + $attrs);
 	}
 
 	/**
