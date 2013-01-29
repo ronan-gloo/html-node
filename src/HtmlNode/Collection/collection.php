@@ -173,9 +173,10 @@ class Collection implements CollectionInterface {
 	 */
 	public function insertBefore($element, $new)
 	{
-		if ($pos = array_keys($this->items, $element, true)) 
+		if (($pos = array_keys($this->items, $element, true)) !== []) 
 		{
-			return $this->insert($new, current($pos));
+			$pos = reset($pos);
+			return $this->insert($new, $pos);
 		}
 		return $pos;
 	}

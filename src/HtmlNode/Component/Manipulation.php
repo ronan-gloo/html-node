@@ -150,7 +150,7 @@ trait Manipulation {
 		// set the new text position
 		if ($node->text->get())
 		{
-			$node->text->position($node->text->position() + 1);
+			$node->text->position($clone->index());
 		}
 		
 		return $clone;
@@ -212,6 +212,8 @@ trait Manipulation {
 		if ($parent = $this->parent and $node !== $this)
 		{
 			$parent->children()[$this->index()] = $node;
+			$node->parent = $parent;
+			$this->parent = null;
 		}
 		
 		return $this;
