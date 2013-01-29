@@ -215,6 +215,10 @@ Now, we can start to get collections from our elements:
 
     // Find all  tags:
     $a = $list->find("a");
+    // Find by attribute name:
+    $a = $list->find("[required]");
+    // Find by name / value:
+    $a = $list->find('[name="email"]');
     // find childrens with class .even
     $e = $list->children(".even");
     // or a single result (a node)
@@ -250,4 +254,4 @@ Register a custom node instance, that you can re-use later. Add `true` as third 
       return Node::make("input", compact("name", "value") %2B $attrs);
     });
     // use it:
-    Node::input("email", null, ["placeholder" => "Email"]);  
+    Node::input("email", null, ["placeholder" => "Email"]); 

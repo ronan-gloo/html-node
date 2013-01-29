@@ -211,7 +211,7 @@ trait Manipulation {
 	{
 		if ($parent = $this->parent and $node !== $this)
 		{
-			$parent->children()[$this->index()]  = $node;
+			$parent->children()[$this->index()] = $node;
 		}
 		
 		return $this;
@@ -273,7 +273,7 @@ trait Manipulation {
 		// Get the closure results
 		if ($input instanceof Closure)
 		{
-			$input = clone $input($this);
+			$input = $input($this);
 		}
 		
 		// Get the closure results

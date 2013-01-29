@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><link href="http://bootswatch.com/superhero/bootstrap.min.css" rel="stylesheet" type="text/css" /><link href="http://google-code-prettify.googlecode.com/svn/trunk/styles/sunburst.css" rel="stylesheet" type="text/css" /><script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js" type="text/javascript"></script><style>.contents, h4 {margin-top:2em}
+<html><head><link href="http://bootswatch.com/superhero/bootstrap.min.css" rel="stylesheet" type="text/css" /><link href="http://google-code-prettify.googlecode.com/svn/trunk/styles/sunburst.css" rel="stylesheet" type="text/css" /><script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js" type="text/javascript"></script><style>.contents, h4 {margin-top:2em}
 
 </style></head><body onload="prettyPrint()"><div class="container"><h2> <span>HtmlNode</span>  <small>Documentation</small> </h2><div class="contents"><p>HtmlNode is a "bootsrap library" to create and manipulate html elements in PHP.<br /> <strong>This Library is written in PHP 5.4, there is no support for previous versions.</strong> </p></div><div class="contents"><h4>Creation and options</h4><p>Create your first node:</p><pre class="prettyprint">$node = Node::make("h1", "Hello World", ["class" => "title"]);
 
@@ -124,6 +123,10 @@ foreach ($items as $key => $val) {
 
 </pre><p>Now, we can start to get collections from our elements:</p><pre class="prettyprint">// Find all &lt;a&gt; tags:
 $a = $list->find("a");
+// Find by attribute name:
+$a = $list->find("[required]");
+// Find by name / value:
+$a = $list->find('[name="email"]');
 // find childrens with class .even
 $e = $list->children(".even");
 // or a single result (a node)
