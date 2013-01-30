@@ -1,4 +1,5 @@
 <?php
+
 namespace HtmlNode\Tests;
 
 use HtmlNode\Node;
