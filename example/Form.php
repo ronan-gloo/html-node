@@ -1,6 +1,6 @@
 <?php
 
-use \HtmlNode\Node, HtmlNode\Extra;
+use \HtmlNode\Node, HtmlNode\Library;
 
 /**
 * An example of Class which extends HtmlNode\Node
@@ -8,7 +8,7 @@ use \HtmlNode\Node, HtmlNode\Extra;
 class Form extends HtmlNode\Node {
 	
 	// import val() and input()  method from FormInput trait
-	use Extra\FormInput;
+	use Library\FormInput;
 	
 	/**
 	 * Experimental support for html5 input type + classics

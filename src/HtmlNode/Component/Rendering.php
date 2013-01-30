@@ -4,7 +4,8 @@ namespace HtmlNode\Component;
 
 use
 	HtmlNode\Compiler,
-	HtmlNode\Collection
+	HtmlNode\Collection,
+	HtmlNode\Node
 ;
 
 trait Rendering {
@@ -20,14 +21,21 @@ trait Rendering {
 		{
 			return (new Compiler($this))->children();
 		}
+		
 		if ($data instanceof Collection\Collection)
 		{
-			$this->children = $data;
+			$data = $data->get();
 		}
 		// force the element to be 
 		elseif (! is_array($data))
 		{
 			$data = [$data];
+		}
+		
+		// set up the parent node
+		foreach ($data as $child)
+		{
+			$child instanceof Node and $child->parent = $this;
 		}
 		
 		$this->children->replaceWith($data);

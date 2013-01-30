@@ -2,6 +2,8 @@
 
 namespace HtmlNode\Component;
 
+use HtmlNode\Collection\Collection;
+
 trait Seek {
 	
 	/**
@@ -16,6 +18,7 @@ trait Seek {
 		{
 			return $parent->children()->eq($this->index()-1);
 		}
+		return null;
 	}
 	
 	/**
@@ -30,6 +33,7 @@ trait Seek {
 		{
 			return $parent->children()->eq($this->index()+1);
 		}
+		return null;
 	}
 	
 	/**
@@ -48,6 +52,7 @@ trait Seek {
 			
 			return $this->filterSeek($input, $nodes);
 		}
+		return new Collection;
 	}
 
 	/**
@@ -65,6 +70,7 @@ trait Seek {
 			
 			return $this->filterSeek($input, $nodes);
 		}
+		return new Collection;
 	}
 	
 	/**
@@ -85,6 +91,7 @@ trait Seek {
 			
 			return $this->filterSeek($input, $nodes);
 		}
+		return new Collection;
 	}
 	
 	/**
@@ -99,10 +106,11 @@ trait Seek {
 	{
 		if ($nodes->length() and $input)
 		{
-			$nodes->filter(function($node) use($input){
-				if (! $node->is($input)) return true;
-			});
-		} 
+			foreach ($nodes as $key => $node)
+			{
+				$node->not($input) and $nodes->remove($node);
+			}
+		}
 		return $nodes;
 	}
 	

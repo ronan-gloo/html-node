@@ -98,6 +98,7 @@ class Collection implements CollectionInterface {
 		{
 			return $this->items[$index];
 		}
+		$exists = null;
 		return $exists;
 	}
 	

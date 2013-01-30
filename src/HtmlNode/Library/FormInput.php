@@ -1,6 +1,6 @@
 <?php
 
-namespace HtmlNode\Extra;
+namespace HtmlNode\Library;
 
 trait FormInput {
 		
