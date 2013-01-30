@@ -1,6 +1,6 @@
 # HtmlNode Documentation
 
-[![Build Status](https://travis-ci.org/[ronan-gloo]/[html-node].png)](https://travis-ci.org/[ronan-gloo]/[html-node])
+[![Build Status](https://travis-ci.org/ronan-gloo/html-node.png)](https://travis-ci.org/ronan-gloo/html-node)
 
 HtmlNode is a "bootsrap library" to create and manipulate html elements in PHP.  
 **This Library is written in PHP 5.4, there is no support for previous versions.** 
