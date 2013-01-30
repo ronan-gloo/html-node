@@ -20,7 +20,7 @@ trait Tag {
 	 * @var mixed
 	 * @access protected
 	 */
-	protected $autoclose;
+	protected $autoclose = false;
 
 	/**
 	 * Autoclosed tags.
