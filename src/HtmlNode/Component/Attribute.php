@@ -40,6 +40,11 @@ trait Attribute {
 	 */
 	public function attributes($attributes = [])
 	{
+		if (func_num_args() === 0 and $this->attributes)
+		{
+			return $this->attributes;	
+		}
+		
 		if (! is_array($attributes))
 		{
 			throw new InvalidArgumentException("Argument should be an array");
@@ -49,6 +54,8 @@ trait Attribute {
 		$this->attributes = new Collection\Attribute(static::$attributeKeys);
 		
 		$attributes and $this->attr($attributes);
+		
+		return $this;
 	}
 	
 	/**
@@ -125,7 +132,8 @@ trait Attribute {
 	 */
 	public function removeAttr($name)
 	{
-		return $this->attributes->delete($name);
+		$this->attributes->delete($name);
+		return $this;
 	}
 		
 	/**
@@ -174,11 +182,11 @@ trait Attribute {
 	{
 		$classes =& $this->attributes->eq("class");
 		
-		foreach ($this->parseClass($data) as $class)
+		foreach ($this->parseClass($data) as $key => $class)
 		{
 			if (in_array($class, $classes))
 			{
-				unset($classes[$class]);
+				unset($classes[$key]);
 			}
 		}
 		return $this;
@@ -233,8 +241,13 @@ trait Attribute {
 	 * @param mixed $val
 	 * @return void
 	 */
-	protected function recursiveAttr($ns, $key, $val = null)
+	protected function recursiveAttr($ns, $key = null, $val = null)
 	{
+		if (! $key)
+		{
+			return $this->attributes[$ns];
+		}
+		
 		if (! is_array($key) and func_num_args() === 2)
 		{
 			return $this->attributes->findRecursive($ns.".".$key);
