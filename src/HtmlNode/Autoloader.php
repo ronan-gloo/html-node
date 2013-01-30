@@ -9,16 +9,14 @@ class Autoloader {
 	  spl_autoload_register(array(new self, 'autoload'));
   }
 
-  public static function autoload($class)
-	{
-    if (strpos($class, __NAMESPACE__) !== 0)
-    {
-	    return;
+  static public function autoload($class)
+  {
+    if (strncmp($class, 'HtmlNode', 8) !== 0) {
+        return;
     }
-    if (file_exists($file = __DIR__ . '/../' . strtr($class, '\\', '/').'.php'))
-    {
-	    require $file;
+
+    if (file_exists($file = __DIR__ . '/../' . strtr($class, '\\', '/').'.php')) {
+        require $file;
     }
-	}
-	
+  }	
 }
