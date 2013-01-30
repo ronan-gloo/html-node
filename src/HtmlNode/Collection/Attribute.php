@@ -2,6 +2,9 @@
 
 namespace HtmlNode\Collection;
 
+/**
+ * @extends Collection
+ */
 class Attribute extends Collection {
 	
 	/**
