@@ -10,7 +10,9 @@ interface NodeInterface {
 	
 	public function attr($name = null, $val = null);
 	
-	public function css($key, $val = null);
+	public function css($key = null, $val = null);
+	
+	public function config($key = null, $val = null);
 	
 	public function data($key = null, $val = null);
 	

@@ -10,10 +10,7 @@ trait Config {
 	 * @var mixed
 	 * @access protected
 	 */
-	protected $config = [
-		"text" => true, // Accepts text
-		//"register" 	=> true, // Register the object
-	];
+	protected $config = ["text" => true];
 	
 	/**
 	 * Get / Set a config item.
@@ -23,14 +20,18 @@ trait Config {
 	 * @param mixed $val (default: null)
 	 * @return void
 	 */
-	public function config($key, $val = null)
+	public function config($key = null, $val = null)
 	{
-		if (isset($this->config[$key]))
+		if (! $key) return $this->config;
+		
+		if (is_string($key) and func_num_args() == 1)
 		{
-			if (func_num_args() === 1) return $this->config[$key];
-			
-			return $this->config[$key] = $val;
+			return isset($this->config[$key]) ? $this->config[$key] : null;				
 		}
+		
+		$this->config = (is_string($key) ? [$key => $val] : $key) + $this->config;
+
+		return $this;
 	}
 	
 }

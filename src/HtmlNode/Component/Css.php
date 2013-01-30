@@ -31,14 +31,18 @@ trait Css {
 	 * @param mixed $val (default: null)
 	 * @return void
 	 */
-	public function css($key, $val = null)
+	public function css($key = null, $val = null)
 	{
-		$tyles = $this->attributes->eq("style");
+		$tyles =& $this->attributes->eq("style");
+		
+		if (! $key) return $tyles;
 		
 		if (! is_array($key))
 		{
-			if (func_num_args() == 1) return $tyles[$key];
-
+			if (func_num_args() == 1)
+			{
+				return isset($tyles[$key]) ? $tyles[$key] : null;				
+			}
 			$key = [$key => $val];
 		}
 
@@ -57,7 +61,7 @@ trait Css {
 				$value = strval($value)."px";
 			}
 			// Add css rule
-			$this->attributes->eq("style")[$name] = $value;
+			$tyles[$name] = $value;
 		}
 		return $this;
 	}

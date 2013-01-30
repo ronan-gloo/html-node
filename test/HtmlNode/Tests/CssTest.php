@@ -26,7 +26,8 @@ class CssTest extends \PHPUnit_Framework_TestCase
 	/** @dataProvider getCssTests */
 	public function testCssArray($d, $color, $cval, $width, $wval)
 	{
-		$obj = $d->css([$color => $cval, $width => $wval]);
+		$arr = [$color => $cval, $width => $wval];
+		$obj = $d->css($arr);
 		
 		// Num set
 		$this->assertSame(
@@ -34,26 +35,9 @@ class CssTest extends \PHPUnit_Framework_TestCase
 			$wval."px"
 		);
 
-		$this->assertSame(
-			$obj->css($color),
-			$cval
-		);
-	}
-
-	/** @dataProvider getCssTests */
-	public function testCssNumber($d, $color, $cval, $width, $wval)
-	{
-		$obj = $d->css([$color => $cval, $width => $wval]);
-		
-		// Num set
-		$this->assertSame(
-			$obj->css($width),
-			$wval."px"
-		);
-
-		$this->assertSame(
-			$obj->css($color),
-			$cval
+		$this->assertContains(
+			$cval,
+			$obj->css()
 		);
 	}
 	
