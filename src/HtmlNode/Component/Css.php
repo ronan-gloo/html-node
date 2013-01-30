@@ -33,19 +33,27 @@ trait Css {
 	 */
 	public function css($key, $val = null)
 	{
-		if (! is_array($key)) {
+		$tyles = $this->attributes->eq("style");
+		
+		if (! is_array($key))
+		{
+			if (func_num_args() == 1) return $tyles[$key];
+
 			$key = [$key => $val];
 		}
+
 		foreach ($key as $name => &$value)
 		{
 			// not a good style element
-			if (is_array($value) or ! trim($value)) {
+			if (is_array($value) or ! trim($value))
+			{
 				unset($key[$name]);
 				continue;
 			}
 			
 			// append "px" tyo numeric values if 
-			if (is_numeric($value) and ! in_array($name, static::$cssNumber)) {
+			if (is_numeric($value) and ! in_array($name, static::$cssNumber))
+			{
 				$value = strval($value)."px";
 			}
 			// Add css rule
