@@ -79,6 +79,7 @@ class Collection implements CollectionInterface {
 		{
 			return $this->items[$key];
 		}
+		return null;
 	}
 	
 	/**
@@ -130,7 +131,7 @@ class Collection implements CollectionInterface {
 	 */
 	public function set($key, $val = null)
 	{		
-		return !!$this->items[$key] = $val;
+		return !! $this->items[$key] = $val;
 	}
 	
 	/**
@@ -156,7 +157,7 @@ class Collection implements CollectionInterface {
 	 */
 	public function prepend($data)
 	{
-		return array_unshift($this->items, $data);
+		return !! array_unshift($this->items, $data);
 	}
 	
 	/**
@@ -164,7 +165,7 @@ class Collection implements CollectionInterface {
 	 */
 	public function append($data)
 	{
-		return !!$this->items[] = $data;
+		return !! $this->items[] = $data;
 	}
 	
 	/**
@@ -179,7 +180,7 @@ class Collection implements CollectionInterface {
 			$pos = reset($pos);
 			return $this->insert($new, $pos);
 		}
-		return $pos;
+		return false;
 	}
 	
 	/**
@@ -193,7 +194,7 @@ class Collection implements CollectionInterface {
 		{
 			return $this->insert($new, current($pos) + 1);
 		}
-		return $pos;
+		return false;
 	}
 	
 	/**
@@ -239,6 +240,7 @@ class Collection implements CollectionInterface {
 			unset($this->items[$key]);
 			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -273,9 +275,7 @@ class Collection implements CollectionInterface {
 	 */
 	public function clear()
 	{
-		$this->items = [];
-		
-		return $this;
+		return ! $this->items = [];
 	}
 	
 	/**
@@ -286,7 +286,7 @@ class Collection implements CollectionInterface {
 	{
 		foreach ($this->items as $key => &$val)
 		{
-			if ($c($val, $key) === false) break;
+			if ($c($key, $val) === false) break;
 		}
 		return $key;
 	}

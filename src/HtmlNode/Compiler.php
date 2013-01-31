@@ -81,7 +81,7 @@ class Compiler {
 			// we insert the text at the current index.
 			if ($text === true and $pos === $key)
 			{
-				$this->html .= $this->text->get();
+				$this->text();
 			}
 		}
 		return $this->html;
@@ -131,13 +131,36 @@ class Compiler {
 	
 	/**
 	 * @access public
-	 * @return String
+	 * @return $this
 	 */
 	public function close()
 	{
 		$this->html .= $this->autoclose ? '' : '</'.$this->tag.'>';
 		
+		return $this;
+	}
+	
+	/**
+	 * Get the compiled html.
+	 * 
+	 * @access public
+	 * @return String
+	 */
+	public function html()
+	{
 		return $this->html;
+	}
+	
+	/**
+	 * Get the current node text.
+	 * 
+	 * @access public
+	 * @return $this
+	 */
+	public function text()
+	{
+		$this->html .= $this->text->get();
+		return $this;
 	}
 	
 	/**

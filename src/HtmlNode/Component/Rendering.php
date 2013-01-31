@@ -71,9 +71,12 @@ trait Rendering {
 	public function self()
 	{
 		$compiler = new Compiler($this);
-		$compiler->open();
 		
-		return $compiler->close();
+		$compiler->open();
+		$compiler->text();
+		$compiler->close();
+		
+		return $compiler->html();
 	}
 	
 	/**
