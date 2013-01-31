@@ -3,7 +3,7 @@
 namespace HtmlNode\Component;
 
 use
-	HtmlNode,
+	HtmlNode\NodeInterface,
 	HtmlNode\Finder,
 	HtmlNode\Collection,
 	HtmlNode\Util,
@@ -106,7 +106,7 @@ trait Traversing {
 	 * @param Node $node
 	 * @return Bool
 	 */
-	public function isChildOf(Node $node)
+	public function isChildOf(NodeInterface $node)
 	{
 		return $this->parent === $node;
 	}
@@ -118,9 +118,9 @@ trait Traversing {
 	 * @param Node $node
 	 * @return void
 	 */
-	public function isParentOf(Node $node)
+	public function isParentOf(NodeInterface $node)
 	{
-		return $this->children->search($node) !== false;
+		return $node->parent() == $this;
 	}
 	
 	/**
@@ -129,7 +129,7 @@ trait Traversing {
 	 */
 	public function hasChildren()
 	{
-		return $this->children->legnth() > 0;
+		return $this->children->length() > 0;
 	}
 
 	
