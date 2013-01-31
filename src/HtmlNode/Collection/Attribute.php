@@ -56,13 +56,12 @@ class Attribute extends Collection {
 			}
 			$items[array_shift($keys)] = $value;
 		}
-		return count($key);
+		return true;
 	}
 	
 	/**
 	 * @access public
 	 * @return void
-	 */
 	public function extractRecursive($key)
 	{
 		$delete = function(&$items, $key) use (&$delete) {
@@ -85,5 +84,6 @@ class Attribute extends Collection {
 			return $out;
 		};
 		return $delete($this->items, $key);
-	}
+	}*/
+
 }

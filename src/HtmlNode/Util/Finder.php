@@ -34,16 +34,18 @@ class Finder {
 	 */
 	public function children($input, $loop = true)
 	{
+		$this->result = new Collection\Collection;
+		
 		$iterator = function($nodes) use(&$iterator, $input, $loop)
 		{
 			foreach ($nodes as $node)
 			{
-				if ($node->is($input))
+				if ($node->is($input) === true)
 				{
-					$this->result->append($node);
-					
-					if ($loop === false) return $loop;
+					$this->result->append($node);					
 				}
+				if ($loop === false) return $loop;
+
 				if ($childs = $node->children())
 				{
 					$iterator($childs);
@@ -62,19 +64,22 @@ class Finder {
 	 */
 	public function parents($input, $loop = true)
 	{
+		$this->result = new Collection\Collection;
+		
 		if ($node = $this->node->parent())
 		{
 			$iterator = function($node) use(&$iterator, $input, $loop)
 			{
-				if ($node->is($input))
+				if ($node->is($input) === true)
 				{
-					$this->result->append($node);
-					
-					if ($loop === false) return $loop;
+					$this->result->append($node);					
 				}
-				if ($node = $node->parent())
+				
+				if ($loop === false) return $loop;
+
+				if ($parent = $node->parent())
 				{
-					$iterator($node);
+					$iterator($parent);
 				}
 			};
 			$iterator($node);
