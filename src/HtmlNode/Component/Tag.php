@@ -2,7 +2,7 @@
 
 namespace HtmlNode\Component;
 
-use InvalidArguementException;
+use InvalidArgumentException;
 
 trait Tag {
 	

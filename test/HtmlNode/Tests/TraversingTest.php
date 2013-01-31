@@ -31,7 +31,7 @@ class TaversingTest extends \PHPUnit_Framework_TestCase
 		
 		// Test exception
 		try {
-			$node->find([]);
+			$node->closest([]);
 		}
 		catch (\Exception $e) {
 			$this->assertInstanceOf("InvalidArgumentException", $e);
