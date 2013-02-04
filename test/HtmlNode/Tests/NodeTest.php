@@ -8,7 +8,7 @@ class NodeTest extends \PHPUnit_Framework_TestCase
 	
 	public function testProperties()
 	{
-		$this->assertClassHasAttribute("text", get_class(new Node));
+		$this->assertClassHasAttribute("text", "HtmlNode\\Node");
 	}
 	
 	public function testInstance()
@@ -18,7 +18,7 @@ class NodeTest extends \PHPUnit_Framework_TestCase
 
 	public function testConstructor()
 	{
-		$node = new Node("div", "foo", ["class" => "test"]);
+		$node = Node::make("div", "foo", ["class" => "test"]);
 		
 		$this->assertEquals($node->tag(), "div");
 		$this->assertEquals($node->text(), "foo");
@@ -91,7 +91,7 @@ class NodeTest extends \PHPUnit_Framework_TestCase
 		
 		// Test untextable
 		try {
-			(new Node("input"))->text("foo");
+			Node::make("input")->text("foo");
 		}
 		catch (\Exception $e) {
 			$this->assertInstanceOf("LogicException", $e);

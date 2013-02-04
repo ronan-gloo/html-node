@@ -118,11 +118,11 @@ class TaversingTest extends \PHPUnit_Framework_TestCase
 
 	public function getTraversingdata()
 	{
-		$node = new Node("div");
+		$node = Node::make("div");
 		
 		foreach (range(1, 4) as $item) $node->append("h$item");
 		
-		return [[$node, new Node("span")]];
+		return [[$node, Node::make("span")]];
 	}
 }
 

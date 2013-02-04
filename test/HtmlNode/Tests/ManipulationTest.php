@@ -93,7 +93,7 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
     	// Text position
     	$this->assertEquals(
     	 	$d1->text()->position(),
-    	 	$second->index()
+    	 	$second->index() + 1
     	 );
     }
 
@@ -113,7 +113,7 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
     	// Text position
     	$this->assertEquals(
     	 	$d1->text()->position(),
-    	 	$third->index()
+    	 	$third->index() + 1
     	 );
     }
 

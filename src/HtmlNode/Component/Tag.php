@@ -12,7 +12,7 @@ trait Tag {
 	 * @var mixed
 	 * @access protected
 	 */
-	protected $tagname;
+	protected $tagname = "div";
 
 	/**
 	 * Element autclosed or not

@@ -3,25 +3,14 @@
 namespace HtmlNode;
 
 use
-	HtmlNode\Component,
+	HtmlNode\Collection,
 	HtmlNode\Dependency,
-	HtmlNode\Util,
-	InvalidArgumentException,
-	LogicException,
 	OutOfBoundsException,
+	LogicException,
 	BadMethodCallException
 ;
 
-class Node implements NodeInterface {
-	
-	use	Component\Attribute,
-			Component\Css,
-			Component\Config,
-			Component\Manipulation,
-			Component\Rendering,
-			Component\Seek,
-			Component\Tag,
-			Component\Traversing;
+class Node extends NodeAbstract {
 	
 	/**
 	 * Text instance
@@ -29,7 +18,7 @@ class Node implements NodeInterface {
 	 * @access protected
 	 */
 	protected $text;
-	
+
 	/**
 	 * ASk to the manager if $m is registered,
 	 * then returns it
@@ -74,46 +63,17 @@ class Node implements NodeInterface {
 	 * @param array $attrs (default: array())
 	 * @return void
 	 */
-	public static function make($tag = "div", $text = "", $attrs = [])
+	public static function make($tag = "div", $text = null, $attrs = [])
 	{
-		return new static($tag, $text, $attrs);
-	}
-	
-	/**
-	 * Class Constructor.
-	 * 
-	 * @access public
-	 * @param mixed $tag (default: null)
-	 * @param array $attrs (default: array())
-	 * @return void
-	 */
-	public function __construct($tag = "div", $text = "", $attrs = [])
-	{		
-		// Init components
-		$this->tag($tag);
-		$this->attributes($attrs);
-		$this->manipulation();
+		$node = Util\Manager::node(get_called_class());
+		$node->tag($tag);
 		
-		// instanciate dependencies
-		$this->text = new Dependency\Text($text);
+		if ($attrs) $node->attr($attrs);
+		if ($text) $node->text($text);
+		
+		return $node;
 	}
-	
-	/**
-	 * Catch property then check if its a dependency
-	 * 
-	 * @access public
-	 * @param mixed $key
-	 * @return void
-	 */
-	public function __get($key)
-	{
-		if (isset($this->$key) and $this->$key instanceof Dependency\Node)
-		{	
-			return $this->$key;
-		}
-		throw new OutOfBoundsException(__CLASS__."::$$key property doesn t exists");
-	}
-	
+		
 	/**
 	 * Set the node text.
 	 * 
@@ -129,8 +89,7 @@ class Node implements NodeInterface {
 		{
 			throw new LogicException("Cannot add text on ".$this->tagname." element");
 		}
-		
-		$this->text->position($this->children()->length() - 1);
+		$this->text->position($this->children()->length());
 		$this->text->set($text);
 	
 		return $this;

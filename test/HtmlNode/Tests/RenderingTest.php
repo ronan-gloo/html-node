@@ -60,7 +60,7 @@ class RenderingTest extends \PHPUnit_Framework_TestCase
 	
 	public function getData()
 	{
-		$node1 = new Node("div", "Hello World", ["class" => ["one", "two"]]);
+		$node1 = Node::make("div", "Hello World", ["class" => ["one", "two"]]);
 		$node2 = clone $node1;
 		$node3 = clone $node1;
 		

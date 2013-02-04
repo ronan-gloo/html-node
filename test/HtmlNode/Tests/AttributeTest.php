@@ -10,22 +10,6 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
 	public function testProperties($d)
 	{
 		$this->assertClassHasAttribute("attributes", get_class($d));
-		$this->assertClassHasAttribute("attributeKeys", get_class($d));
-	}
-	
-	/** @dataProvider getAttributeTests */
-	public function testAttributes($d, $attrs)
-	{
-		try {
-			$d->attributes("invalid");
-		}
-		catch (\Exception $e) {
-			$this->assertInstanceOf("InvalidArgumentException", $e);
-		}
-		
-		$this->assertInstanceOf(get_class($d), $d->attributes($attrs));
-		
-		$this->assertInstanceOf("HtmlNode\Collection\Attribute", $d->attributes());
 	}
 	
 	/**
@@ -133,7 +117,7 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testIs($d, $attrs)
 	{
-		$d->attributes($attrs);
+		$d->attr($attrs);
 		
 		$this->assertTrue($d->is("[name]"));
 		$this->assertTrue($d->is("[name=\"email\"]"));
@@ -155,17 +139,17 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
   public function getAttributeTests()
   {
     return [
-    	[new Node("div"),
+    	[Node::make("div"),
     	["class" => "test", "data" => "val", "name" => "email", "id" => "foo", "enabled" => "enabled"],
     ]];
   }
   public function getClassesTests()
   {
-    return [[new Node("div"), ["foo", "bar"]], [new Node("div", "text"), "foo bar"]];
+    return [[Node::make("div"), ["foo", "bar"]], [Node::make("div", "text"), "foo bar"]];
   }
   public function getDataTests()
   {
-    return [[new Node("div"), "foo1", "bar1", ["foo2" => ["bar2" => "foo3"]]]];
+    return [[Node::make("div"), "foo1", "bar1", ["foo2" => ["bar2" => "foo3"]]]];
   }
 }
 

@@ -7,6 +7,7 @@ use
 	InvalidArgumentException,
 	HtmlNode\Collection,
 	HtmlNode\Node,
+	HtmlNode\NodeInterface,
 	HtmlNode\Util,
 	LogicException
 ;
@@ -19,7 +20,7 @@ trait Manipulation {
 	 * @var mixed
 	 * @access protected
 	 */
-	protected $parent;
+	protected $parent = null;
 	
 	/**
 	 * Childs nodes
@@ -31,18 +32,6 @@ trait Manipulation {
 	 */
 	protected $children = [];
 	
-	/**
-	 * Create a new Colllection for childs
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function manipulation()
-	{
-		$this->children = new Collection\Collection;
-		$this->parent		= null;
-	}
-		
 	/**
 	 * Wrap a node, a tag str or throught a callback.
 	 * 
@@ -102,7 +91,7 @@ trait Manipulation {
 	 * @param Node $node
 	 * @return void
 	 */
-	public function appendTo(Node $node)
+	public function appendTo(NodeInterface $node)
 	{
 		$clone = clone $this;
 		
@@ -139,7 +128,7 @@ trait Manipulation {
 	 * @param Node $node
 	 * @return void
 	 */
-	public function prependTo(Node $node)
+	public function prependTo(NodeInterface $node)
 	{
 		$clone = clone $this;
 		
@@ -163,7 +152,7 @@ trait Manipulation {
 	 * @param mixed $node
 	 * @return $this on success, false otherwise
 	 */
-	public function insertBefore(Node $node)
+	public function insertBefore(NodeInterface $node)
 	{
 		if (! $parent = $node->parent()) return false;
 		
@@ -189,7 +178,7 @@ trait Manipulation {
 	 * @param mixed $node
 	 * @return $this on success, false otherwise
 	 */
-	public function insertAfter(Node $node)
+	public function insertAfter(NodeInterface $node)
 	{
 		if (! $parent = $node->parent()) return false;
 
@@ -207,7 +196,7 @@ trait Manipulation {
 	 * @access public
 	 * @return void
 	 */
-	public function replaceWith(Node $node)
+	public function replaceWith(NodeInterface $node)
 	{
 		if ($parent = $this->parent and $node !== $this)
 		{
@@ -279,7 +268,7 @@ trait Manipulation {
 		}
 		
 		// Get the closure results
-		elseif ($input instanceof Node)
+		elseif ($input instanceof NodeInterface)
 		{
 			$input = clone $input;
 		}
@@ -287,11 +276,11 @@ trait Manipulation {
 		// The node is a  string ? instaciate it
 		elseif (is_string($input) and $tag = trim($input))
 		{
-			$input = new Node($tag, $text, $attrs);
+			$input = Node::make($tag, $text, $attrs);
 		}
 		
 		// Nothing valid at this point
-		if (! $input instanceof Node)
+		if (! $input instanceof NodeInterface)
 		{
 			throw new InvalidArgumentException("You Can wrap: a string, a node, or a compatible callback result");
 		}

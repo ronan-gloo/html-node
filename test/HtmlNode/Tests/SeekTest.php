@@ -71,9 +71,9 @@ class SeekTest extends \PHPUnit_Framework_TestCase
 	
   public function getChildrenTests()
   {
-  	foreach (range(1, 3) as $num) $nodes[] = new Node("h$num");
+  	foreach (range(1, 3) as $num) $nodes[] = Node::make("h$num");
   	
-  	$node = (new Node("hgroup"))->html($nodes);
+  	$node = Node::make("hgroup")->html($nodes);
 
     return [$nodes];
   }

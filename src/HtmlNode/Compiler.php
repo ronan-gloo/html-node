@@ -76,13 +76,14 @@ class Compiler {
 		
 		foreach ($this->children as $key => $child)
 		{
-			$this->html .= $child;
 			// If the node contains text, and we accept text rendering,
 			// we insert the text at the current index.
 			if ($text === true and $pos === $key)
 			{
 				$this->text();
 			}
+			
+			$this->html .= $child;
 		}
 		return $this->html;
 	}

@@ -10,20 +10,7 @@ use
 ;
 
 trait Attribute {
-	
-	/**
-	 * Attributes keys
-	 * 
-	 * @var mixed
-	 * @access protected
-	 */
-	protected static $attributeKeys = [
-		"style"	=> [], 	// css inline styles
-		"class"	=> [],	// css classes
-		"data"	=> [],	// html5 data based
-		"aria"	=> []		// html5 aria based
-	];
-	
+		
 	/**
 	 * Attributes store
 	 * 
@@ -31,32 +18,6 @@ trait Attribute {
 	 * @access protected
 	 */
 	protected $attributes = [];
-	
-	/**
-	 * Initialize attributes
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function attributes($attributes = [])
-	{
-		if (func_num_args() === 0 and $this->attributes)
-		{
-			return $this->attributes;	
-		}
-		
-		if (! is_array($attributes))
-		{
-			throw new InvalidArgumentException("Argument should be an array");
-		}
-		
-		// Setup keys
-		$this->attributes = new Collection\Attribute(static::$attributeKeys);
-		
-		$attributes and $this->attr($attributes);
-		
-		return $this;
-	}
 	
 	/**
 	 * Set / Get Attr.
@@ -270,7 +231,6 @@ trait Attribute {
 	public function is($attr)
 	{
 		$is = Selector\Selector::pseudo($this, $attr);
-		
 		return (bool)$is;
 	}
 
@@ -283,7 +243,8 @@ trait Attribute {
 	 */
 	public function not($attr)
 	{
-		return ! $this->is($attr);
+		$not = ! Selector\Selector::pseudo($this, $attr);
+		return $not;
 	}
 	
 	/**

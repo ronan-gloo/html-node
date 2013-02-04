@@ -8,6 +8,27 @@ namespace HtmlNode\Collection;
 class Attribute extends Collection {
 	
 	/**
+	 * Attributes keys
+	 * 
+	 * @var mixed
+	 * @access protected
+	 */
+	protected static $keys = [
+		"style"	=> [], 	// css inline styles
+		"class"	=> [],	// css classes
+		"data"	=> [],	// html5 data based
+		"aria"	=> []		// html5 aria based
+	];
+	
+	/**
+	 * @param array $items (default: [])
+	 */
+	public function __construct(array $items = [])
+	{
+		$this->items = $items + static::$keys;
+	}
+
+	/**
 	 * @access public
 	 * @param mixed $key
 	 * @return void

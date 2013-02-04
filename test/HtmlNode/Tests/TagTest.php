@@ -48,6 +48,6 @@ class TagTest extends \PHPUnit_Framework_TestCase
 	
 	public function getData()
 	{
-		return [[new Node("div")]];
+		return [[Node::make("div")]];
 	}
 }
