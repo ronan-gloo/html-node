@@ -27,7 +27,7 @@ class Compiler {
 	 * @param Node $node
 	 * @return void
 	 */
-	public function __construct(Node $node)
+	public function __construct(NodeInterface $node)
 	{
 		$this->node				= $node;
 		$this->children		= $node->children();

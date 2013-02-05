@@ -9,9 +9,11 @@ use
 
 class Selector {
 	
-	const REGEXP_FULL_ATTR		= '/\[(\w+)="(\w+)"\]$/';
+	// Match [name="value"]
+	const REGEXP_FULL_ATTR = '/\[(\w+)="(\w+)"\]$/';
 	
-	const REGEXP_SIMPLE_ATTR	= '/\[(\w+)]$/';
+	// Match [name]
+	const REGEXP_SIMPLE_ATTR = '/\[(\w+)]$/';
 	
 	/**
 	 * Boolean / named global attributes.
@@ -39,7 +41,7 @@ class Selector {
 	 * @static
 	 * @param mixed $attrs
 	 * @param mixed $string
-	 * @return void
+	 * @return Boolean, true on success, false otherwise
 	 */
 	public static function pseudo(NodeInterface $node, $str)
 	{

@@ -34,7 +34,7 @@ class Node extends NodeAbstract {
 		if (Util\Manager::registered($m))
 		{
 			// if the resolver returns an instance of Node, we are done.
-			if (($node = Util\Manager::resolve($m, $args)) instanceof Node)
+			if (($node = Util\Manager::resolve($m, $args)) instanceof NodeInterface)
 			{
 				return $node;
 			}
