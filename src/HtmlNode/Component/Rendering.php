@@ -4,8 +4,8 @@ namespace HtmlNode\Component;
 
 use
 	HtmlNode\Compiler,
-	HtmlNode\Collection,
-	HtmlNode\Node
+	HtmlNode\Collection\Node as Collection,
+	HtmlNode\NodeInterface
 ;
 
 trait Rendering {
@@ -22,7 +22,7 @@ trait Rendering {
 			return (new Compiler($this))->children();
 		}
 		
-		if ($data instanceof Collection\Collection)
+		if ($data instanceof Collection)
 		{
 			$data = $data->get();
 		}
@@ -35,7 +35,7 @@ trait Rendering {
 		// set up the parent node
 		foreach ($data as $child)
 		{
-			$child instanceof Node and $child->parent = $this;
+			$child instanceof NodeInterface and $child->parent = $this;
 		}
 		
 		$this->children->replaceWith($data);

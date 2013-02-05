@@ -2,7 +2,10 @@
 
 namespace HtmlNode;
 
-use HtmlNode\Collection;
+use
+	HtmlNode\Collection,
+	HtmlNode\Collection\Attribute
+;
 
 class Compiler {
 	
@@ -31,7 +34,7 @@ class Compiler {
 		$this->autoclose 	= $node->autoclose();
 		$this->text				= $node->text();
 		$this->tag				= $node->tag();
-		$this->attrs			= [];
+		$this->attrs			= '';
 	}
 
 	/**
@@ -95,39 +98,46 @@ class Compiler {
 	 * @return String
 	 */
 	public function open()
-	{		
+	{
 		foreach ($this->node->attr() as $key => $data)
 		{
 			switch ($key)
 			{
-				case "class":
-				$this->classes($data);
+				case Attribute::KEY_CLASS:
+				$this->classes($key, $data);
 				break;
-				case "style":
-				$this->styles($data);
+				case Attribute::KEY_STYLE:
+				$this->styles($key, $data);
 				break;
-				case "data":
-				case "aria":
-				$this->data($data, $key);
+				case Attribute::KEY_DATA:
+				case Attribute::KEY_ARIA:
+				$this->data($key, $data);
 				break;
 				default:
-				$this->attributes($data, $key);
+				$this->attrToString($key, $data);
 				break;
 			}
 		}
-		
-		$attrs = "";
-
-		foreach ($this->attrs as $property => $value)
-		{
-			$attrs .= $property.'="'.$value.'" ';
-		}
-
 		$this->html .= '<'.$this->tag;
-		$this->html .= $attrs ? ' '.trim($attrs) : '';
+		$this->html .= $this->attrs ? ' '.trim($this->attrs) : '';
 		$this->html .= $this->autoclose ? ' />' : '>';
 		
 		return $this->html;
+	}
+	
+	/**
+	 * Convert key / value pair to str attribute.
+	 * 
+	 * @access public
+	 * @param mixed $key
+	 * @param mixed $val
+	 * @return void
+	 */
+	public function attrToString($key, $val)
+	{
+		if (is_array($key)) $key = reset($key);
+		
+		$this->attrs .= $key.'="'.$val.'" ';
 	}
 	
 	/**
@@ -165,32 +175,15 @@ class Compiler {
 	}
 	
 	/**
-	 * Default behavior: set the key / val pair.
-	 * @access protected
-	 * @static
-	 * @param mixed $node
-	 * @return Array
-	*/
-	public function attributes($data, $key)
-	{
-		is_array($data) and $data = key($data);
-
-		$this->attrs[$key] = $data;
-
-		return $this->attrs;
-	}
-	
-	/**
 	 * @access public
 	 * @return void
 	 */
-	public function classes()
+	public function classes($key)
 	{
-		if ($classes = $this->node->attr("class"))
+		if ($classes = $this->node->attr($key))
 		{
-			$this->attrs["class"] = implode(" ", $classes);
+			 $this->attrToString($key, implode(" ", $classes));
 		}
-		return $this->attrs;
 	}
 	
 	/**
@@ -201,7 +194,7 @@ class Compiler {
 	 * @param string $key (default: "data")
 	 * @return Array
 	 */
-	public function data($data, $bkey = "data")
+	public function data($bkey = Attribute::KEY_DATA, $data)
 	{
 		static $ckey = [];
 		
@@ -211,15 +204,14 @@ class Compiler {
 			
 			if (is_array($val) and array_values($val) !== $val)
 			{
-				$this->data($val, $bkey, "-");
+				$this->data($bkey, $val);
 			}
 			else
 			{
-				$this->attrs[$bkey."-".implode("-", $ckey)] = $val;
+				$this->attrToString($bkey."-".implode("-", $ckey), $val);
 			}
 			array_pop($ckey);
 		}
-		$this->attrs;
 	}
 	
 	/**
@@ -228,7 +220,7 @@ class Compiler {
 	 * @access public
 	 * @return void
 	 */
-	public function styles($data)
+	public function styles($key, $data)
 	{
 		$out = "";
 		
@@ -237,9 +229,7 @@ class Compiler {
 			$out .= $key.':'.$val.';';
 		}
 		
-		$out and $this->attrs["style"] = $out;
-		
-		return $this->attrs;
+		$out and $this->attrToString($key, $out);
 	}
 	
 }

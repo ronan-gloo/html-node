@@ -93,14 +93,6 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider getData
 	 */
-	public function testPush($col, $data)
-	{
-		$this->assertEquals($col->push($data), count($data));
-	}
-	
-	/**
-	 * @dataProvider getData
-	 */
 	public function testAppend($col, $data)
 	{
 		$last = end($data);
@@ -221,10 +213,10 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testEach($col, $data)
 	{
-		$key = $col->each(function($key, $val){
+		$return = $col->each(function($key, $val){
 			return ($key === 2)  ? false : true;
 		});
-		$this->assertEquals($key, 2);
+		$this->assertEquals($return, $col);
 	}
 	
 	/**

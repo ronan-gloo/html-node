@@ -149,7 +149,7 @@ class Collection implements CollectionInterface {
 	 */
 	public function copy()
 	{
-		return new self(unserialize(serialize($this->items)));
+		return new static(unserialize(serialize($this->items)));
 	}
 
 	/**
@@ -217,20 +217,6 @@ class Collection implements CollectionInterface {
 	
 	/**
 	 * @access public
-	 */
-	public function push($data)
-	{
-		! is_array($data) and $data = [$data];
-		
-		foreach ($data as $key => $val)
-		{
-			! is_int($key) ? $this->items[$key] = $val : $this->items[] = $val;
-		}
-		return count($data);
-	}
-	
-	/**
-	 * @access public
 	 * @param mixed $key
 	 */
 	public function delete($key)
@@ -288,7 +274,7 @@ class Collection implements CollectionInterface {
 		{
 			if ($c($key, $val) === false) break;
 		}
-		return $key;
+		return $this;
 	}
 	
 	/**

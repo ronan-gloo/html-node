@@ -5,10 +5,8 @@ namespace HtmlNode\Component;
 use
 	Closure,
 	InvalidArgumentException,
-	HtmlNode\Collection,
 	HtmlNode\Node,
 	HtmlNode\NodeInterface,
-	HtmlNode\Util,
 	LogicException
 ;
 

@@ -2,7 +2,10 @@
 
 namespace HtmlNode\Selector;
 
-use HtmlNode\Node;
+use
+	HtmlNode\NodeInterface,
+	HtmlNode\Collection\Attribute as Collection
+;
 
 class Selector {
 	
@@ -38,7 +41,7 @@ class Selector {
 	 * @param mixed $string
 	 * @return void
 	 */
-	public static function pseudo(Node $node, $str)
+	public static function pseudo(NodeInterface $node, $str)
 	{
 		$substr = substr($str, 1);
 		$attrs	= $node->attr();
@@ -47,7 +50,7 @@ class Selector {
 		switch (substr($str, 0, 1))
 		{
 			case ".":
-			$attr = ($key = array_search($substr, $attrs["class"])) !== false;
+			$attr = ($key = array_search($substr, $attrs[Collection::KEY_CLASS])) !== false;
 			break;
 			
 			case "#":

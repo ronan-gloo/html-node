@@ -4,9 +4,8 @@ namespace HtmlNode\Component;
 
 use
 	HtmlNode\NodeInterface,
-	HtmlNode\Finder,
-	HtmlNode\Collection,
-	HtmlNode\Util,
+	HtmlNode\Collection\Node as Collection,
+	HtmlNode\Util\Finder,
 	InvalidArgumentException
 ;
 
@@ -26,7 +25,7 @@ trait Traversing {
 		{
 			throw new InvalidArgumentException("You must provide a valid tagname");
 		}
-		return (new Util\Finder($this))->children($input);
+		return (new Finder($this))->children($input);
 	}
 
 	/**
@@ -41,7 +40,7 @@ trait Traversing {
 		{
 			throw new InvalidArgumentException("You must provide a valid tagname");
 		}
-		return (new Util\Finder($this))->parents($input, false);
+		return (new Finder($this))->parents($input, false);
 	}
 	
 	/**
@@ -56,7 +55,7 @@ trait Traversing {
 	{
 		if ($input and is_string($input))
 		{
-			$childrens = new Collection\Collection;
+			$childrens = new Collection;
 		
 			foreach ($this->children as $node)
 			{

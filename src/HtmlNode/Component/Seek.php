@@ -2,7 +2,7 @@
 
 namespace HtmlNode\Component;
 
-use HtmlNode\Collection\Collection;
+use HtmlNode\Collection\Node as Collection;
 
 trait Seek {
 	

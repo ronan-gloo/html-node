@@ -26,9 +26,9 @@ trait FormInput {
 	 * @param mixed $value
 	 * @return void
 	 */
-	public function val($value)
+	public function val($value = null)
 	{
-		if (is_null($value))
+		if (func_num_args() === 0)
 		{
 			return $this->attributes->eq("value");
 		}

@@ -83,18 +83,6 @@ interface CollectionInterface extends \ArrayAccess, \IteratorAggregate {
 	 * @return $this
 	 */
 	public function copy();
-
-	/**
-	 * Push an item or an array of items.
-	 * if the input contains named keys, this
-	 * method will set it.
-	 * 
-	 * @access public
-	 * @param mixed $key
-	 * @param mixed $val (default: null)
-	 * @return count data
-	 */
-	public function push($data);
 	
 	/**
 	 * The methods push each args the the items

@@ -12,7 +12,6 @@ abstract class NodeAbstract implements NodeInterface {
 	
 	use	Component\Attribute,
 			Component\Css,
-			Component\Config,
 			Component\Manipulation,
 			Component\Rendering,
 			Component\Seek,
@@ -35,7 +34,7 @@ abstract class NodeAbstract implements NodeInterface {
 	 * @param array $attrs (default: array())
 	 * @return void
 	 */
-	public function __construct(Dependency\Text $text, Collection\Attribute $attrs, Collection\Collection $children)
+	public function __construct(Dependency\Text $text, Collection\Attribute $attrs, Collection\Node $children)
 	{		
 		// link dependencies
 		$this->text				= $text;

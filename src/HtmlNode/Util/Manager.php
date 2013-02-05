@@ -4,7 +4,6 @@ namespace HtmlNode\Util;
 
 use
 	Closure,
-	HtmlNode\Node,
 	HtmlNode\Dependency,
 	HtmlNode\Collection
 ;
@@ -35,17 +34,6 @@ class Manager {
 	 * @static
 	 */
 	protected static $singletons = [];
-	
-	/**
-	 * Node prototypes
-	 * 
-	 * (default value: [])
-	 * 
-	 * @var mixed
-	 * @access protected
-	 * @static
-	 */
-	protected static $nodes = [];
 	
 	/**
 	 * Node dependencies
@@ -91,25 +79,25 @@ class Manager {
 	 * 
 	 * @access public
 	 * @static
-	 * @param mixed $name
+	 * @param mixed $class: the clas name provided
 	 * @param mixed $dependecies
 	 * @return void or new Node instance
 	 */
-	public static function node($name)
+	public static function node($class)
 	{
 		if (! static::$dependencies)
 		{
 			static::$dependencies = [
 				'text' 			=> new Dependency\Text,
-				'attributes'=> new Collection\Attribute(),
-				'children' 	=> new Collection\Collection
+				'attributes'=> new Collection\Attribute,
+				'children' 	=> new Collection\Node
 			];
 		}
-		foreach(static::$dependencies as $key => $dep)
+		foreach(static::$dependencies as $dep)
 		{
-			$deps[$key] = clone $dep;
+			$deps[] = clone $dep;
 		}
-		return new $name($deps['text'], $deps['attributes'], $deps['children']);
+		return new $class($deps[0], $deps[1], $deps[2]);
 	}
 
 	/**
@@ -122,7 +110,7 @@ class Manager {
 	 */
 	public static function registered($name)
 	{
-		return array_key_exists($name, static::$registry);
+		return isset(static::$registry[$name]);
 	}
 	
 	/**
@@ -134,12 +122,6 @@ class Manager {
 	 */
 	public static function resolve($name, $args = [])
 	{
-		// Look at the registry first
-		if (isset(static::$nodes[$name]))
-		{
-			return static::node($name);
-		}
-
 		// Look at the registry first
 		if (! isset(static::$registry[$name]))
 		{

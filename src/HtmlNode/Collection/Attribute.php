@@ -7,6 +7,11 @@ namespace HtmlNode\Collection;
  */
 class Attribute extends Collection {
 	
+	const KEY_STYLE	= "style";
+	const KEY_CLASS	= "class";
+	const KEY_DATA	= "data";
+	const KEY_ARIA	= "aria";
+	
 	/**
 	 * Attributes keys
 	 * 
@@ -14,10 +19,10 @@ class Attribute extends Collection {
 	 * @access protected
 	 */
 	protected static $keys = [
-		"style"	=> [], 	// css inline styles
-		"class"	=> [],	// css classes
-		"data"	=> [],	// html5 data based
-		"aria"	=> []		// html5 aria based
+		self::KEY_STYLE	=> [], 	// css inline styles
+		self::KEY_CLASS	=> [],	// css classes
+		self::KEY_DATA	=> [],	// html5 data based
+		self::KEY_ARIA	=> []		// html5 aria based
 	];
 	
 	/**
@@ -25,7 +30,7 @@ class Attribute extends Collection {
 	 */
 	public function __construct(array $items = [])
 	{
-		$this->items = $items + static::$keys;
+		$this->items = $items ? $items + self::$keys : self::$keys;
 	}
 
 	/**

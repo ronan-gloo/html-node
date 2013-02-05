@@ -3,8 +3,8 @@
 namespace HtmlNode\Util;
 
 use
-	HtmlNode\Collection,
-	HtmlNode\Node
+	HtmlNode\Collection\Node as Collection,
+	HtmlNode\NodeInterface
 ;
 
 /**
@@ -22,10 +22,10 @@ class Finder {
 	 * @param Node $node
 	 * @return void
 	 */
-	public function __construct(Node $node)
+	public function __construct(NodeInterface $node)
 	{
 		$this->node		= $node;
-		$this->result	= new Collection\Collection;
+		$this->result	= new Collection;
 	}
 
 	/**
@@ -34,8 +34,6 @@ class Finder {
 	 */
 	public function children($input, $loop = true)
 	{
-		$this->result = new Collection\Collection;
-		
 		$iterator = function($nodes) use(&$iterator, $input, $loop)
 		{
 			foreach ($nodes as $node)
@@ -64,8 +62,6 @@ class Finder {
 	 */
 	public function parents($input, $loop = true)
 	{
-		$this->result = new Collection\Collection;
-		
 		if ($node = $this->node->parent())
 		{
 			$iterator = function($node) use(&$iterator, $input, $loop)

@@ -12,8 +12,6 @@ interface NodeInterface {
 	
 	public function css($key = null, $val = null);
 	
-	public function config($key = null, $val = null);
-	
 	public function data($key = null, $val = null);
 	
 	public function aria($key = null, $val = null);

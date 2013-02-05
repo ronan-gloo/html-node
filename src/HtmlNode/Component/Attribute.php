@@ -3,7 +3,7 @@
 namespace HtmlNode\Component;
 
 use
-	HtmlNode\Collection,
+	HtmlNode\Collection\Attribute as Collection,
 	HtmlNode\Util,
 	HtmlNode\Selector,
 	InvalidArgumentException
@@ -48,14 +48,14 @@ trait Attribute {
 		{
 			switch($key)
 			{
-				case "style":
+				case Collection::KEY_STYLE:
 				$this->css($value);
 				break;
-				case "class":
+				case Collection::KEY_CLASS:
 				$this->attributes[$key] = $this->parseClass($value);
 				break;
-				case "data":
-				case "aria":
+				case Collection::KEY_DATA:
+				case Collection::KEY_ARIA:
 				$this->$key($value);
 				break;
 				default:
@@ -104,7 +104,7 @@ trait Attribute {
 	 */
 	public function addClass($data)
 	{
-		$classes =& $this->attributes->eq("class");
+		$classes =& $this->attributes->eq(Collection::KEY_CLASS);
 		
 		foreach ($this->parseClass($data) as $class)
 		{
@@ -141,7 +141,7 @@ trait Attribute {
 	 */
 	public function removeClass($data)
 	{
-		$classes =& $this->attributes->eq("class");
+		$classes =& $this->attributes->eq(Collection::KEY_CLASS);
 		
 		foreach ($this->parseClass($data) as $key => $class)
 		{
@@ -179,7 +179,10 @@ trait Attribute {
 	public function data($key = null, $val = null)
 	{
 		// We need to keep the args number, in order to check for Set / Get methods
-		return call_user_func_array([$this, "recursiveAttr"], array_merge(["data"], func_get_args()));
+		return call_user_func_array(
+			[$this, "recursiveAttr"],
+			array_merge([Collection::KEY_DATA], func_get_args())
+		);
 	}
 	
 	/**
@@ -190,7 +193,10 @@ trait Attribute {
 	 */
 	public function aria($key = null, $val = null)
 	{
-		return call_user_func_array([$this, "recursiveAttr"], array_merge(["aria"], func_get_args()));
+		return call_user_func_array(
+			[$this, "recursiveAttr"],
+			array_merge([Collection::KEY_ARIA], func_get_args())
+		);
 	}
 	
 	/**
@@ -230,8 +236,7 @@ trait Attribute {
 	 */
 	public function is($attr)
 	{
-		$is = Selector\Selector::pseudo($this, $attr);
-		return (bool)$is;
+		return Selector\Selector::pseudo($this, $attr);
 	}
 
 	/**
@@ -243,8 +248,7 @@ trait Attribute {
 	 */
 	public function not($attr)
 	{
-		$not = ! Selector\Selector::pseudo($this, $attr);
-		return $not;
+		return ! Selector\Selector::pseudo($this, $attr);
 	}
 	
 	/**
@@ -254,7 +258,7 @@ trait Attribute {
 	 */
 	public function hasClass($class)
 	{
-		return in_array($class, $this->attributes["class"]);
+		return in_array($class, $this->attributes[Collection::KEY_CLASS]);
 	}
 	
 	/**
