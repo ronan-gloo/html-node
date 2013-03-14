@@ -169,6 +169,20 @@ trait Attribute {
 		}
 		return $this;
 	}
+	
+	/**
+	 * Exchange $old with $new.
+	 * If old doesn't exists, add new anyway.
+	 * 
+	 * @access public
+	 * @param mixed $old
+	 * @param mixed $new
+	 * @return $this
+	 */
+	public function switchClass($old, $new)
+	{
+		return $this->removeClass($old)->addClass($new);
+	}
 
 	/**
 	 * Shortcut to assign data-* attributes.

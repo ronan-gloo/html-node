@@ -95,7 +95,22 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
 		$d->removeClass($classes);
 		$this->assertEmpty($d->attr("class"));
 	}
-
+	
+	/**
+	 * @dataProvider getClassesTests
+	 */
+	public function testSwitchClass($d, $classes)
+	{
+		$this->assertInstanceOf(get_class($d), $d->switchClass("foo", "bar"));
+		
+		// Note: use array value cause classes array keeps indexes
+		
+		// Test if 'bar' class has been added, even if 'foo' doesn't exists
+		$this->assertSame(['bar'], array_values($d->attr("class")));
+		// Test if 'bar' is removed, and 'foo' is added
+		$this->assertSame(['foo'], array_values($d->switchClass('bar', 'foo')->attr('class')));
+	}
+	
 	/**
 	 * @dataProvider getDataTests
 	 */
