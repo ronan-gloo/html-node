@@ -142,12 +142,14 @@ trait Attribute {
 	public function removeClass($data)
 	{
 		$classes =& $this->attributes->eq(Collection::KEY_CLASS);
-		
+
 		foreach ($this->parseClass($data) as $key => $class)
 		{
-			if (in_array($class, $classes))
+			$index = array_search($class, $classes);
+			
+			if ($index !== false)
 			{
-				unset($classes[$key]);
+				unset($classes[$index]);
 			}
 		}
 		return $this;
