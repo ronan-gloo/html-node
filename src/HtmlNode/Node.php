@@ -63,13 +63,13 @@ class Node extends NodeAbstract {
 	 * @param array $attrs (default: array())
 	 * @return void
 	 */
-	public static function make($tag = "div", $text = null, $attrs = [])
+	public static function make($tag = null, $text = null, $attrs = [])
 	{
 		$node = Util\Manager::node(get_called_class());
-		$node->tag($tag);
 		
-		if ($attrs) $node->attr($attrs);
-		if ($text) $node->text($text);
+		$tag		and $node->tag($tag);
+		$attrs 	and $node->attr($attrs);
+		$text		and $node->text($text);
 		
 		return $node;
 	}
