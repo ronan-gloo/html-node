@@ -138,7 +138,7 @@ class Collection implements CollectionInterface {
 	 * @access public
 	 * @param mixed $items
 	 */
-	public function replaceWith($items)
+	public function exchange($items)
 	{
 		$this->items = $items;
 		return $this;

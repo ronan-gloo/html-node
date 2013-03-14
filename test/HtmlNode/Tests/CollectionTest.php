@@ -76,10 +76,10 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider getData
 	 */
-	public function testReplaceWith($col, $data)
+	public function testExchange($col, $data)
 	{
-		$this->assertSame($col, $col->replaceWith($data));
-		$this->assertInstanceOf(get_class($col), $col->replaceWith($data));
+		$this->assertSame($col, $col->exchange($data));
+		$this->assertInstanceOf(get_class($col), $col->exchange($data));
 	}
 
 	/**

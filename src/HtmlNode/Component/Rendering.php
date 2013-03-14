@@ -38,7 +38,7 @@ trait Rendering {
 			$child instanceof NodeInterface and $child->parent = $this;
 		}
 		
-		$this->children->replaceWith($data);
+		$this->children->exchange($data);
 		
 		return $this;
 	}

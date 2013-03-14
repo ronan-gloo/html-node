@@ -72,7 +72,7 @@ interface CollectionInterface extends \ArrayAccess, \IteratorAggregate {
 	 * @param mixed $items
 	 * @return $this
 	 */
-	public function replaceWith($items);
+	public function exchange($items);
 
 	/**
 	 * Return a new copy of the current instance,
