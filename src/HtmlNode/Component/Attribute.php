@@ -91,9 +91,14 @@ trait Attribute {
 	 * @param mixed $name
 	 * @return void
 	 */
-	public function removeAttr($name)
+	public function removeAttr($attrs)
 	{
-		$this->attributes->delete($name);
+		! is_array($attrs) and $attrs = [$attrs];
+
+		foreach ($attrs as $name)
+		{
+			$this->attributes->delete($name);
+		}
 		return $this;
 	}
 		
