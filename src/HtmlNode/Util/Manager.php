@@ -6,6 +6,7 @@ use
 	Closure,
 	HtmlNode\Collection,
 	HtmlNode\Compiler,
+	HtmlNode\CompilerInterface,
 	HtmlNode\Dependency
 ;
 
@@ -126,7 +127,7 @@ class Manager {
 		}
 		if (! static::$compiler)
 		{
-			static::$compiler = new Compiler();
+			static::$compiler = new Compiler;
 		}
 		return clone static::$compiler;
 	}
