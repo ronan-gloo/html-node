@@ -76,7 +76,7 @@ class Compiler implements CompilerInterface {
 		$text = $this->text->get();
 		
 		// Get chiildren contents
-		$this->children->length() ? $this->children((bool)$text) : $this->html .= $text;
+		$this->children->length() ? $this->children($text) : $this->html .= $text;
 		
 		return $this->html;
 	}
@@ -95,13 +95,20 @@ class Compiler implements CompilerInterface {
 		{
 			// If the node contains text, and we accept text rendering,
 			// we insert the text at the current index.
-			if ($text === true and $pos === $key)
+			if ($text !== false and $pos === $key)
 			{
-				$this->text();
+				$this->html .= $text;
+				$text = false;
 			}
 			
 			$this->html .= $child;
 		}
+		
+		if ($text !== false)
+		{
+			$this->html .= $text;
+		}
+		
 		return $this->html;
 	}
 	
@@ -117,6 +124,9 @@ class Compiler implements CompilerInterface {
 		{
 			switch ($key)
 			{
+				default:
+				$this->attrToString($key, $data);
+				break;
 				case Attribute::KEY_CLASS:
 				$this->classes($key, $data);
 				break;
@@ -126,9 +136,6 @@ class Compiler implements CompilerInterface {
 				case Attribute::KEY_DATA:
 				case Attribute::KEY_ARIA:
 				$this->data($key, $data);
-				break;
-				default:
-				$this->attrToString($key, $data);
 				break;
 			}
 		}
