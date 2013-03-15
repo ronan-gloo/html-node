@@ -7,7 +7,7 @@ use
 	HtmlNode\Collection\Attribute
 ;
 
-class Compiler {
+class Compiler implements CompilerInterface {
 	
 	/**
 	 * @var mixed
@@ -27,7 +27,19 @@ class Compiler {
 	 * @param Node $node
 	 * @return void
 	 */
-	public function __construct(NodeInterface $node)
+	public function __construct(NodeInterface $node = null)
+	{
+		$node and $this->node($node);
+	}
+	
+	/**
+	 * Attach a node to the current instance.
+	 * 
+	 * @access public
+	 * @param NodeInterface $node
+	 * @return void
+	 */
+	public function node(NodeInterface $node)
 	{
 		$this->node				= $node;
 		$this->children		= $node->children();
@@ -35,6 +47,8 @@ class Compiler {
 		$this->text				= $node->text();
 		$this->tag				= $node->tag();
 		$this->attrs			= '';
+		
+		return $this;
 	}
 
 	/**
@@ -43,7 +57,7 @@ class Compiler {
 	 * @access public
 	 * @return void
 	 */
-	public function node()
+	public function compile()
 	{
 		// Open the tag
 		$this->open();

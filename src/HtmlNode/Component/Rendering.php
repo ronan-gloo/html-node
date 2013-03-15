@@ -3,7 +3,7 @@
 namespace HtmlNode\Component;
 
 use
-	HtmlNode\Compiler,
+	HtmlNode\Util\Manager,
 	HtmlNode\Collection\Node as Collection,
 	HtmlNode\NodeInterface
 ;
@@ -19,7 +19,9 @@ trait Rendering {
 	{
 		if (is_null($data))
 		{
-			return (new Compiler($this))->children();
+			return Manager::compiler()
+				->node($this)
+				->children();
 		}
 		
 		if ($data instanceof Collection)
@@ -50,7 +52,9 @@ trait Rendering {
 	 */
 	public function contents()
 	{
-		return (new Compiler($this))->contents();
+		return Manager::compiler()
+			->node($this)
+			->contents();
 	}
 
 	/**
@@ -59,7 +63,9 @@ trait Rendering {
 	 */
 	public function render()
 	{
-		return (new Compiler($this))->node();
+		return Manager::compiler()
+			->node($this)
+			->compile();
 	}
 	
 	/**
@@ -70,7 +76,7 @@ trait Rendering {
 	 */
 	public function self()
 	{
-		$compiler = new Compiler($this);
+		$compiler = Manager::compiler()->node($this);
 		
 		$compiler->open();
 		$compiler->text();

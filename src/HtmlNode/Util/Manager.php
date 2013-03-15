@@ -4,8 +4,9 @@ namespace HtmlNode\Util;
 
 use
 	Closure,
-	HtmlNode\Dependency,
-	HtmlNode\Collection
+	HtmlNode\Collection,
+	HtmlNode\Compiler,
+	HtmlNode\Dependency
 ;
 
 /**
@@ -45,6 +46,16 @@ class Manager {
 	 * @static
 	 */
 	protected static $dependencies = [];
+	
+	/**
+	 * 
+	 * (default value: null)
+	 * 
+	 * @var mixed
+	 * @access protected
+	 * @static
+	 */
+	protected static $compiler = null;
 	
 	/**
 	 * Register a new element.
@@ -98,6 +109,26 @@ class Manager {
 			$deps[] = clone $dep;
 		}
 		return new $class($deps[0], $deps[1], $deps[2]);
+	}
+	
+	/**
+	 * Set / get the node compiler.
+	 * 
+	 * @access public
+	 * @static
+	 * @return void
+	 */
+	public static function compiler(CompilerInterface $compiler = null)
+	{
+		if ($compiler)
+		{
+			static::$compiler = $compiler;
+		}
+		if (! static::$compiler)
+		{
+			static::$compiler = new Compiler();
+		}
+		return clone static::$compiler;
 	}
 
 	/**
