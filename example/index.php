@@ -1,6 +1,6 @@
 <?php
 
-require dirname(__DIR__)."/bootstrap.php";
+require dirname(__DIR__)."/test/bootstrap.php";
 require "Form.php";
 
 $start = microtime(true);

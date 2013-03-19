@@ -16,16 +16,9 @@ abstract class NodeAbstract implements NodeInterface {
 			Component\Rendering,
 			Component\Seek,
 			Component\Tag,
+			Component\Text,
 			Component\Traversing;
-	
-	/**
-	 * The text dependencie
-	 * 
-	 * @var mixed
-	 * @access protected
-	 */
-	protected $text;
-	
+		
 	/**
 	 * Class Constructor.
 	 * 
