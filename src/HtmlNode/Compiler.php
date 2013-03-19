@@ -250,7 +250,7 @@ class Compiler implements CompilerInterface {
 			$out .= $key.':'.$val.';';
 		}
 		
-		$out and $this->attrToString($key, $out);
+		$out and $this->attrToString('style', $out);
 	}
 	
 }
