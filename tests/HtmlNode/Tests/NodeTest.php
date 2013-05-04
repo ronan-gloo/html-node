@@ -3,20 +3,33 @@ namespace HtmlNode\Tests;
 
 use HtmlNode\Node;
 
+/**
+ * Class NodeTest
+ * @package HtmlNode\Tests
+ */
 class NodeTest extends \PHPUnit_Framework_TestCase
 {
-	
-	public function testProperties()
+
+    /**
+     *
+     */
+    public function testProperties()
 	{
 		$this->assertClassHasAttribute("text", "HtmlNode\\Node");
 	}
-	
-	public function testInstance()
+
+    /**
+     *
+     */
+    public function testInstance()
 	{
 		$this->assertInstanceOf("HtmlNode\\Node", Node::make());
 	}
 
-	public function testConstructor()
+    /**
+     *
+     */
+    public function testConstructor()
 	{
 		$node = Node::make("div", "foo", ["class" => "test"]);
 		
@@ -78,13 +91,13 @@ class NodeTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testDependencies($d)
 	{
-		$this->assertInstanceOf("HtmlNode\\Dependency\\Node", $d->text);
+		$this->assertInstanceOf('HtmlNode\Dependency\DependencyInterface', $d->text);
 		
 		try {
 			$d->foo;
 		}
 		catch (\Exception $e) {
-			$this->assertInstanceOf("\\OutOfBoundsException", $e);
+			$this->assertInstanceOf('OutOfBoundsException', $e);
 		}
 	}
 	
@@ -111,12 +124,18 @@ class NodeTest extends \PHPUnit_Framework_TestCase
 		$this->assertTrue($d->contains("World"));
 	}
 
-  public function getNodeTests()
+    /**
+     * @return array
+     */
+    public function getNodeTests()
   {
     return [[Node::make("div", "Hello World 1")]];
   }
 
-  public function getMacroTests()
+    /**
+     * @return array
+     */
+    public function getMacroTests()
   {
   	Node::macro("instance", function(){ return Node::make("input"); });
   	Node::macro("singleton", function(){ return Node::make("input"); }, true);

@@ -7,6 +7,7 @@ use
 	HtmlNode\Component,
 	OutOfBoundsException
 ;
+use HtmlNode\Dependency\DependencyInterface;
 
 /**
  * Class NodeAbstract
@@ -49,6 +50,8 @@ abstract class NodeAbstract implements NodeInterface {
 		$this->attributes   = clone static::$dependencies['attributes'];
 		$this->children     = clone static::$dependencies['children'];
 
+        $this->text->node($this);
+
         $tag	and $this->tag($tag);
         $attrs 	and $this->attr($attrs);
         $text	and $this->text->set($text);
@@ -61,7 +64,7 @@ abstract class NodeAbstract implements NodeInterface {
      */
     public function __get($key)
 	{
-		if (isset($this->$key) and $this->$key instanceof Dependency\Node)
+		if (isset($this->$key) and $this->$key instanceof DependencyInterface)
 		{	
 			return $this->$key;
 		}

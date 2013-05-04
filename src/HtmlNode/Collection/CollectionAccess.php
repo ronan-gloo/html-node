@@ -28,4 +28,9 @@ trait CollectionAccess {
 	{
 		return new \ArrayIterator($this->items);
 	}
+
+    public function count()
+    {
+        return count($this->items);
+    }
 }

@@ -2,36 +2,54 @@
 
 namespace HtmlNode\Dependency;
 
+use HtmlNode\NodeInterface;
 use InvalidArgumentException;
 
 /**
  * Class Text
  * @package HtmlNode\Dependency
  */
-class Text implements Node {
+class Text implements DependencyInterface {
 	
 	/**
-	 * @var mixed
+	 * @var string
 	 * @access protected
 	 */
 	protected $text;
 	
 	/**
-	 * The text position
-	 * 
-	 * @var mixed
+	 * @var integer
 	 * @access protected
 	 */
-	protected $position;
+	protected $position = 0;
+
 
     /**
-     * @param null $string
+     * @var \HtmlNode\NodeInterface
      */
-    public function __construct($string = null)
+    protected $node;
+
+    /**
+     * @param string $string
+     */
+    public function __construct($string = '')
 	{
 		$string and $this->set($string);
-		$this->position = 0;
 	}
+
+    /**
+     * @param NodeInterface $node
+     * @return $this|NodeInterface
+     */
+    public function node(NodeInterface $node = null)
+    {
+        if ($node)
+        {
+            $this->node = $node;
+            return $this;
+        }
+        return $this->node;
+    }
 	
 	/**
 	 * @access public
@@ -68,7 +86,7 @@ class Text implements Node {
      */
     public function set($string)
 	{
-		if (! $this->isValidText($string))
+		if (! $this->isValid($string))
 		{
 			throw new InvalidArgumentException('You cannot provide '.gettype($string).'s as text.');
 		}
@@ -128,15 +146,58 @@ class Text implements Node {
 	{
 		return preg_match($expr, $this->text);
 	}
+
+    /**
+     * @return $this
+     */
+    public function first()
+    {
+        $this->position = 0;
+
+        return $this;
+    }
+
+    /**
+     * Move text before $node
+     * @param NodeInterface $node
+     * @return $this
+     */
+    public function before(NodeInterface $node)
+    {
+        $this->position($node->index());
+
+        return $this;
+    }
+
+    /**
+     * Move text after $node
+     * @param NodeInterface $node
+     * @return $this
+     */
+    public function after(NodeInterface $node)
+    {
+        $this->position($node->index() + 1);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function last()
+    {
+        $this->position($this->node->children()->length());
+
+        return $this;
+    }
 	
 	/**
-	 * Check if php can force transtype of $string to string.
-	 * 
+	 * Check if php can force trans typing of $string to string.
 	 * @access public
 	 * @param mixed $string
 	 * @return Bool
 	 */
-	protected function isValidText($string) {
+	protected function isValid($string) {
 		return !
 			is_array($string)
 			or (

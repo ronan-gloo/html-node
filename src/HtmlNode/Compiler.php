@@ -75,35 +75,34 @@ class Compiler implements CompilerInterface {
 	 */
 	public function contents()
 	{
-		$text = $this->text->get();
-		
 		// Get children contents
-		$this->children->length() ? $this->children($text) : $this->html .= $text;
+		$this->children->length() ? $this->children() : $this->html .= $this->text->get();
 		
 		return $this;
 	}
 
     /**
      * Add node children and optionnaly text to html
-     * @param bool $text
+     * @param bool $withText
      * @return $this
      */
-    public function children($text = false)
+    public function children($withText = true)
 	{
-		$pos = $this->text->position();
+		$pos    = $this->text->position();
+        $text   = $this->text->get();
 		
 		foreach ($this->children as $key => $child)
 		{
 			// If the node contains text, and we accept text rendering,
 			// we insert the text at the current index.
-			if ($text !== false and $pos === $key)
+			if ($withText === true and $pos === $key)
 			{
                 $this->html .= $text;
 				$text  = false;
 			}
             $this->html .= $child;
 		}
-		if ($text !== false)
+		if ($withText === true and $text !== false)
 		{
             $this->html .= $text;
 		}

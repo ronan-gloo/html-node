@@ -4,24 +4,26 @@ namespace HtmlNode\Component;
 
 use LogicException;
 
+/**
+ * Class Text
+ * @package HtmlNode\Component
+ */
 trait Text {
 	
 	/**
-	 * The text dependencie
+	 * The text dependency
 	 * 
 	 * @var mixed
 	 * @access protected
 	 */
 	protected $text;
 
-	/**
-	 * Set the node text.
-	 * 
-	 * @access public
-	 * @param bool $text (default: false)
-	 * @return void
-	 */
-	public function text($text = false)
+    /**
+     * @param bool $text
+     * @return $this|mixed
+     * @throws \LogicException
+     */
+    public function text($text = false)
 	{
 		if (func_num_args() === 0) return $this->text;
 		
@@ -34,14 +36,17 @@ trait Text {
 	
 		return $this;
 	}
-	
-	/**
-	 * An alias to Dependency\Text::contains().
-	 */
-	public function contains($str, $case = false, $strict = false)
+
+
+    /**
+     * @param $str
+     * @param bool $case
+     * @param bool $strict
+     * @return mixed
+     */
+    public function contains($str, $case = false, $strict = false)
 	{
 		return $this->text->contains($str, $case, $strict);
-	}	
-
+	}
 	
 }

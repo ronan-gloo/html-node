@@ -91,20 +91,15 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
 	    $this->assertSame($d1->append($d2), $d1);
 	    // appended is new copy
 	    $this->assertNotSame($d3->append($d4)->children()->first(), $d4);
-	    // Text position
-	    $d3->text("ho")->prepend($d4);
-	    $this->assertEquals($d3->text()->position(), $d4->index());
     }
 
     /** @dataProvider getManipulationTests */
     public function testPrependTo($d1, $d2, $d3, $d4)
     {
     	// copy
-    	$d1->append($d3);
+        $d3 = $d3->appendTo($d1);
     	$d5 = $d2->prependTo($d1);
-	    
-	    $this->assertNotSame($d5, $d2);
-	    // appended
+
 	    $this->assertEquals($d5->index(), $d3->index() - 1);
 	    
 	    $d1->text("ho");
@@ -116,19 +111,21 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
     public function testInsertBefore($d1, $d2, $d3)
     {
     	$second = $d2->appendTo($d1);
-    	$first 	= $d3->insertBefore($second);
+    	$d3->insertBefore($second);
     	$d1->text("ho");
     	$third 	= $d3->insertBefore($second);
     	
     	// Index
     	$this->assertEquals(
     		$third->index(),
-    		$second->index() - 1
+    		$second->index() - 1,
+            'index'
     	);
     	// Text position
     	$this->assertEquals(
     	 	$d1->text()->position(),
-    	 	$second->index() + 1
+    	 	$second->index() + 1,
+            'text'
     	 );
     }
 

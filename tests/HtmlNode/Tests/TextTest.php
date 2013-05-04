@@ -2,12 +2,17 @@
 namespace HtmlNode\Tests;
 
 use HtmlNode\Dependency;
+use HtmlNode\Node;
 
+/**
+ * Class TextTest
+ * @package HtmlNode\Tests
+ */
 class TextTest extends \PHPUnit_Framework_TestCase
 {
 	
 	/**
-	 * @dataProvider getTextdata
+	 * @dataProvider getTextData
 	 */
 	public function testProperties($text)
 	{
@@ -15,6 +20,9 @@ class TextTest extends \PHPUnit_Framework_TestCase
 		$this->assertClassHasAttribute("position", get_class($text));
 	}
 
+    /**
+     *
+     */
     public function testConstructor()
     {
        $text = new Dependency\Text('hey');
@@ -30,7 +38,7 @@ class TextTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @dataProvider getTextdata
+	 * @dataProvider getTextData
 	 */
 	public function testSet($text)
 	{
@@ -46,7 +54,7 @@ class TextTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @dataProvider getTextdata
+	 * @dataProvider getTextData
 	 */
 	public function testPosition($text)
 	{
@@ -64,7 +72,7 @@ class TextTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @dataProvider getTextdata
+	 * @dataProvider getTextData
 	 */
 	public function testContains($text)
 	{
@@ -80,7 +88,7 @@ class TextTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @dataProvider getTextdata
+	 * @dataProvider getTextData
 	 * @expectedException Exception
 	 */
 	public function testContainsEmpty($text)
@@ -89,7 +97,7 @@ class TextTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @dataProvider getTextdata
+	 * @dataProvider getTextData
 	 */
 	public function testReplace($text)
 	{
@@ -97,7 +105,7 @@ class TextTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @dataProvider getTextdata
+	 * @dataProvider getTextData
 	 */
 	public function testMatch($text)
 	{
@@ -105,14 +113,67 @@ class TextTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @dataProvider getTextdata
+	 * @dataProvider getTextData
 	 */
 	public function testGet($text)
 	{
 		$this->assertSame("foo", $text->get());
 	}
-	
-	public function getTextdata()
+
+    /**
+     *
+     */
+    public function testFirst()
+    {
+        $node = new Node('div');
+        $node->append('div', 'hey');
+
+        $node->text()->position(5);
+        $text2 = $node->text()->first();
+
+        $this->assertEquals(0, $node->text()->position());
+        $this->assertSame($text2, $node->text());
+    }
+
+    /**
+     *
+     */
+    public function testLast()
+    {
+        $node = new Node('div', 'hey');
+        $node->append('div', 'hey');
+        $node->append('div', 'hey');
+        $text2 = $node->text()->last();
+
+        $this->assertEquals(2, $node->text()->position());
+        $this->assertSame($text2, $node->text());
+    }
+
+    /**
+     * @dataProvider getTextData
+     */
+    public function testBefore($text)
+    {
+        $node = new Node('div', 'hey');
+        $node->append('div', 'hey');
+        $last = (new Node())->appendTo($node);
+
+        $this->assertEquals(1, $text->before($last)->position());
+    }
+
+    /**
+     * @dataProvider getTextData
+     */
+    public function testAfter($text)
+    {
+        $node   = new Node('div', 'hey');
+        $first  = (new Node())->appendTo($node);
+        $node->append('div', 'hey');
+
+        $this->assertEquals(1, $text->after($first)->position());
+    }
+
+    public function getTextData()
 	{
 		$text = new Dependency\Text("foo");
 		

@@ -8,10 +8,10 @@ class TaversingTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider getTraversingdata
 	 */
-	public function testFind($node, $single)
+	public function testFind($node)
 	{
 		// Test that we can find something i children
-		$this->assertInstanceOf("HtmlNode\Collection\Collection", $node->find("h2"));
+		$this->assertInstanceOf('HtmlNode\Collection\Collection', $node->find("h2"));
 		// Test exception
 		try {
 			$node->find([]);
@@ -24,7 +24,7 @@ class TaversingTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider getTraversingdata
 	 */
-	public function testClosest($node, $single)
+	public function testClosest($node)
 	{
 		// Test that we can find something in parents
 		$this->assertInstanceOf("HtmlNode\Collection\Collection", $node->closest("h2"));
@@ -44,10 +44,10 @@ class TaversingTest extends \PHPUnit_Framework_TestCase
 	public function testChildren($node, $single)
 	{
 		// Test that we can find something in parents
-		$this->assertInstanceOf("HtmlNode\Collection\Collection", $node->children());
+		$this->assertInstanceOf('HtmlNode\Collection\Collection', $node->children());
 		
 		$childs = $node->children("h2");
-		$this->assertInstanceOf("HtmlNode\Collection\Collection", $childs);
+		$this->assertInstanceOf('HtmlNode\Collection\Collection', $childs);
 		
 		// something found ?
 		$this->assertNotNull($childs->get());
@@ -73,7 +73,7 @@ class TaversingTest extends \PHPUnit_Framework_TestCase
 	public function testIndex($node)
 	{
 		// Not in any collection
-		$this->assertTrue($node->index());
+		$this->assertEquals(0, $node->index());
 		// Parent is same
 		$this->assertEquals($node->children()->first()->index(), 0);
 		$this->assertEquals($node->children()->last()->index(), $node->children()->length() - 1);

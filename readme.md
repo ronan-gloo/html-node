@@ -44,6 +44,15 @@ Setting text on autoclosed elements (input, meta... etc) will throw an `LogicExc
     // Text length
     $node->text->length();
     
+    // moving text in collection
+    $child = (new Node)->appendTo($node);
+    $node->text->after($child);
+    $node->text->before($child);
+    
+    // text is the first / last element in childs
+    $node->text->first();
+    $node->text->last();
+    
     
 
 #### Node attributes

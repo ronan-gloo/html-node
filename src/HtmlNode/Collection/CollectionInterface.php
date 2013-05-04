@@ -3,7 +3,7 @@
 namespace HtmlNode\Collection;
 
 
-interface CollectionInterface extends \ArrayAccess, \IteratorAggregate {
+interface CollectionInterface extends \ArrayAccess, \IteratorAggregate, \Countable {
 	
 	/**
 	 * Retrieve the first item.
@@ -47,9 +47,8 @@ interface CollectionInterface extends \ArrayAccess, \IteratorAggregate {
 
 	/**
 	 * Get the item index
-	 *
-	 * @access public
-	 * @return Int, -1 if item doesnt exists
+     * @param integer $index
+	 * @return integer|-1 if item doesnt exists
 	 */
 	public function indexOf($index);
 

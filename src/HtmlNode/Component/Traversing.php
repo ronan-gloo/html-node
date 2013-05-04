@@ -9,17 +9,20 @@ use
 	InvalidArgumentException
 ;
 
+/**
+ * Class Traversing
+ * @package HtmlNode\Component
+ */
 trait Traversing {
-	
-	/**
-	 * Find a specific node from the collection,
-	 * or find by tag name.
-	 * 
-	 * @access public
-	 * @param mixed $node
-	 * @return void
-	 */
-	public function find($input)
+
+    /**
+     * Find a specific node from the collection,
+     * or find by tag name.
+     * @param $input
+     * @return Collection
+     * @throws \InvalidArgumentException
+     */
+    public function find($input)
 	{
 		if (! is_string($input))
 		{
@@ -28,13 +31,13 @@ trait Traversing {
 		return (new Finder($this))->children($input);
 	}
 
-	/**
-	 * Find the closest parent which match $input.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function closest($input)
+    /**
+     * Find the closest parent which match $input.
+     * @param $input
+     * @return Collection
+     * @throws \InvalidArgumentException
+     */
+    public function closest($input)
 	{
 		if (! is_string($input))
 		{
@@ -42,16 +45,14 @@ trait Traversing {
 		}
 		return (new Finder($this))->parents($input, false);
 	}
-	
-	/**
-	 * Get a single child, or the collection array
-	 * if $child is null
-	 * 
-	 * @access public
-	 * @param mixed $child (default: null)
-	 * @return mixed
-	 */
-	public function children($input = null)
+
+    /**
+     * Get a single child, or the collection array
+     * if $child is null.
+     * @param null $input
+     * @return Collection
+     */
+    public function children($input = null)
 	{
 		if ($input and is_string($input))
 		{
@@ -70,7 +71,7 @@ trait Traversing {
 	 * Get the current parent node.
 	 * 
 	 * @access public
-	 * @return void
+	 * @return \HtmlNode\NodeInterface
 	 */
 	public function parent()
 	{
@@ -81,50 +82,47 @@ trait Traversing {
 	 * Get the node index.
 	 * 
 	 * @access public
-	 * @return void
+	 * @return integer
 	 */
 	public function index()
 	{
-		return ! $this->parent ?: $this->parent->children()->indexOf($this);
+        return ! $this->parent ? 0 : $this->parent->children()->indexOf($this);
 	}
 
 	/**
 	 * Check if node has parent.
 	 * 
 	 * @access public
-	 * @return void
+	 * @return bool
 	 */
 	public function hasParent()
 	{
 		return (bool)$this->parent();
 	}
-	/**
-	 * Check if current node is a child of $node
-	 * 
-	 * @access public
-	 * @param Node $node
-	 * @return Bool
-	 */
-	public function isChildOf(NodeInterface $node)
+
+    /**
+     * Check if current node is a child of $node
+     * @param NodeInterface $node
+     * @return bool
+     */
+    public function isChildOf(NodeInterface $node)
 	{
 		return $this->parent === $node;
 	}
-	
-	/**
-	 * Check if current node is the parent of $node
-	 * 
-	 * @access public
-	 * @param Node $node
-	 * @return void
-	 */
-	public function isParentOf(NodeInterface $node)
+
+    /**
+     * Check if current node is the parent of $node
+     * @param NodeInterface $node
+     * @return bool
+     */
+    public function isParentOf(NodeInterface $node)
 	{
 		return $node->parent() == $this;
 	}
 	
 	/**
 	 * @access public
-	 * @return void
+	 * @return bool
 	 */
 	public function hasChildren()
 	{

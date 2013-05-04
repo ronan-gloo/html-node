@@ -24,7 +24,7 @@ trait Rendering {
 		{
 			return Manager::compiler()
 				->node($this)
-				->children()
+				->children(false)
                 ->html();
 		}
 		

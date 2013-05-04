@@ -58,7 +58,8 @@ class CompilerTest extends \PHPUnit_Framework_TestCase {
     public function testChildren()
     {
         $node = (new Node('div'))->appendTo($this->node);
-        $this->assertEquals('test<div></div>', $this->compiler->children('test')->html());
+        $this->node->text('test');
+        $this->assertEquals('<div></div>test', $this->compiler->children()->html());
     }
 
 }
