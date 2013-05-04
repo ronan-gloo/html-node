@@ -7,13 +7,21 @@ use
 	HtmlNode\Collection\Attribute as Collection
 ;
 
+/**
+ * Class Selector
+ * @package HtmlNode\Selector
+ */
 class Selector {
-	
-	// Match [name="value"]
-	const REGEXP_FULL_ATTR = '/\[(\w+)="(\w+)"\]$/';
-	
-	// Match [name]
-	const REGEXP_SIMPLE_ATTR = '/\[(\w+)]$/';
+
+    /**
+     * Match [name="value"]
+     */
+    const REGEXP_FULL_ATTR = '/\[(\w+)="(\w+)"\]$/';
+
+    /**
+     * Match [name]
+     */
+    const REGEXP_SIMPLE_ATTR = '/\[(\w+)]$/';
 	
 	/**
 	 * Boolean / named global attributes.
@@ -35,15 +43,14 @@ class Selector {
 		"spellcheck",
 		"translate"
 	];
-	
-	/**
-	 * @access public
-	 * @static
-	 * @param mixed $attrs
-	 * @param mixed $string
-	 * @return Boolean, true on success, false otherwise
-	 */
-	public static function pseudo(NodeInterface $node, $str)
+
+
+    /**
+     * @param NodeInterface $node
+     * @param $str
+     * @return bool
+     */
+    public static function pseudo(NodeInterface $node, $str)
 	{
 		$substr = substr($str, 1);
 		$attrs	= $node->attr();
@@ -52,7 +59,7 @@ class Selector {
 		switch (substr($str, 0, 1))
 		{
 			case ".":
-			$attr = ($key = array_search($substr, $attrs[Collection::KEY_CLASS])) !== false;
+			$attr = ($key = array_search($substr, $attrs[Collection::key_class])) !== false;
 			break;
 			
 			case "#":

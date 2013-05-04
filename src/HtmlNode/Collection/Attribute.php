@@ -5,38 +5,34 @@ namespace HtmlNode\Collection;
 /**
  * @extends Collection
  */
+/**
+ * Class Attribute
+ * @package HtmlNode\Collection
+ */
 class Attribute extends Collection {
-	
-	const KEY_STYLE	= "style";
-	const KEY_CLASS	= "class";
-	const KEY_DATA	= "data";
-	const KEY_ARIA	= "aria";
-	
-	/**
-	 * Attributes keys
-	 * 
-	 * @var mixed
-	 * @access protected
-	 */
-	protected static $keys = [
-		self::KEY_STYLE	=> [], 	// css inline styles
-		self::KEY_CLASS	=> [],	// css classes
-		self::KEY_DATA	=> [],	// html5 data based
-		self::KEY_ARIA	=> []		// html5 aria based
-	];
-	
+
+    const key_style	= "style";
+    const key_class	= "class";
+    const key_data	= "data";
+    const key_aria	= "aria";
+
 	/**
 	 * @param array $items (default: [])
 	 */
 	public function __construct(array $items = [])
 	{
-		$this->items = $items ? $items + self::$keys : self::$keys;
+		$this->items = $items + [
+            self::key_style => [],
+            self::key_class => [],
+            self::key_data  => [],
+            self::key_aria  => []
+        ];
 	}
 
 	/**
 	 * @access public
 	 * @param mixed $key
-	 * @return void
+	 * @return array
 	 */
 	public function findRecursive($key)
 	{
@@ -53,18 +49,19 @@ class Attribute extends Collection {
 		return $array;
 	}
 
-	/**
-	 * @param mixed $key
-	 * @param mixed $val
-	 */
-	public function setRecursive($key, $val = null)
+    /**
+     * @param $key
+     * @param null $val
+     * @return bool
+     */
+    public function setRecursive($key, $val = null)
 	{		
 		if(! is_array($key))
 		{
 			$key = [$key => $val];
 		}
-		// Batch set recursivelly items
-		$items =& $this->items;
+
+        $items =& $this->items;
 		
 		foreach ($key as $name => $value)
 		{

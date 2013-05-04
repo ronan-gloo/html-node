@@ -4,6 +4,10 @@ namespace HtmlNode\Dependency;
 
 use InvalidArgumentException;
 
+/**
+ * Class Text
+ * @package HtmlNode\Dependency
+ */
 class Text implements Node {
 	
 	/**
@@ -19,16 +23,13 @@ class Text implements Node {
 	 * @access protected
 	 */
 	protected $position;
-	
-	/**
-	 * @access public
-	 * @param mixed $string (default: null)
-	 * @return void
-	 */
-	public function __construct($string = null)
+
+    /**
+     * @param null $string
+     */
+    public function __construct($string = null)
 	{
 		$string and $this->set($string);
-		
 		$this->position = 0;
 	}
 	
@@ -40,17 +41,15 @@ class Text implements Node {
 	{
 		return $this->get();
 	}
-	
-	/**
-	 * The relative text position.
-	 * If will be used by the compiler, in order
-	 * to set the text position relative to the node childs
-	 * 
-	 * @access public
-	 * @param mixed $int
-	 * @return void
-	 */
-	public function position($int = 0)
+
+    /**
+     * The relative text position.
+     * If will be used by the compiler, in order
+     * to set the text position relative to the node childs
+     * @param int $int
+     * @return $this|int|mixed
+     */
+    public function position($int = 0)
 	{
 		if (func_num_args() === 0)
 		{
@@ -61,15 +60,13 @@ class Text implements Node {
 		
 		return $this;
 	}
-	
-	/**
-	 * Set a new contents
-	 * 
-	 * @access public
-	 * @param mixed $string
-	 * @return InvalidArgumentException or String
-	 */
-	public function set($string)
+
+    /**
+     * @param $string
+     * @return string
+     * @throws \InvalidArgumentException
+     */
+    public function set($string)
 	{
 		if (! $this->isValidText($string))
 		{
@@ -97,49 +94,43 @@ class Text implements Node {
 	{
 		return strlen($this->text);
 	}
-	
-	/**
-	 *  Check if $str match an occurence in current text.
-	 * 
-	 * @access public
-	 * @param mixed $str
-	 * @param bool $case (default: false)
-	 * @param bool $strict (default: false)
-	 * @return void
-	 */
-	public function contains($str, $case = false, $strict = false)
+
+    /**
+     * @param $str
+     * @param bool $case
+     * @param bool $strict
+     * @return bool
+     */
+    public function contains($str, $case = false, $strict = false)
 	{
 		// make the search case insensitive ? 
 		$func = $case === false ? "stripos" : "strpos";
 		
 		return $func($this->text, ($strict === false ? (string)$str : $str)) !== false;
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $
-	 * @return void
-	 */
-	public function replace($tor, $re)
+
+    /**
+     * @param $tor
+     * @param $re
+     * @return $this
+     */
+    public function replace($tor, $re)
 	{
 		$this->text = str_replace($tor, $re, $this->text);
 		return $this;
 	}
-	
-	/**
-	 * Check if the text match $expr.
-	 * 
-	 * @access public
-	 * @param mixed $expr
-	 * @return $match count
-	 */
-	public function match($expr)
+
+    /**
+     * @param $expr
+     * @return int
+     */
+    public function match($expr)
 	{
 		return preg_match($expr, $this->text);
 	}
 	
 	/**
-	 * Check if php can force transtypage of $string to string.
+	 * Check if php can force transtype of $string to string.
 	 * 
 	 * @access public
 	 * @param mixed $string

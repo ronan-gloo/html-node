@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="HtmlNode Test Suite" tests="128" assertions="287" failures="0" errors="0" time="0.201316">
+    <testsuite name="HtmlNode\Tests\AbstractNodeTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/AbstractNodeTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="1" assertions="0" failures="0" errors="0" time="0.000799">
+      <testcase name="testConstructorCreatesDependencies" class="HtmlNode\Tests\AbstractNodeTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/AbstractNodeTest.php" line="18" assertions="0" time="0.000799"/>
+    </testsuite>
+    <testsuite name="HtmlNode\Tests\AttributeCollectionTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/AttributeCollectionTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="3" assertions="7" failures="0" errors="0" time="0.010642">
+      <testcase name="testHasAttributes" class="HtmlNode\Tests\AttributeCollectionTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/AttributeCollectionTest.php" line="9" assertions="1" time="0.001529"/>
+      <testsuite name="HtmlNode\Tests\AttributeCollectionTest::testFindRecursive" tests="1" assertions="3" failures="0" errors="0" time="0.007356">
+        <testcase name="testFindRecursive with data set #0" assertions="3" time="0.007356"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\AttributeCollectionTest::testSetRecursive" tests="1" assertions="3" failures="0" errors="0" time="0.001757">
+        <testcase name="testSetRecursive with data set #0" assertions="3" time="0.001757"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="HtmlNode\Tests\AttributeTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/AttributeTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="19" assertions="76" failures="0" errors="0" time="0.034480">
+      <testsuite name="HtmlNode\Tests\AttributeTest::testProperties" tests="1" assertions="1" failures="0" errors="0" time="0.001134">
+        <testcase name="testProperties with data set #0" assertions="1" time="0.001134"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\AttributeTest::testAttr" tests="1" assertions="4" failures="0" errors="0" time="0.001966">
+        <testcase name="testAttr with data set #0" assertions="4" time="0.001966"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\AttributeTest::testAddAttrIf" tests="1" assertions="8" failures="0" errors="0" time="0.001976">
+        <testcase name="testAddAttrIf with data set #0" assertions="8" time="0.001976"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\AttributeTest::testRemoveAttr" tests="1" assertions="2" failures="0" errors="0" time="0.001428">
+        <testcase name="testRemoveAttr with data set #0" assertions="2" time="0.001428"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\AttributeTest::testAddClass" tests="2" assertions="6" failures="0" errors="0" time="0.003155">
+        <testcase name="testAddClass with data set #0" assertions="3" time="0.001733"/>
+        <testcase name="testAddClass with data set #1" assertions="3" time="0.001422"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\AttributeTest::testAddClassIf" tests="2" assertions="8" failures="0" errors="0" time="0.004324">
+        <testcase name="testAddClassIf with data set #0" assertions="4" time="0.002520"/>
+        <testcase name="testAddClassIf with data set #1" assertions="4" time="0.001804"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\AttributeTest::testRemoveClassIf" tests="2" assertions="8" failures="0" errors="0" time="0.003677">
+        <testcase name="testRemoveClassIf with data set #0" assertions="4" time="0.001928"/>
+        <testcase name="testRemoveClassIf with data set #1" assertions="4" time="0.001749"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\AttributeTest::testHasClass" tests="2" assertions="4" failures="0" errors="0" time="0.002090">
+        <testcase name="testHasClass with data set #0" assertions="2" time="0.001057"/>
+        <testcase name="testHasClass with data set #1" assertions="2" time="0.001033"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\AttributeTest::testRemoveClass" tests="2" assertions="4" failures="0" errors="0" time="0.002579">
+        <testcase name="testRemoveClass with data set #0" assertions="2" time="0.001451"/>
+        <testcase name="testRemoveClass with data set #1" assertions="2" time="0.001128"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\AttributeTest::testSwitchClass" tests="2" assertions="6" failures="0" errors="0" time="0.002860">
+        <testcase name="testSwitchClass with data set #0" assertions="3" time="0.001402"/>
+        <testcase name="testSwitchClass with data set #1" assertions="3" time="0.001458"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\AttributeTest::testData" tests="1" assertions="6" failures="0" errors="0" time="0.001997">
+        <testcase name="testData with data set #0" assertions="6" time="0.001997"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\AttributeTest::testAria" tests="1" assertions="6" failures="0" errors="0" time="0.002767">
+        <testcase name="testAria with data set #0" assertions="6" time="0.002767"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\AttributeTest::testIs" tests="1" assertions="13" failures="0" errors="0" time="0.004527">
+        <testcase name="testIs with data set #0" assertions="13" time="0.004527"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="HtmlNode\Tests\CollectionTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/CollectionTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="25" assertions="49" failures="0" errors="0" time="0.025226">
+      <testsuite name="HtmlNode\Tests\CollectionTest::testHasAttribute" tests="1" assertions="1" failures="0" errors="0" time="0.000715">
+        <testcase name="testHasAttribute with data set #0" assertions="1" time="0.000715"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testOffsetUnset" tests="1" assertions="3" failures="0" errors="0" time="0.001366">
+        <testcase name="testOffsetUnset with data set #0" assertions="3" time="0.001366"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testOffset" tests="1" assertions="2" failures="0" errors="0" time="0.000935">
+        <testcase name="testOffset with data set #0" assertions="2" time="0.000935"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testFirst" tests="1" assertions="1" failures="0" errors="0" time="0.000715">
+        <testcase name="testFirst with data set #0" assertions="1" time="0.000715"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testLast" tests="1" assertions="1" failures="0" errors="0" time="0.000714">
+        <testcase name="testLast with data set #0" assertions="1" time="0.000714"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testLength" tests="1" assertions="1" failures="0" errors="0" time="0.001098">
+        <testcase name="testLength with data set #0" assertions="1" time="0.001098"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testGet" tests="1" assertions="1" failures="0" errors="0" time="0.000691">
+        <testcase name="testGet with data set #0" assertions="1" time="0.000691"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testEq" tests="1" assertions="2" failures="0" errors="0" time="0.000833">
+        <testcase name="testEq with data set #0" assertions="2" time="0.000833"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testIndexOf" tests="1" assertions="2" failures="0" errors="0" time="0.001220">
+        <testcase name="testIndexOf with data set #0" assertions="2" time="0.001220"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testSet" tests="1" assertions="2" failures="0" errors="0" time="0.000852">
+        <testcase name="testSet with data set #0" assertions="2" time="0.000852"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testExchange" tests="1" assertions="2" failures="0" errors="0" time="0.000897">
+        <testcase name="testExchange with data set #0" assertions="2" time="0.000897"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testCopy" tests="1" assertions="1" failures="0" errors="0" time="0.000992">
+        <testcase name="testCopy with data set #0" assertions="1" time="0.000992"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testAppend" tests="1" assertions="2" failures="0" errors="0" time="0.000880">
+        <testcase name="testAppend with data set #0" assertions="2" time="0.000880"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testPrepend" tests="1" assertions="2" failures="0" errors="0" time="0.000895">
+        <testcase name="testPrepend with data set #0" assertions="2" time="0.000895"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testInsertBefore" tests="1" assertions="3" failures="0" errors="0" time="0.001505">
+        <testcase name="testInsertBefore with data set #0" assertions="3" time="0.001505"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testInsertAfter" tests="1" assertions="3" failures="0" errors="0" time="0.001446">
+        <testcase name="testInsertAfter with data set #0" assertions="3" time="0.001446"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testInsert" tests="1" assertions="3" failures="0" errors="0" time="0.001395">
+        <testcase name="testInsert with data set #0" assertions="3" time="0.001395"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testDelete" tests="1" assertions="3" failures="0" errors="0" time="0.001034">
+        <testcase name="testDelete with data set #0" assertions="3" time="0.001034"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testRemove" tests="1" assertions="3" failures="0" errors="0" time="0.001015">
+        <testcase name="testRemove with data set #0" assertions="3" time="0.001015"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testClear" tests="1" assertions="2" failures="0" errors="0" time="0.000827">
+        <testcase name="testClear with data set #0" assertions="2" time="0.000827"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testHas" tests="1" assertions="2" failures="0" errors="0" time="0.000859">
+        <testcase name="testHas with data set #0" assertions="2" time="0.000859"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testOwn" tests="1" assertions="2" failures="0" errors="0" time="0.000840">
+        <testcase name="testOwn with data set #0" assertions="2" time="0.000840"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testSearch" tests="1" assertions="2" failures="0" errors="0" time="0.000881">
+        <testcase name="testSearch with data set #0" assertions="2" time="0.000881"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testEach" tests="1" assertions="1" failures="0" errors="0" time="0.001027">
+        <testcase name="testEach with data set #0" assertions="1" time="0.001027"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CollectionTest::testFilter" tests="1" assertions="2" failures="0" errors="0" time="0.001593">
+        <testcase name="testFilter with data set #0" assertions="2" time="0.001593"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="HtmlNode\Tests\CompilerTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/CompilerTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="5" assertions="5" failures="0" errors="0" time="0.010193">
+      <testcase name="testDataArray" class="HtmlNode\Tests\CompilerTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/CompilerTest.php" line="28" assertions="1" time="0.002635"/>
+      <testcase name="testStyles" class="HtmlNode\Tests\CompilerTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/CompilerTest.php" line="36" assertions="1" time="0.001691"/>
+      <testcase name="testDataMultiArray" class="HtmlNode\Tests\CompilerTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/CompilerTest.php" line="44" assertions="1" time="0.001667"/>
+      <testcase name="testAttrOpen" class="HtmlNode\Tests\CompilerTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/CompilerTest.php" line="52" assertions="1" time="0.001748"/>
+      <testcase name="testChildren" class="HtmlNode\Tests\CompilerTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/CompilerTest.php" line="58" assertions="1" time="0.002452"/>
+    </testsuite>
+    <testsuite name="HtmlNode\Tests\CssTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/CssTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="4" assertions="6" failures="0" errors="0" time="0.003959">
+      <testsuite name="HtmlNode\Tests\CssTest::testProperties" tests="1" assertions="1" failures="0" errors="0" time="0.001095">
+        <testcase name="testProperties with data set #0" assertions="1" time="0.001095"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CssTest::testCssPair" tests="1" assertions="1" failures="0" errors="0" time="0.000831">
+        <testcase name="testCssPair with data set #0" assertions="1" time="0.000831"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CssTest::testInvalidCssValue" tests="1" assertions="2" failures="0" errors="0" time="0.001016">
+        <testcase name="testInvalidCssValue with data set #0" assertions="2" time="0.001016"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\CssTest::testCssArray" tests="1" assertions="2" failures="0" errors="0" time="0.001017">
+        <testcase name="testCssArray with data set #0" assertions="2" time="0.001017"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="HtmlNode\Tests\FinderTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/FinderTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="4" assertions="7" failures="0" errors="0" time="0.006469">
+      <testsuite name="HtmlNode\Tests\FinderTest::testAttribute" tests="1" assertions="2" failures="0" errors="0" time="0.000836">
+        <testcase name="testAttribute with data set #0" assertions="2" time="0.000836"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\FinderTest::testResult" tests="1" assertions="1" failures="0" errors="0" time="0.000706">
+        <testcase name="testResult with data set #0" assertions="1" time="0.000706"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\FinderTest::testParents" tests="1" assertions="2" failures="0" errors="0" time="0.001645">
+        <testcase name="testParents with data set #0" assertions="2" time="0.001645"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\FinderTest::testChildren" tests="1" assertions="2" failures="0" errors="0" time="0.003282">
+        <testcase name="testChildren with data set #0" assertions="2" time="0.003282"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="HtmlNode\Tests\ManagerTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/ManagerTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="8" assertions="11" failures="0" errors="0" time="0.013081">
+      <testsuite name="HtmlNode\Tests\ManagerTest::testAttributes" tests="1" assertions="2" failures="0" errors="0" time="0.000908">
+        <testcase name="testAttributes with data set #0" assertions="2" time="0.000908"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManagerTest::testRegister" tests="1" assertions="2" failures="0" errors="0" time="0.000903">
+        <testcase name="testRegister with data set #0" assertions="2" time="0.000903"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManagerTest::testAddCompiler" tests="1" assertions="1" failures="0" errors="0" time="0.005852">
+        <testcase name="testAddCompiler with data set #0" assertions="1" time="0.005852"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManagerTest::testOnce" tests="1" assertions="1" failures="0" errors="0" time="0.001903">
+        <testcase name="testOnce with data set #0" assertions="1" time="0.001903"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManagerTest::testResolveEmpty" tests="1" assertions="1" failures="0" errors="0" time="0.000742">
+        <testcase name="testResolveEmpty with data set #0" assertions="1" time="0.000742"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManagerTest::testResolveObject" tests="1" assertions="1" failures="0" errors="0" time="0.000816">
+        <testcase name="testResolveObject with data set #0" assertions="1" time="0.000816"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManagerTest::testResolveInstance" tests="1" assertions="1" failures="0" errors="0" time="0.000977">
+        <testcase name="testResolveInstance with data set #0" assertions="1" time="0.000977"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManagerTest::testResolveSingleton" tests="1" assertions="2" failures="0" errors="0" time="0.000980">
+        <testcase name="testResolveSingleton with data set #0" assertions="2" time="0.000980"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="HtmlNode\Tests\ManipulationTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/ManipulationTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="15" assertions="32" failures="0" errors="0" time="0.029058">
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testAtrributes" tests="1" assertions="2" failures="0" errors="0" time="0.000851">
+        <testcase name="testAtrributes with data set #0" assertions="2" time="0.000851"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testWrapNewInstance" tests="1" assertions="4" failures="0" errors="0" time="0.004227">
+        <testcase name="testWrapNewInstance with data set #0" assertions="4" time="0.004227"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testUnwrap" tests="1" assertions="1" failures="0" errors="0" time="0.000962">
+        <testcase name="testUnwrap with data set #0" assertions="1" time="0.000962"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testDetach" tests="1" assertions="1" failures="0" errors="0" time="0.001874">
+        <testcase name="testDetach with data set #0" assertions="1" time="0.001874"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testCreateNodeOnAutoClose" tests="1" assertions="1" failures="0" errors="0" time="0.001614">
+        <testcase name="testCreateNodeOnAutoClose with data set #0" assertions="1" time="0.001614"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testCreateNodeWithClosure" tests="1" assertions="1" failures="0" errors="0" time="0.001120">
+        <testcase name="testCreateNodeWithClosure with data set #0" assertions="1" time="0.001120"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testCreateInvalidNode" tests="1" assertions="1" failures="0" errors="0" time="0.001770">
+        <testcase name="testCreateInvalidNode with data set #0" assertions="1" time="0.001770"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testAppend" tests="1" assertions="2" failures="0" errors="0" time="0.001337">
+        <testcase name="testAppend with data set #0" assertions="2" time="0.001337"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testAppendTo" tests="1" assertions="2" failures="0" errors="0" time="0.001461">
+        <testcase name="testAppendTo with data set #0" assertions="2" time="0.001461"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testPrepend" tests="1" assertions="3" failures="0" errors="0" time="0.002355">
+        <testcase name="testPrepend with data set #0" assertions="3" time="0.002355"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testPrependTo" tests="1" assertions="3" failures="0" errors="0" time="0.002678">
+        <testcase name="testPrependTo with data set #0" assertions="3" time="0.002678"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testInsertBefore" tests="1" assertions="2" failures="0" errors="0" time="0.002950">
+        <testcase name="testInsertBefore with data set #0" assertions="2" time="0.002950"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testInsertAfter" tests="1" assertions="2" failures="0" errors="0" time="0.002534">
+        <testcase name="testInsertAfter with data set #0" assertions="2" time="0.002534"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testReplaceWith" tests="1" assertions="3" failures="0" errors="0" time="0.001418">
+        <testcase name="testReplaceWith with data set #0" assertions="3" time="0.001418"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\ManipulationTest::testClone" tests="1" assertions="4" failures="0" errors="0" time="0.001908">
+        <testcase name="testClone with data set #0" assertions="4" time="0.001908"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="HtmlNode\Tests\NodeTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/NodeTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="11" assertions="18" failures="0" errors="0" time="0.017593">
+      <testcase name="testProperties" class="HtmlNode\Tests\NodeTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/NodeTest.php" line="9" assertions="1" time="0.002419"/>
+      <testcase name="testInstance" class="HtmlNode\Tests\NodeTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/NodeTest.php" line="14" assertions="1" time="0.000832"/>
+      <testcase name="testConstructor" class="HtmlNode\Tests\NodeTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/NodeTest.php" line="19" assertions="3" time="0.002844"/>
+      <testsuite name="HtmlNode\Tests\NodeTest::testTag" tests="1" assertions="1" failures="0" errors="0" time="0.000745">
+        <testcase name="testTag with data set #0" assertions="1" time="0.000745"/>
+      </testsuite>
+      <testcase name="testUnregisteredMacro" class="HtmlNode\Tests\NodeTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/NodeTest.php" line="38" assertions="1" time="0.002771"/>
+      <testcase name="testInvalidMacro" class="HtmlNode\Tests\NodeTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/NodeTest.php" line="46" assertions="1" time="0.001334"/>
+      <testsuite name="HtmlNode\Tests\NodeTest::testRegisteredMacro" tests="1" assertions="3" failures="0" errors="0" time="0.001898">
+        <testcase name="testRegisteredMacro with data set #0" assertions="3" time="0.001898"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\NodeTest::testCreateMacro" tests="1" assertions="1" failures="0" errors="0" time="0.000764">
+        <testcase name="testCreateMacro with data set #0" assertions="1" time="0.000764"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\NodeTest::testDependencies" tests="1" assertions="2" failures="0" errors="0" time="0.001113">
+        <testcase name="testDependencies with data set #0" assertions="2" time="0.001113"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\NodeTest::testText" tests="1" assertions="3" failures="0" errors="0" time="0.001932">
+        <testcase name="testText with data set #0" assertions="3" time="0.001932"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\NodeTest::testContains" tests="1" assertions="1" failures="0" errors="0" time="0.000941">
+        <testcase name="testContains with data set #0" assertions="1" time="0.000941"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="HtmlNode\Tests\RenderingTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/RenderingTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="4" assertions="9" failures="0" errors="0" time="0.011811">
+      <testsuite name="HtmlNode\Tests\RenderingTest::testRender" tests="1" assertions="1" failures="0" errors="0" time="0.001495">
+        <testcase name="testRender with data set #0" assertions="1" time="0.001495"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\RenderingTest::testHtml" tests="1" assertions="6" failures="0" errors="0" time="0.007219">
+        <testcase name="testHtml with data set #0" assertions="6" time="0.007219"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\RenderingTest::testContents" tests="1" assertions="1" failures="0" errors="0" time="0.001426">
+        <testcase name="testContents with data set #0" assertions="1" time="0.001426"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\RenderingTest::testSelf" tests="1" assertions="1" failures="0" errors="0" time="0.001671">
+        <testcase name="testSelf with data set #0" assertions="1" time="0.001671"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="HtmlNode\Tests\SeekTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/SeekTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="6" assertions="20" failures="0" errors="0" time="0.009979">
+      <testsuite name="HtmlNode\Tests\SeekTest::testPrev" tests="1" assertions="3" failures="0" errors="0" time="0.001556">
+        <testcase name="testPrev with data set #0" assertions="3" time="0.001556"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\SeekTest::testNext" tests="1" assertions="3" failures="0" errors="0" time="0.001384">
+        <testcase name="testNext with data set #0" assertions="3" time="0.001384"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\SeekTest::testPrevAll" tests="1" assertions="4" failures="0" errors="0" time="0.001863">
+        <testcase name="testPrevAll with data set #0" assertions="4" time="0.001863"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\SeekTest::testNextAll" tests="1" assertions="4" failures="0" errors="0" time="0.001880">
+        <testcase name="testNextAll with data set #0" assertions="4" time="0.001880"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\SeekTest::testSiblings" tests="1" assertions="4" failures="0" errors="0" time="0.001621">
+        <testcase name="testSiblings with data set #0" assertions="4" time="0.001621"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\SeekTest::testFilterSeek" tests="1" assertions="2" failures="0" errors="0" time="0.001675">
+        <testcase name="testFilterSeek with data set #0" assertions="2" time="0.001675"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="HtmlNode\Tests\TagTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/TagTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="3" assertions="8" failures="0" errors="0" time="0.003928">
+      <testsuite name="HtmlNode\Tests\TagTest::testHasProperties" tests="1" assertions="3" failures="0" errors="0" time="0.001003">
+        <testcase name="testHasProperties with data set #0" assertions="3" time="0.001003"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TagTest::testTag" tests="1" assertions="3" failures="0" errors="0" time="0.002018">
+        <testcase name="testTag with data set #0" assertions="3" time="0.002018"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TagTest::testAutoclose" tests="1" assertions="2" failures="0" errors="0" time="0.000907">
+        <testcase name="testAutoclose with data set #0" assertions="2" time="0.000907"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="HtmlNode\Tests\TextTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/TextTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="11" assertions="18" failures="0" errors="0" time="0.012054">
+      <testsuite name="HtmlNode\Tests\TextTest::testProperties" tests="1" assertions="2" failures="0" errors="0" time="0.000834">
+        <testcase name="testProperties with data set #0" assertions="2" time="0.000834"/>
+      </testsuite>
+      <testcase name="testConstructor" class="HtmlNode\Tests\TextTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/TextTest.php" line="18" assertions="1" time="0.000744"/>
+      <testsuite name="HtmlNode\Tests\TextTest::testToString" tests="1" assertions="1" failures="0" errors="0" time="0.000733">
+        <testcase name="testToString with data set #0" assertions="1" time="0.000733"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TextTest::testSet" tests="1" assertions="2" failures="0" errors="0" time="0.001235">
+        <testcase name="testSet with data set #0" assertions="2" time="0.001235"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TextTest::testPosition" tests="1" assertions="3" failures="0" errors="0" time="0.001910">
+        <testcase name="testPosition with data set #0" assertions="3" time="0.001910"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TextTest::testLength" tests="1" assertions="1" failures="0" errors="0" time="0.001135">
+        <testcase name="testLength with data set #0" assertions="1" time="0.001135"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TextTest::testContains" tests="1" assertions="4" failures="0" errors="0" time="0.001278">
+        <testcase name="testContains with data set #0" assertions="4" time="0.001278"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TextTest::testContainsEmpty" tests="1" assertions="1" failures="0" errors="0" time="0.001197">
+        <testcase name="testContainsEmpty with data set #0" assertions="1" time="0.001197"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TextTest::testReplace" tests="1" assertions="1" failures="0" errors="0" time="0.001185">
+        <testcase name="testReplace with data set #0" assertions="1" time="0.001185"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TextTest::testMatch" tests="1" assertions="1" failures="0" errors="0" time="0.001108">
+        <testcase name="testMatch with data set #0" assertions="1" time="0.001108"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TextTest::testGet" tests="1" assertions="1" failures="0" errors="0" time="0.000695">
+        <testcase name="testGet with data set #0" assertions="1" time="0.000695"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="HtmlNode\Tests\TaversingTest" file="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/test/HtmlNode/Tests/TraversingTest.php" namespace="HtmlNode\Tests" fullPackage="HtmlNode.Tests" tests="9" assertions="21" failures="0" errors="0" time="0.012042">
+      <testsuite name="HtmlNode\Tests\TaversingTest::testFind" tests="1" assertions="2" failures="0" errors="0" time="0.002064">
+        <testcase name="testFind with data set #0" assertions="2" time="0.002064"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TaversingTest::testClosest" tests="1" assertions="2" failures="0" errors="0" time="0.001188">
+        <testcase name="testClosest with data set #0" assertions="2" time="0.001188"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TaversingTest::testChildren" tests="1" assertions="4" failures="0" errors="0" time="0.001876">
+        <testcase name="testChildren with data set #0" assertions="4" time="0.001876"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TaversingTest::testParent" tests="1" assertions="2" failures="0" errors="0" time="0.000984">
+        <testcase name="testParent with data set #0" assertions="2" time="0.000984"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TaversingTest::testIndex" tests="1" assertions="3" failures="0" errors="0" time="0.001909">
+        <testcase name="testIndex with data set #0" assertions="3" time="0.001909"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TaversingTest::testIsChildOf" tests="1" assertions="2" failures="0" errors="0" time="0.001068">
+        <testcase name="testIsChildOf with data set #0" assertions="2" time="0.001068"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TaversingTest::testIsParentdOf" tests="1" assertions="2" failures="0" errors="0" time="0.001060">
+        <testcase name="testIsParentdOf with data set #0" assertions="2" time="0.001060"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TaversingTest::testHasParent" tests="1" assertions="2" failures="0" errors="0" time="0.000963">
+        <testcase name="testHasParent with data set #0" assertions="2" time="0.000963"/>
+      </testsuite>
+      <testsuite name="HtmlNode\Tests\TaversingTest::testHasChildren" tests="1" assertions="2" failures="0" errors="0" time="0.000930">
+        <testcase name="testHasChildren with data set #0" assertions="2" time="0.000930"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

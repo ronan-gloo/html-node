@@ -23,6 +23,16 @@ class CssTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
+    /** @dataProvider getCssTests */
+	public function testInvalidCssValue($d, $key, $val)
+	{
+		$obj = $d->css($key, [[$val]]);
+		$this->assertEmpty($obj->css($key));
+
+        $obj = $d->css($key, ' ');
+		$this->assertEmpty($obj->css($key));
+	}
+
 	/** @dataProvider getCssTests */
 	public function testCssArray($d, $color, $cval, $width, $wval)
 	{

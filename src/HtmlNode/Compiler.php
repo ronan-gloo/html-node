@@ -7,6 +7,10 @@ use
 	HtmlNode\Collection\Attribute
 ;
 
+/**
+ * Class Compiler
+ * @package HtmlNode
+ */
 class Compiler implements CompilerInterface {
 	
 	/**
@@ -21,13 +25,11 @@ class Compiler implements CompilerInterface {
 		$autoclose,
 		$text,
 		$tag;
-		
-	/**
-	 * @access public
-	 * @param Node $node
-	 * @return void
-	 */
-	public function __construct(NodeInterface $node = null)
+
+    /**
+     * @param NodeInterface $node
+     */
+    public function __construct(NodeInterface $node = null)
 	{
 		$node and $this->node($node);
 	}
@@ -37,16 +39,16 @@ class Compiler implements CompilerInterface {
 	 * 
 	 * @access public
 	 * @param NodeInterface $node
-	 * @return void
+	 * @return $this
 	 */
 	public function node(NodeInterface $node)
 	{
-		$this->node				= $node;
-		$this->children		= $node->children();
-		$this->autoclose 	= $node->autoclose();
-		$this->text				= $node->text();
-		$this->tag				= $node->tag();
-		$this->attrs			= '';
+		$this->node		    = $node;
+		$this->children     = $node->children();
+		$this->autoclose    = $node->autoclose();
+		$this->text		    = $node->text();
+		$this->tag			= $node->tag();
+		$this->attrs		= '';
 		
 		return $this;
 	}
@@ -55,7 +57,7 @@ class Compiler implements CompilerInterface {
 	 * Build the node.
 	 * 
 	 * @access public
-	 * @return void
+	 * @return string
 	 */
 	public function compile()
 	{
@@ -75,19 +77,18 @@ class Compiler implements CompilerInterface {
 	{
 		$text = $this->text->get();
 		
-		// Get chiildren contents
+		// Get children contents
 		$this->children->length() ? $this->children($text) : $this->html .= $text;
 		
-		return $this->html;
+		return $this;
 	}
-	
-	/**
-	 * Add node children and optionnaly text to html
-	 * 
-	 * @access public
-	 * @return String
-	*/
-	public function children($text = false)
+
+    /**
+     * Add node children and optionnaly text to html
+     * @param bool $text
+     * @return $this
+     */
+    public function children($text = false)
 	{
 		$pos = $this->text->position();
 		
@@ -97,19 +98,16 @@ class Compiler implements CompilerInterface {
 			// we insert the text at the current index.
 			if ($text !== false and $pos === $key)
 			{
-				$this->html .= $text;
-				$text = false;
+                $this->html .= $text;
+				$text  = false;
 			}
-			
-			$this->html .= $child;
+            $this->html .= $child;
 		}
-		
 		if ($text !== false)
 		{
-			$this->html .= $text;
+            $this->html .= $text;
 		}
-		
-		return $this->html;
+		return $this;
 	}
 	
 	/**
@@ -127,15 +125,15 @@ class Compiler implements CompilerInterface {
 				default:
 				$this->attrToString($key, $data);
 				break;
-				case Attribute::KEY_CLASS:
-				$this->classes($key, $data);
+				case Attribute::key_class:
+				$this->classes($data);
 				break;
-				case Attribute::KEY_STYLE:
-				$this->styles($key, $data);
+				case Attribute::key_style:
+				$this->styles($data);
 				break;
-				case Attribute::KEY_DATA:
-				case Attribute::KEY_ARIA:
-				$this->data($key, $data);
+				case Attribute::key_data:
+				case Attribute::key_aria:
+				$this->data($data);
 				break;
 			}
 		}
@@ -143,7 +141,7 @@ class Compiler implements CompilerInterface {
 		$this->html .= $this->attrs ? ' '.trim($this->attrs) : '';
 		$this->html .= $this->autoclose ? ' />' : '>';
 		
-		return $this->html;
+		return $this;
 	}
 	
 	/**
@@ -152,13 +150,15 @@ class Compiler implements CompilerInterface {
 	 * @access public
 	 * @param mixed $key
 	 * @param mixed $val
-	 * @return void
+	 * @return $this
 	 */
 	public function attrToString($key, $val)
 	{
 		if (is_array($key)) $key = reset($key);
 		
 		$this->attrs .= $key.'="'.$val.'" ';
+
+        return $this;
 	}
 	
 	/**
@@ -194,63 +194,63 @@ class Compiler implements CompilerInterface {
 		$this->html .= $this->text->get();
 		return $this;
 	}
-	
-	/**
-	 * @access public
-	 * @return void
-	 */
-	public function classes($key)
+
+    /**
+     * @return $this
+     */
+    public function classes()
 	{
-		if ($classes = $this->node->attr($key))
+		if ($classes = $this->node->attr(Attribute::key_class))
 		{
-			 $this->attrToString($key, implode(" ", $classes));
+			 $this->attrToString(Attribute::key_class, implode(" ", $classes));
 		}
+        return $this;
 	}
-	
-	/**
-	 * Flat multidimentionnnal $data arry to
-	 * namespaced $bkey separated by $glue.
-	 * 
-	 * @access public
-	 * @param string $key (default: "data")
-	 * @return Array
-	 */
-	public function data($bkey = Attribute::KEY_DATA, $data)
+
+
+    /**
+     * Flat multi-dimentionnnal $data array to
+     * namespaced $bkey separated by $glue.
+     * @param $data
+     * @return $this
+     */
+    public function data($data)
 	{
-		static $ckey = [];
+		static $cKey = [];
 		
 		foreach ($data as $key => $val)
 		{
-			$ckey[] = $key;
+            $cKey[] = $key;
 			
 			if (is_array($val) and array_values($val) !== $val)
 			{
-				$this->data($bkey, $val);
+				$this->data($val);
 			}
 			else
 			{
-				$this->attrToString($bkey."-".implode("-", $ckey), $val);
+				$this->attrToString(Attribute::key_data.'-'.implode('-', $cKey), $val);
 			}
-			array_pop($ckey);
+			array_pop($cKey);
 		}
+        return $this;
 	}
-	
-	/**
-	 * Parse inline styles
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function styles($key, $data)
+
+    /**
+     * @param $data
+     * @return $this
+     */
+    public function styles($data)
 	{
-		$out = "";
+		$out = '';
 		
 		foreach ($data as $key => $val)
 		{
 			$out .= $key.':'.$val.';';
 		}
 		
-		$out and $this->attrToString('style', $out);
+		$out and $this->attrToString(Attribute::key_style, $out);
+
+        return $this;
 	}
 	
 }

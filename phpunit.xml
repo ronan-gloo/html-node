@@ -15,10 +15,17 @@
       <directory>./test/HtmlNode/</directory>
     </testsuite>
   </testsuites>
-
+    <logging>
+        <log type="coverage-html" target="build/reports/coverage/html" charset="UTF-8" />
+        <log type="coverage-clover" target="build/reports/coverage/clover.xml" charset="UTF-8" />
+        <log type="junit" target="build/reports/coverage/junit.xml" logIncompleteSkipped="false"/>
+    </logging>
   <filter>
     <whitelist>
       <directory suffix=".php">./src/HtmlNode/</directory>
+        <exclude>
+            <directory suffix=".php">./src/Library/</directory>
+        </exclude>
     </whitelist>
   </filter>
 </phpunit>

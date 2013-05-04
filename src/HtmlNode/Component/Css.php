@@ -29,7 +29,7 @@ trait Css {
 	 * @access public
 	 * @param mixed $key
 	 * @param mixed $val (default: null)
-	 * @return void
+	 * @return $this
 	 */
 	public function css($key = null, $val = null)
 	{

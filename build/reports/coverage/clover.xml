@@ -1,0 +1,895 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1367697201">
+  <project timestamp="1367697201">
+    <package name="HtmlNode\Collection">
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Collection/Attribute.php">
+        <class name="Attribute" namespace="HtmlNode\Collection" fullPackage="HtmlNode" package="HtmlNode">
+          <metrics methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="31" elements="36" coveredelements="34"/>
+        </class>
+        <line num="22" type="method" name="__construct" crap="1" count="1"/>
+        <line num="24" type="stmt" count="1"/>
+        <line num="25" type="stmt" count="1"/>
+        <line num="26" type="stmt" count="1"/>
+        <line num="27" type="stmt" count="1"/>
+        <line num="28" type="stmt" count="1"/>
+        <line num="29" type="stmt" count="1"/>
+        <line num="30" type="stmt" count="1"/>
+        <line num="37" type="method" name="findRecursive" crap="3" count="7"/>
+        <line num="39" type="stmt" count="7"/>
+        <line num="41" type="stmt" count="7"/>
+        <line num="43" type="stmt" count="7"/>
+        <line num="44" type="stmt" count="7"/>
+        <line num="45" type="stmt" count="4"/>
+        <line num="47" type="stmt" count="7"/>
+        <line num="48" type="stmt" count="7"/>
+        <line num="49" type="stmt" count="4"/>
+        <line num="57" type="method" name="setRecursive" crap="6.05" count="3"/>
+        <line num="59" type="stmt" count="3"/>
+        <line num="60" type="stmt" count="3"/>
+        <line num="61" type="stmt" count="3"/>
+        <line num="62" type="stmt" count="3"/>
+        <line num="64" type="stmt" count="3"/>
+        <line num="66" type="stmt" count="3"/>
+        <line num="68" type="stmt" count="3"/>
+        <line num="70" type="stmt" count="3"/>
+        <line num="72" type="stmt" count="3"/>
+        <line num="74" type="stmt" count="3"/>
+        <line num="75" type="stmt" count="3"/>
+        <line num="76" type="stmt" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="78" type="stmt" count="3"/>
+        <line num="79" type="stmt" count="3"/>
+        <line num="80" type="stmt" count="3"/>
+        <line num="81" type="stmt" count="3"/>
+        <line num="82" type="stmt" count="3"/>
+        <metrics loc="111" ncloc="65" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="31" elements="36" coveredelements="33"/>
+      </file>
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Collection/Collection.php">
+        <class name="Collection" namespace="HtmlNode\Collection" fullPackage="HtmlNode" package="HtmlNode">
+          <metrics methods="25" coveredmethods="25" conditionals="0" coveredconditionals="0" statements="68" coveredstatements="68" elements="93" coveredelements="93"/>
+        </class>
+        <line num="26" type="method" name="__construct" crap="1" count="21"/>
+        <line num="28" type="stmt" count="21"/>
+        <line num="29" type="stmt" count="21"/>
+        <line num="34" type="method" name="first" crap="1" count="11"/>
+        <line num="36" type="stmt" count="11"/>
+        <line num="42" type="method" name="last" crap="1" count="4"/>
+        <line num="44" type="stmt" count="4"/>
+        <line num="50" type="method" name="length" crap="1" count="16"/>
+        <line num="52" type="stmt" count="16"/>
+        <line num="59" type="method" name="has" crap="1" count="1"/>
+        <line num="61" type="stmt" count="1"/>
+        <line num="68" type="method" name="own" crap="1" count="2"/>
+        <line num="70" type="stmt" count="2"/>
+        <line num="77" type="method" name="search" crap="2" count="2"/>
+        <line num="79" type="stmt" count="2"/>
+        <line num="80" type="stmt" count="2"/>
+        <line num="81" type="stmt" count="1"/>
+        <line num="83" type="stmt" count="2"/>
+        <line num="89" type="method" name="get" crap="1" count="23"/>
+        <line num="91" type="stmt" count="23"/>
+        <line num="98" type="method" name="eq" crap="2" count="22"/>
+        <line num="100" type="stmt" count="22"/>
+        <line num="101" type="stmt" count="22"/>
+        <line num="102" type="stmt" count="20"/>
+        <line num="104" type="stmt" count="5"/>
+        <line num="105" type="stmt" count="5"/>
+        <line num="112" type="method" name="indexOf" crap="1" count="14"/>
+        <line num="114" type="stmt" count="14"/>
+        <line num="121" type="method" name="find" crap="2" count="27"/>
+        <line num="123" type="stmt" count="27"/>
+        <line num="124" type="stmt" count="27"/>
+        <line num="125" type="stmt" count="26"/>
+        <line num="127" type="stmt" count="3"/>
+        <line num="134" type="method" name="set" crap="1" count="2"/>
+        <line num="136" type="stmt" count="2"/>
+        <line num="143" type="method" name="exchange" crap="1" count="2"/>
+        <line num="145" type="stmt" count="2"/>
+        <line num="146" type="stmt" count="2"/>
+        <line num="152" type="method" name="copy" crap="1" count="13"/>
+        <line num="154" type="stmt" count="13"/>
+        <line num="161" type="method" name="prepend" crap="1" count="3"/>
+        <line num="163" type="stmt" count="3"/>
+        <line num="170" type="method" name="append" crap="1" count="18"/>
+        <line num="172" type="stmt" count="18"/>
+        <line num="180" type="method" name="insertBefore" crap="2" count="2"/>
+        <line num="182" type="stmt" count="2"/>
+        <line num="183" type="stmt" count="2"/>
+        <line num="184" type="stmt" count="2"/>
+        <line num="185" type="stmt" count="2"/>
+        <line num="187" type="stmt" count="1"/>
+        <line num="195" type="method" name="insertAfter" crap="2" count="2"/>
+        <line num="197" type="stmt" count="2"/>
+        <line num="198" type="stmt" count="2"/>
+        <line num="199" type="stmt" count="2"/>
+        <line num="201" type="stmt" count="1"/>
+        <line num="209" type="method" name="insert" crap="2" count="5"/>
+        <line num="211" type="stmt" count="5"/>
+        <line num="213" type="stmt" count="5"/>
+        <line num="214" type="stmt" count="5"/>
+        <line num="215" type="stmt" count="5"/>
+        <line num="216" type="stmt" count="5"/>
+        <line num="217" type="stmt" count="5"/>
+        <line num="219" type="stmt" count="5"/>
+        <line num="226" type="method" name="delete" crap="2" count="3"/>
+        <line num="228" type="stmt" count="3"/>
+        <line num="229" type="stmt" count="3"/>
+        <line num="230" type="stmt" count="3"/>
+        <line num="231" type="stmt" count="3"/>
+        <line num="233" type="stmt" count="3"/>
+        <line num="240" type="method" name="remove" crap="2" count="5"/>
+        <line num="242" type="stmt" count="5"/>
+        <line num="244" type="stmt" count="5"/>
+        <line num="245" type="stmt" count="5"/>
+        <line num="246" type="stmt" count="5"/>
+        <line num="247" type="stmt" count="5"/>
+        <line num="248" type="stmt" count="5"/>
+        <line num="256" type="method" name="slice" crap="1" count="3"/>
+        <line num="258" type="stmt" count="3"/>
+        <line num="260" type="stmt" count="3"/>
+        <line num="266" type="method" name="clear" crap="1" count="1"/>
+        <line num="268" type="stmt" count="1"/>
+        <line num="275" type="method" name="each" crap="3" count="1"/>
+        <line num="277" type="stmt" count="1"/>
+        <line num="279" type="stmt" count="1"/>
+        <line num="280" type="stmt" count="1"/>
+        <line num="281" type="stmt" count="1"/>
+        <line num="288" type="method" name="filter" crap="2" count="1"/>
+        <line num="290" type="stmt" count="1"/>
+        <line num="291" type="stmt" count="1"/>
+        <line num="292" type="stmt" count="1"/>
+        <line num="293" type="stmt" count="1"/>
+        <line num="296" type="stmt" count="1"/>
+        <line num="298" type="stmt" count="1"/>
+        <metrics loc="300" ncloc="195" classes="1" methods="25" coveredmethods="25" conditionals="0" coveredconditionals="0" statements="68" coveredstatements="68" elements="93" coveredelements="93"/>
+      </file>
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Collection/CollectionAccess.php">
+        <class name="CollectionAccess" namespace="HtmlNode\Collection">
+          <metrics methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="10" coveredelements="10"/>
+        </class>
+        <line num="7" type="method" name="offsetExists" crap="1" count="1"/>
+        <line num="9" type="stmt" count="1"/>
+        <line num="12" type="method" name="offsetGet" crap="1" count="4"/>
+        <line num="14" type="stmt" count="4"/>
+        <line num="17" type="method" name="offsetSet" crap="1" count="7"/>
+        <line num="19" type="stmt" count="7"/>
+        <line num="22" type="method" name="offsetUnset" crap="1" count="1"/>
+        <line num="24" type="stmt" count="1"/>
+        <line num="27" type="method" name="getIterator" crap="1" count="8"/>
+        <line num="29" type="stmt" count="8"/>
+        <metrics loc="30" ncloc="30" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="10" coveredelements="10"/>
+      </file>
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Collection/Node.php">
+        <class name="Node" namespace="HtmlNode\Collection">
+          <metrics methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="4" ncloc="4" classes="1" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+    </package>
+    <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Collection/CollectionInterface.php">
+      <metrics loc="211" ncloc="51" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <package name="HtmlNode">
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Compiler.php">
+        <class name="Compiler" namespace="HtmlNode" fullPackage="HtmlNode" package="HtmlNode">
+          <metrics methods="13" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="80" coveredstatements="78" elements="93" coveredelements="91"/>
+        </class>
+        <line num="32" type="method" name="__construct" crap="2" count="6"/>
+        <line num="34" type="stmt" count="6"/>
+        <line num="35" type="stmt" count="6"/>
+        <line num="44" type="method" name="node" crap="1" count="9"/>
+        <line num="46" type="stmt" count="9"/>
+        <line num="47" type="stmt" count="9"/>
+        <line num="48" type="stmt" count="9"/>
+        <line num="49" type="stmt" count="9"/>
+        <line num="50" type="stmt" count="9"/>
+        <line num="51" type="stmt" count="9"/>
+        <line num="53" type="stmt" count="9"/>
+        <line num="62" type="method" name="compile" crap="1" count="3"/>
+        <line num="65" type="stmt" count="3"/>
+        <line num="66" type="stmt" count="3"/>
+        <line num="67" type="stmt" count="3"/>
+        <line num="69" type="stmt" count="3"/>
+        <line num="76" type="method" name="contents" crap="2" count="4"/>
+        <line num="78" type="stmt" count="4"/>
+        <line num="81" type="stmt" count="4"/>
+        <line num="83" type="stmt" count="4"/>
+        <line num="91" type="method" name="children" crap="5.07" count="2"/>
+        <line num="93" type="stmt" count="2"/>
+        <line num="95" type="stmt" count="2"/>
+        <line num="99" type="stmt" count="2"/>
+        <line num="100" type="stmt" count="2"/>
+        <line num="101" type="stmt" count="1"/>
+        <line num="102" type="stmt" count="1"/>
+        <line num="103" type="stmt" count="1"/>
+        <line num="104" type="stmt" count="2"/>
+        <line num="105" type="stmt" count="2"/>
+        <line num="106" type="stmt" count="2"/>
+        <line num="107" type="stmt" count="2"/>
+        <line num="108" type="stmt" count="0"/>
+        <line num="109" type="stmt" count="0"/>
+        <line num="110" type="stmt" count="2"/>
+        <line num="119" type="method" name="open" crap="8" count="8"/>
+        <line num="121" type="stmt" count="8"/>
+        <line num="125" type="stmt" count="8"/>
+        <line num="126" type="stmt" count="1"/>
+        <line num="127" type="stmt" count="1"/>
+        <line num="128" type="stmt" count="8"/>
+        <line num="129" type="stmt" count="8"/>
+        <line num="130" type="stmt" count="8"/>
+        <line num="131" type="stmt" count="8"/>
+        <line num="132" type="stmt" count="8"/>
+        <line num="133" type="stmt" count="8"/>
+        <line num="134" type="stmt" count="8"/>
+        <line num="135" type="stmt" count="8"/>
+        <line num="136" type="stmt" count="8"/>
+        <line num="137" type="stmt" count="8"/>
+        <line num="138" type="stmt" count="1"/>
+        <line num="139" type="stmt" count="8"/>
+        <line num="140" type="stmt" count="8"/>
+        <line num="141" type="stmt" count="8"/>
+        <line num="142" type="stmt" count="8"/>
+        <line num="144" type="stmt" count="8"/>
+        <line num="155" type="method" name="attrToString" crap="2" count="7"/>
+        <line num="157" type="stmt" count="7"/>
+        <line num="159" type="stmt" count="7"/>
+        <line num="161" type="stmt" count="7"/>
+        <line num="168" type="method" name="close" crap="2" count="4"/>
+        <line num="170" type="stmt" count="4"/>
+        <line num="172" type="stmt" count="4"/>
+        <line num="181" type="method" name="html" crap="1" count="8"/>
+        <line num="183" type="stmt" count="8"/>
+        <line num="192" type="method" name="text" crap="1" count="1"/>
+        <line num="194" type="stmt" count="1"/>
+        <line num="195" type="stmt" count="1"/>
+        <line num="201" type="method" name="classes" crap="2" count="8"/>
+        <line num="203" type="stmt" count="8"/>
+        <line num="204" type="stmt" count="8"/>
+        <line num="205" type="stmt" count="3"/>
+        <line num="206" type="stmt" count="3"/>
+        <line num="207" type="stmt" count="8"/>
+        <line num="217" type="method" name="data" crap="4" count="8"/>
+        <line num="219" type="stmt" count="8"/>
+        <line num="221" type="stmt" count="8"/>
+        <line num="223" type="stmt" count="2"/>
+        <line num="225" type="stmt" count="2"/>
+        <line num="226" type="stmt" count="2"/>
+        <line num="227" type="stmt" count="1"/>
+        <line num="228" type="stmt" count="1"/>
+        <line num="231" type="stmt" count="2"/>
+        <line num="233" type="stmt" count="2"/>
+        <line num="234" type="stmt" count="8"/>
+        <line num="235" type="stmt" count="8"/>
+        <line num="242" type="method" name="styles" crap="3" count="8"/>
+        <line num="244" type="stmt" count="8"/>
+        <line num="246" type="stmt" count="8"/>
+        <line num="248" type="stmt" count="1"/>
+        <line num="249" type="stmt" count="8"/>
+        <line num="251" type="stmt" count="8"/>
+        <line num="253" type="stmt" count="8"/>
+        <metrics loc="255" ncloc="171" classes="1" methods="13" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="80" coveredstatements="78" elements="93" coveredelements="90"/>
+      </file>
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Node.php">
+        <class name="Node" namespace="HtmlNode" fullPackage="HtmlNode" package="HtmlNode">
+          <metrics methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="11" elements="14" coveredelements="14"/>
+        </class>
+        <line num="32" type="method" name="__callStatic" crap="3" count="3"/>
+        <line num="34" type="stmt" count="3"/>
+        <line num="35" type="stmt" count="3"/>
+        <line num="37" type="stmt" count="2"/>
+        <line num="38" type="stmt" count="2"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <line num="52" type="method" name="macro" crap="1" count="2"/>
+        <line num="54" type="stmt" count="2"/>
+        <line num="55" type="stmt" count="2"/>
+        <line num="60" type="method" name="make" crap="1" count="11"/>
+        <line num="62" type="stmt" count="11"/>
+        <line num="63" type="stmt" count="11"/>
+        <metrics loc="64" ncloc="36" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="11" elements="14" coveredelements="14"/>
+      </file>
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/NodeAbstract.php">
+        <class name="NodeAbstract" namespace="HtmlNode" fullPackage="HtmlNode" package="HtmlNode">
+          <metrics methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="13" elements="20" coveredelements="15"/>
+        </class>
+        <line num="37" type="method" name="__construct" crap="6.14" count="17"/>
+        <line num="40" type="stmt" count="17"/>
+        <line num="41" type="stmt" count="17"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="17"/>
+        <line num="49" type="stmt" count="17"/>
+        <line num="50" type="stmt" count="17"/>
+        <line num="52" type="stmt" count="17"/>
+        <line num="53" type="stmt" count="17"/>
+        <line num="54" type="stmt" count="17"/>
+        <line num="55" type="stmt" count="17"/>
+        <line num="62" type="method" name="__get" crap="3" count="1"/>
+        <line num="64" type="stmt" count="1"/>
+        <line num="65" type="stmt" count="1"/>
+        <line num="66" type="stmt" count="1"/>
+        <line num="68" type="stmt" count="1"/>
+        <metrics loc="71" ncloc="52" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="13" elements="20" coveredelements="14"/>
+      </file>
+    </package>
+    <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/CompilerInterface.php">
+      <metrics loc="71" ncloc="22" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <package name="HtmlNode\Component">
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Component/Attribute.php">
+        <class name="Attribute" namespace="HtmlNode\Component" fullPackage="HtmlNode" package="HtmlNode">
+          <metrics methods="15" coveredmethods="15" conditionals="0" coveredconditionals="0" statements="95" coveredstatements="95" elements="110" coveredelements="110"/>
+        </class>
+        <line num="33" type="method" name="attr" crap="11" count="30"/>
+        <line num="35" type="stmt" count="30"/>
+        <line num="36" type="stmt" count="30"/>
+        <line num="37" type="stmt" count="16"/>
+        <line num="40" type="stmt" count="23"/>
+        <line num="41" type="stmt" count="23"/>
+        <line num="42" type="stmt" count="23"/>
+        <line num="45" type="stmt" count="6"/>
+        <line num="46" type="stmt" count="6"/>
+        <line num="47" type="stmt" count="2"/>
+        <line num="48" type="stmt" count="2"/>
+        <line num="50" type="stmt" count="6"/>
+        <line num="54" type="stmt" count="6"/>
+        <line num="55" type="stmt" count="1"/>
+        <line num="56" type="stmt" count="1"/>
+        <line num="58" type="stmt" count="6"/>
+        <line num="59" type="stmt" count="4"/>
+        <line num="60" type="stmt" count="4"/>
+        <line num="62" type="stmt" count="5"/>
+        <line num="63" type="stmt" count="5"/>
+        <line num="64" type="stmt" count="3"/>
+        <line num="65" type="stmt" count="3"/>
+        <line num="66" type="stmt" count="5"/>
+        <line num="67" type="stmt" count="5"/>
+        <line num="68" type="stmt" count="5"/>
+        <line num="69" type="stmt" count="5"/>
+        <line num="70" type="stmt" count="6"/>
+        <line num="71" type="stmt" count="6"/>
+        <line num="81" type="method" name="addAttrIf" crap="4" count="1"/>
+        <line num="83" type="stmt" count="1"/>
+        <line num="85" type="stmt" count="1"/>
+        <line num="86" type="stmt" count="1"/>
+        <line num="87" type="stmt" count="1"/>
+        <line num="88" type="stmt" count="1"/>
+        <line num="89" type="stmt" count="1"/>
+        <line num="96" type="method" name="removeAttr" crap="3" count="1"/>
+        <line num="98" type="stmt" count="1"/>
+        <line num="100" type="stmt" count="1"/>
+        <line num="102" type="stmt" count="1"/>
+        <line num="103" type="stmt" count="1"/>
+        <line num="104" type="stmt" count="1"/>
+        <line num="111" type="method" name="addClass" crap="3" count="12"/>
+        <line num="113" type="stmt" count="12"/>
+        <line num="115" type="stmt" count="12"/>
+        <line num="117" type="stmt" count="12"/>
+        <line num="118" type="stmt" count="12"/>
+        <line num="119" type="stmt" count="12"/>
+        <line num="120" type="stmt" count="12"/>
+        <line num="121" type="stmt" count="12"/>
+        <line num="122" type="stmt" count="12"/>
+        <line num="131" type="method" name="addClassIf" crap="4" count="2"/>
+        <line num="133" type="stmt" count="2"/>
+        <line num="135" type="stmt" count="2"/>
+        <line num="136" type="stmt" count="2"/>
+        <line num="137" type="stmt" count="2"/>
+        <line num="138" type="stmt" count="2"/>
+        <line num="139" type="stmt" count="2"/>
+        <line num="146" type="method" name="removeClass" crap="3" count="6"/>
+        <line num="148" type="stmt" count="6"/>
+        <line num="150" type="stmt" count="6"/>
+        <line num="152" type="stmt" count="6"/>
+        <line num="154" type="stmt" count="6"/>
+        <line num="155" type="stmt" count="6"/>
+        <line num="156" type="stmt" count="6"/>
+        <line num="157" type="stmt" count="6"/>
+        <line num="158" type="stmt" count="6"/>
+        <line num="159" type="stmt" count="6"/>
+        <line num="168" type="method" name="removeClassIf" crap="4" count="2"/>
+        <line num="170" type="stmt" count="2"/>
+        <line num="172" type="stmt" count="2"/>
+        <line num="173" type="stmt" count="2"/>
+        <line num="174" type="stmt" count="2"/>
+        <line num="175" type="stmt" count="2"/>
+        <line num="176" type="stmt" count="2"/>
+        <line num="188" type="method" name="switchClass" crap="1" count="2"/>
+        <line num="190" type="stmt" count="2"/>
+        <line num="198" type="method" name="data" crap="1" count="4"/>
+        <line num="201" type="stmt" count="4"/>
+        <line num="202" type="stmt" count="4"/>
+        <line num="203" type="stmt" count="4"/>
+        <line num="204" type="stmt" count="4"/>
+        <line num="212" type="method" name="aria" crap="1" count="1"/>
+        <line num="214" type="stmt" count="1"/>
+        <line num="215" type="stmt" count="1"/>
+        <line num="216" type="stmt" count="1"/>
+        <line num="217" type="stmt" count="1"/>
+        <line num="226" type="method" name="recursiveAttr" crap="6" count="5"/>
+        <line num="228" type="stmt" count="5"/>
+        <line num="229" type="stmt" count="5"/>
+        <line num="230" type="stmt" count="2"/>
+        <line num="233" type="stmt" count="5"/>
+        <line num="234" type="stmt" count="5"/>
+        <line num="235" type="stmt" count="5"/>
+        <line num="238" type="stmt" count="2"/>
+        <line num="239" type="stmt" count="2"/>
+        <line num="240" type="stmt" count="2"/>
+        <line num="242" type="stmt" count="2"/>
+        <line num="250" type="method" name="is" crap="1" count="6"/>
+        <line num="252" type="stmt" count="6"/>
+        <line num="261" type="method" name="not" crap="1" count="1"/>
+        <line num="263" type="stmt" count="1"/>
+        <line num="270" type="method" name="hasClass" crap="1" count="2"/>
+        <line num="272" type="stmt" count="2"/>
+        <line num="279" type="method" name="parseClass" crap="3" count="16"/>
+        <line num="281" type="stmt" count="16"/>
+        <line num="283" type="stmt" count="16"/>
+        <line num="285" type="stmt" count="16"/>
+        <line num="287" type="stmt" count="16"/>
+        <line num="288" type="stmt" count="16"/>
+        <line num="290" type="stmt" count="16"/>
+        <metrics loc="292" ncloc="194" classes="1" methods="15" coveredmethods="15" conditionals="0" coveredconditionals="0" statements="95" coveredstatements="95" elements="110" coveredelements="110"/>
+      </file>
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Component/Css.php">
+        <class name="Css" namespace="HtmlNode\Component">
+          <metrics methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="21" elements="22" coveredelements="22"/>
+        </class>
+        <line num="34" type="method" name="css" crap="10" count="4"/>
+        <line num="36" type="stmt" count="4"/>
+        <line num="38" type="stmt" count="4"/>
+        <line num="40" type="stmt" count="4"/>
+        <line num="41" type="stmt" count="4"/>
+        <line num="42" type="stmt" count="3"/>
+        <line num="43" type="stmt" count="3"/>
+        <line num="44" type="stmt" count="3"/>
+        <line num="46" type="stmt" count="2"/>
+        <line num="47" type="stmt" count="2"/>
+        <line num="49" type="stmt" count="4"/>
+        <line num="52" type="stmt" count="4"/>
+        <line num="53" type="stmt" count="4"/>
+        <line num="54" type="stmt" count="1"/>
+        <line num="55" type="stmt" count="1"/>
+        <line num="59" type="stmt" count="3"/>
+        <line num="60" type="stmt" count="3"/>
+        <line num="61" type="stmt" count="1"/>
+        <line num="62" type="stmt" count="1"/>
+        <line num="64" type="stmt" count="3"/>
+        <line num="65" type="stmt" count="4"/>
+        <line num="66" type="stmt" count="4"/>
+        <metrics loc="68" ncloc="47" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="21" elements="22" coveredelements="22"/>
+      </file>
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Component/Manipulation.php">
+        <class name="Manipulation" namespace="HtmlNode\Component" fullPackage="HtmlNode" package="HtmlNode">
+          <metrics methods="12" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="82" coveredstatements="82" elements="94" coveredelements="94"/>
+        </class>
+        <line num="45" type="method" name="wrap" crap="1" count="3"/>
+        <line num="47" type="stmt" count="3"/>
+        <line num="50" type="stmt" count="3"/>
+        <line num="53" type="stmt" count="3"/>
+        <line num="55" type="stmt" count="3"/>
+        <line num="62" type="method" name="unwrap" crap="2" count="2"/>
+        <line num="64" type="stmt" count="2"/>
+        <line num="65" type="stmt" count="2"/>
+        <line num="66" type="stmt" count="2"/>
+        <line num="67" type="stmt" count="2"/>
+        <line num="68" type="stmt" count="2"/>
+        <line num="69" type="stmt" count="2"/>
+        <line num="78" type="method" name="append" crap="1" count="7"/>
+        <line num="80" type="stmt" count="7"/>
+        <line num="81" type="stmt" count="5"/>
+        <line num="82" type="stmt" count="5"/>
+        <line num="84" type="stmt" count="5"/>
+        <line num="91" type="method" name="appendTo" crap="2" count="6"/>
+        <line num="93" type="stmt" count="6"/>
+        <line num="95" type="stmt" count="6"/>
+        <line num="96" type="stmt" count="6"/>
+        <line num="97" type="stmt" count="6"/>
+        <line num="98" type="stmt" count="6"/>
+        <line num="99" type="stmt" count="6"/>
+        <line num="109" type="method" name="prepend" crap="2" count="1"/>
+        <line num="111" type="stmt" count="1"/>
+        <line num="112" type="stmt" count="1"/>
+        <line num="115" type="stmt" count="1"/>
+        <line num="116" type="stmt" count="1"/>
+        <line num="117" type="stmt" count="1"/>
+        <line num="118" type="stmt" count="1"/>
+        <line num="120" type="stmt" count="1"/>
+        <line num="127" type="method" name="prependTo" crap="3" count="1"/>
+        <line num="129" type="stmt" count="1"/>
+        <line num="131" type="stmt" count="1"/>
+        <line num="132" type="stmt" count="1"/>
+        <line num="133" type="stmt" count="1"/>
+        <line num="134" type="stmt" count="1"/>
+        <line num="136" type="stmt" count="1"/>
+        <line num="137" type="stmt" count="1"/>
+        <line num="138" type="stmt" count="1"/>
+        <line num="139" type="stmt" count="1"/>
+        <line num="141" type="stmt" count="1"/>
+        <line num="151" type="method" name="insertBefore" crap="3" count="1"/>
+        <line num="153" type="stmt" count="1"/>
+        <line num="155" type="stmt" count="1"/>
+        <line num="157" type="stmt" count="1"/>
+        <line num="159" type="stmt" count="1"/>
+        <line num="161" type="stmt" count="1"/>
+        <line num="162" type="stmt" count="1"/>
+        <line num="163" type="stmt" count="1"/>
+        <line num="164" type="stmt" count="1"/>
+        <line num="166" type="stmt" count="1"/>
+        <line num="177" type="method" name="insertAfter" crap="2" count="1"/>
+        <line num="179" type="stmt" count="1"/>
+        <line num="181" type="stmt" count="1"/>
+        <line num="183" type="stmt" count="1"/>
+        <line num="184" type="stmt" count="1"/>
+        <line num="186" type="stmt" count="1"/>
+        <line num="193" type="method" name="replaceWith" crap="3" count="1"/>
+        <line num="195" type="stmt" count="1"/>
+        <line num="196" type="stmt" count="1"/>
+        <line num="197" type="stmt" count="1"/>
+        <line num="198" type="stmt" count="1"/>
+        <line num="199" type="stmt" count="1"/>
+        <line num="200" type="stmt" count="1"/>
+        <line num="202" type="stmt" count="1"/>
+        <line num="208" type="method" name="detach" crap="1" count="1"/>
+        <line num="211" type="stmt" count="1"/>
+        <line num="222" type="method" name="__clone" crap="1" count="12"/>
+        <line num="225" type="stmt" count="12"/>
+        <line num="228" type="stmt" count="12"/>
+        <line num="231" type="stmt" count="12"/>
+        <line num="232" type="stmt" count="12"/>
+        <line num="233" type="stmt" count="12"/>
+        <line num="248" type="method" name="createNodeWith" crap="8" count="10"/>
+        <line num="251" type="stmt" count="10"/>
+        <line num="252" type="stmt" count="10"/>
+        <line num="253" type="stmt" count="1"/>
+        <line num="257" type="stmt" count="9"/>
+        <line num="258" type="stmt" count="9"/>
+        <line num="259" type="stmt" count="1"/>
+        <line num="260" type="stmt" count="1"/>
+        <line num="263" type="stmt" count="9"/>
+        <line num="264" type="stmt" count="9"/>
+        <line num="265" type="stmt" count="7"/>
+        <line num="266" type="stmt" count="7"/>
+        <line num="269" type="stmt" count="3"/>
+        <line num="271" type="stmt" count="2"/>
+        <line num="272" type="stmt" count="2"/>
+        <line num="275" type="stmt" count="9"/>
+        <line num="276" type="stmt" count="9"/>
+        <line num="277" type="stmt" count="1"/>
+        <line num="280" type="stmt" count="8"/>
+        <metrics loc="281" ncloc="163" classes="1" methods="12" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="82" coveredstatements="82" elements="94" coveredelements="94"/>
+      </file>
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Component/Rendering.php">
+        <class name="Rendering" namespace="HtmlNode\Component" fullPackage="HtmlNode" package="HtmlNode">
+          <metrics methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="31" coveredstatements="31" elements="36" coveredelements="36"/>
+        </class>
+        <line num="21" type="method" name="html" crap="6" count="1"/>
+        <line num="23" type="stmt" count="1"/>
+        <line num="24" type="stmt" count="1"/>
+        <line num="25" type="stmt" count="1"/>
+        <line num="26" type="stmt" count="1"/>
+        <line num="27" type="stmt" count="1"/>
+        <line num="28" type="stmt" count="1"/>
+        <line num="31" type="stmt" count="1"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="33" type="stmt" count="1"/>
+        <line num="34" type="stmt" count="1"/>
+        <line num="36" type="stmt" count="1"/>
+        <line num="38" type="stmt" count="1"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <line num="45" type="stmt" count="1"/>
+        <line num="47" type="stmt" count="1"/>
+        <line num="49" type="stmt" count="1"/>
+        <line num="55" type="method" name="contents" crap="1" count="1"/>
+        <line num="57" type="stmt" count="1"/>
+        <line num="58" type="stmt" count="1"/>
+        <line num="59" type="stmt" count="1"/>
+        <line num="60" type="stmt" count="1"/>
+        <line num="66" type="method" name="render" crap="1" count="3"/>
+        <line num="68" type="stmt" count="3"/>
+        <line num="69" type="stmt" count="3"/>
+        <line num="70" type="stmt" count="3"/>
+        <line num="76" type="method" name="self" crap="1" count="1"/>
+        <line num="78" type="stmt" count="1"/>
+        <line num="80" type="stmt" count="1"/>
+        <line num="81" type="stmt" count="1"/>
+        <line num="82" type="stmt" count="1"/>
+        <line num="84" type="stmt" count="1"/>
+        <line num="90" type="method" name="__toString" crap="1" count="2"/>
+        <line num="92" type="stmt" count="2"/>
+        <line num="104" type="stmt" count="1"/>
+        <metrics loc="94" ncloc="70" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="31" coveredstatements="31" elements="36" coveredelements="36"/>
+      </file>
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Component/Seek.php">
+        <class name="Seek" namespace="HtmlNode\Component">
+          <metrics methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="34" coveredstatements="34" elements="40" coveredelements="40"/>
+        </class>
+        <line num="15" type="method" name="prev" crap="2" count="1"/>
+        <line num="17" type="stmt" count="1"/>
+        <line num="18" type="stmt" count="1"/>
+        <line num="19" type="stmt" count="1"/>
+        <line num="21" type="stmt" count="1"/>
+        <line num="30" type="method" name="next" crap="2" count="1"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="33" type="stmt" count="1"/>
+        <line num="34" type="stmt" count="1"/>
+        <line num="36" type="stmt" count="1"/>
+        <line num="45" type="method" name="nextAll" crap="2" count="1"/>
+        <line num="47" type="stmt" count="1"/>
+        <line num="48" type="stmt" count="1"/>
+        <line num="49" type="stmt" count="1"/>
+        <line num="50" type="stmt" count="1"/>
+        <line num="51" type="stmt" count="1"/>
+        <line num="53" type="stmt" count="1"/>
+        <line num="55" type="stmt" count="1"/>
+        <line num="64" type="method" name="prevAll" crap="2" count="2"/>
+        <line num="66" type="stmt" count="2"/>
+        <line num="67" type="stmt" count="2"/>
+        <line num="68" type="stmt" count="2"/>
+        <line num="69" type="stmt" count="2"/>
+        <line num="71" type="stmt" count="2"/>
+        <line num="73" type="stmt" count="1"/>
+        <line num="82" type="method" name="siblings" crap="3" count="1"/>
+        <line num="84" type="stmt" count="1"/>
+        <line num="85" type="stmt" count="1"/>
+        <line num="87" type="stmt" count="1"/>
+        <line num="90" type="stmt" count="1"/>
+        <line num="92" type="stmt" count="1"/>
+        <line num="94" type="stmt" count="1"/>
+        <line num="105" type="method" name="filterSeek" crap="5" count="4"/>
+        <line num="107" type="stmt" count="4"/>
+        <line num="108" type="stmt" count="4"/>
+        <line num="109" type="stmt" count="1"/>
+        <line num="111" type="stmt" count="1"/>
+        <line num="112" type="stmt" count="1"/>
+        <line num="113" type="stmt" count="1"/>
+        <line num="114" type="stmt" count="4"/>
+        <metrics loc="116" ncloc="74" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="34" coveredstatements="34" elements="40" coveredelements="40"/>
+      </file>
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Component/Tag.php">
+        <class name="Tag" namespace="HtmlNode\Component">
+          <metrics methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+        </class>
+        <line num="58" type="method" name="tag" crap="3" count="31"/>
+        <line num="60" type="stmt" count="31"/>
+        <line num="63" type="stmt" count="20"/>
+        <line num="64" type="stmt" count="20"/>
+        <line num="65" type="stmt" count="1"/>
+        <line num="69" type="stmt" count="20"/>
+        <line num="72" type="stmt" count="20"/>
+        <line num="74" type="stmt" count="20"/>
+        <line num="83" type="method" name="autoclose" crap="1" count="10"/>
+        <line num="85" type="stmt" count="10"/>
+        <metrics loc="87" ncloc="49" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+      </file>
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Component/Text.php">
+        <class name="Text" namespace="HtmlNode\Component">
+          <metrics methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+        </class>
+        <line num="24" type="method" name="text" crap="3" count="16"/>
+        <line num="26" type="stmt" count="16"/>
+        <line num="28" type="stmt" count="5"/>
+        <line num="29" type="stmt" count="5"/>
+        <line num="30" type="stmt" count="1"/>
+        <line num="32" type="stmt" count="5"/>
+        <line num="33" type="stmt" count="5"/>
+        <line num="35" type="stmt" count="5"/>
+        <line num="41" type="method" name="contains" crap="1" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <metrics loc="46" ncloc="30" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+      </file>
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Component/Traversing.php">
+        <class name="Traversing" namespace="HtmlNode\Component">
+          <metrics methods="9" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="22" coveredstatements="22" elements="31" coveredelements="31"/>
+        </class>
+        <line num="22" type="method" name="find" crap="2" count="2"/>
+        <line num="24" type="stmt" count="2"/>
+        <line num="25" type="stmt" count="2"/>
+        <line num="26" type="stmt" count="1"/>
+        <line num="28" type="stmt" count="2"/>
+        <line num="37" type="method" name="closest" crap="2" count="1"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="40" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="54" type="method" name="children" crap="5" count="34"/>
+        <line num="56" type="stmt" count="34"/>
+        <line num="57" type="stmt" count="34"/>
+        <line num="58" type="stmt" count="1"/>
+        <line num="60" type="stmt" count="1"/>
+        <line num="62" type="stmt" count="1"/>
+        <line num="63" type="stmt" count="1"/>
+        <line num="64" type="stmt" count="1"/>
+        <line num="66" type="stmt" count="34"/>
+        <line num="75" type="method" name="parent" crap="1" count="12"/>
+        <line num="77" type="stmt" count="12"/>
+        <line num="86" type="method" name="index" crap="2" count="8"/>
+        <line num="88" type="stmt" count="8"/>
+        <line num="97" type="method" name="hasParent" crap="1" count="1"/>
+        <line num="99" type="stmt" count="1"/>
+        <line num="108" type="method" name="isChildOf" crap="1" count="1"/>
+        <line num="110" type="stmt" count="1"/>
+        <line num="120" type="method" name="isParentOf" crap="1" count="1"/>
+        <line num="122" type="stmt" count="1"/>
+        <line num="129" type="method" name="hasChildren" crap="1" count="1"/>
+        <line num="131" type="stmt" count="1"/>
+        <metrics loc="134" ncloc="76" classes="1" methods="9" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="22" coveredstatements="22" elements="31" coveredelements="31"/>
+      </file>
+    </package>
+    <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Dependency/Node.php">
+      <metrics loc="14" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <package name="HtmlNode\Dependency">
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Dependency/Text.php">
+        <class name="Text" namespace="HtmlNode\Dependency" fullPackage="HtmlNode" package="HtmlNode">
+          <metrics methods="10" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="24" elements="34" coveredelements="34"/>
+        </class>
+        <line num="30" type="method" name="__construct" crap="2" count="1"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="33" type="stmt" count="1"/>
+        <line num="34" type="stmt" count="1"/>
+        <line num="40" type="method" name="__toString" crap="1" count="3"/>
+        <line num="42" type="stmt" count="3"/>
+        <line num="52" type="method" name="position" crap="2" count="8"/>
+        <line num="54" type="stmt" count="8"/>
+        <line num="55" type="stmt" count="8"/>
+        <line num="56" type="stmt" count="7"/>
+        <line num="59" type="stmt" count="6"/>
+        <line num="61" type="stmt" count="6"/>
+        <line num="69" type="method" name="set" crap="2" count="9"/>
+        <line num="71" type="stmt" count="9"/>
+        <line num="72" type="stmt" count="9"/>
+        <line num="73" type="stmt" count="1"/>
+        <line num="75" type="stmt" count="9"/>
+        <line num="82" type="method" name="get" crap="1" count="13"/>
+        <line num="84" type="stmt" count="13"/>
+        <line num="93" type="method" name="length" crap="1" count="1"/>
+        <line num="95" type="stmt" count="1"/>
+        <line num="104" type="method" name="contains" crap="3" count="2"/>
+        <line num="107" type="stmt" count="2"/>
+        <line num="109" type="stmt" count="2"/>
+        <line num="117" type="method" name="replace" crap="1" count="1"/>
+        <line num="119" type="stmt" count="1"/>
+        <line num="120" type="stmt" count="1"/>
+        <line num="127" type="method" name="match" crap="1" count="1"/>
+        <line num="129" type="stmt" count="1"/>
+        <line num="139" type="method" name="isValidText" crap="3" count="9"/>
+        <line num="141" type="stmt" count="9"/>
+        <line num="142" type="stmt" count="9"/>
+        <line num="143" type="stmt" count="1"/>
+        <line num="144" type="stmt" count="9"/>
+        <metrics loc="146" ncloc="79" classes="1" methods="10" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="24" elements="34" coveredelements="34"/>
+      </file>
+    </package>
+    <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/NodeInterface.php">
+      <metrics loc="30" ncloc="30" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <package name="HtmlNode\Selector">
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Selector/Selector.php">
+        <class name="Selector" namespace="HtmlNode\Selector" fullPackage="HtmlNode" package="HtmlNode">
+          <metrics methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="26" coveredelements="26"/>
+        </class>
+        <line num="53" type="method" name="pseudo" crap="9" count="7"/>
+        <line num="55" type="stmt" count="7"/>
+        <line num="56" type="stmt" count="7"/>
+        <line num="57" type="stmt" count="7"/>
+        <line num="59" type="stmt" count="7"/>
+        <line num="61" type="stmt" count="7"/>
+        <line num="62" type="stmt" count="1"/>
+        <line num="63" type="stmt" count="1"/>
+        <line num="65" type="stmt" count="7"/>
+        <line num="66" type="stmt" count="1"/>
+        <line num="67" type="stmt" count="1"/>
+        <line num="69" type="stmt" count="7"/>
+        <line num="70" type="stmt" count="1"/>
+        <line num="71" type="stmt" count="1"/>
+        <line num="73" type="stmt" count="7"/>
+        <line num="75" type="stmt" count="1"/>
+        <line num="76" type="stmt" count="1"/>
+        <line num="78" type="stmt" count="1"/>
+        <line num="79" type="stmt" count="1"/>
+        <line num="81" type="stmt" count="1"/>
+        <line num="82" type="stmt" count="1"/>
+        <line num="84" type="stmt" count="7"/>
+        <line num="85" type="stmt" count="7"/>
+        <line num="86" type="stmt" count="7"/>
+        <line num="87" type="stmt" count="7"/>
+        <line num="88" type="stmt" count="7"/>
+        <metrics loc="89" ncloc="62" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="26" coveredelements="26"/>
+      </file>
+    </package>
+    <package name="HtmlNode\Util">
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Util/Finder.php">
+        <class name="Finder" namespace="HtmlNode\Util">
+          <metrics methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="43" coveredstatements="43" elements="48" coveredelements="48"/>
+        </class>
+        <line num="27" type="method" name="__construct" crap="1" count="4"/>
+        <line num="29" type="stmt" count="4"/>
+        <line num="30" type="stmt" count="4"/>
+        <line num="31" type="stmt" count="4"/>
+        <line num="38" type="method" name="children" crap="5" count="3"/>
+        <line num="42" type="stmt" count="3"/>
+        <line num="44" type="stmt" count="3"/>
+        <line num="45" type="stmt" count="3"/>
+        <line num="46" type="stmt" count="3"/>
+        <line num="47" type="stmt" count="3"/>
+        <line num="48" type="stmt" count="3"/>
+        <line num="50" type="stmt" count="3"/>
+        <line num="51" type="stmt" count="3"/>
+        <line num="52" type="stmt" count="3"/>
+        <line num="53" type="stmt" count="3"/>
+        <line num="54" type="stmt" count="3"/>
+        <line num="55" type="stmt" count="3"/>
+        <line num="57" type="stmt" count="3"/>
+        <line num="59" type="stmt" count="3"/>
+        <line num="67" type="method" name="parents" crap="5" count="2"/>
+        <line num="69" type="stmt" count="2"/>
+        <line num="70" type="stmt" count="2"/>
+        <line num="73" type="stmt" count="1"/>
+        <line num="74" type="stmt" count="1"/>
+        <line num="75" type="stmt" count="1"/>
+        <line num="76" type="stmt" count="1"/>
+        <line num="78" type="stmt" count="1"/>
+        <line num="80" type="stmt" count="1"/>
+        <line num="81" type="stmt" count="1"/>
+        <line num="82" type="stmt" count="1"/>
+        <line num="83" type="stmt" count="1"/>
+        <line num="84" type="stmt" count="1"/>
+        <line num="85" type="stmt" count="1"/>
+        <line num="86" type="stmt" count="1"/>
+        <line num="87" type="stmt" count="2"/>
+        <line num="93" type="method" name="result" crap="1" count="1"/>
+        <line num="95" type="stmt" count="1"/>
+        <metrics loc="96" ncloc="71" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="33" elements="38" coveredelements="38"/>
+      </file>
+      <file name="/repo/Bootstrap/vendor/ronan-gloo/htmlnode/src/HtmlNode/Util/Manager.php">
+        <class name="Manager" namespace="HtmlNode\Util">
+          <metrics methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="29" elements="34" coveredelements="34"/>
+        </class>
+        <line num="45" type="method" name="register" crap="1" count="7"/>
+        <line num="47" type="stmt" count="7"/>
+        <line num="48" type="stmt" count="7"/>
+        <line num="56" type="method" name="once" crap="1" count="2"/>
+        <line num="58" type="stmt" count="2"/>
+        <line num="59" type="stmt" count="2"/>
+        <line num="66" type="method" name="compiler" crap="3" count="6"/>
+        <line num="69" type="stmt" count="6"/>
+        <line num="70" type="stmt" count="1"/>
+        <line num="71" type="stmt" count="1"/>
+        <line num="72" type="stmt" count="6"/>
+        <line num="73" type="stmt" count="6"/>
+        <line num="74" type="stmt" count="1"/>
+        <line num="75" type="stmt" count="1"/>
+        <line num="76" type="stmt" count="6"/>
+        <line num="87" type="method" name="registered" crap="1" count="5"/>
+        <line num="89" type="stmt" count="5"/>
+        <line num="98" type="method" name="resolve" crap="5" count="6"/>
+        <line num="101" type="stmt" count="6"/>
+        <line num="102" type="stmt" count="6"/>
+        <line num="103" type="stmt" count="1"/>
+        <line num="107" type="stmt" count="5"/>
+        <line num="108" type="stmt" count="5"/>
+        <line num="109" type="stmt" count="1"/>
+        <line num="113" type="stmt" count="5"/>
+        <line num="114" type="stmt" count="5"/>
+        <line num="115" type="stmt" count="3"/>
+        <line num="116" type="stmt" count="3"/>
+        <line num="119" type="stmt" count="2"/>
+        <line num="123" type="stmt" count="5"/>
+        <line num="124" type="stmt" count="5"/>
+        <line num="125" type="stmt" count="1"/>
+        <line num="126" type="stmt" count="1"/>
+        <line num="128" type="stmt" count="5"/>
+        <metrics loc="130" ncloc="73" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="29" elements="34" coveredelements="34"/>
+      </file>
+    </package>
+    <metrics files="23" loc="2740" ncloc="1655" classes="19" methods="124" coveredmethods="121" conditionals="0" coveredconditionals="0" statements="627" coveredstatements="618" elements="751" coveredelements="739"/>
+  </project>
+</coverage>

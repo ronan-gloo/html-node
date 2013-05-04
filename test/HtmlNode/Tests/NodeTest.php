@@ -32,28 +32,35 @@ class NodeTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->assertSame("div", $d->tag());
 	}
-	
+	/**
+     * @expectedException \BadMethodCallException
+     */
 	public function testUnregisteredMacro()
 	{
-		try {
-			Node::foo();
-		}
-		catch (\Exception $e) {
-			$this->assertInstanceOf("\\BadMethodCallException", $e);
-		}
+	    Node::foo();
 	}
-	/**
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+	public function testInvalidMacro()
+	{
+        Node::macro('test', []);
+	    Node::test();
+	}
+
+    /**
 	 * @dataProvider getMacroTests
 	 */
 	public function testRegisteredMacro($i1, $i2, $s1, $s2)
 	{
-  	$this->assertInstanceOf("HtmlNode\\Node", Node::instance());
-  	
-  	// Test instances
-  	$this->assertNotSame($i1, $i2);
-  	
-  	// Test singletons
-  	$this->assertSame($s1, $s2);
+        $this->assertInstanceOf("HtmlNode\\Node", Node::instance());
+
+        // Test instances
+        $this->assertNotSame($i1, $i2);
+
+        // Test singletons
+        $this->assertSame($s1, $s2);
 	}
 
 	/**
@@ -61,15 +68,15 @@ class NodeTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testCreateMacro()
 	{
-	  $data = Node::macro("foo", function(){ return Node::make("input"); });
-
-  	$this->assertNull($data);
-	}
+        $this->assertNull(Node::macro("foo", function(){
+            return Node::make("input");
+        }));
+    }
 
 	/**
 	 * @dataProvider getNodeTests
 	 */
-	public function testDepencies($d)
+	public function testDependencies($d)
 	{
 		$this->assertInstanceOf("HtmlNode\\Dependency\\Node", $d->text);
 		
@@ -88,8 +95,7 @@ class NodeTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->assertInstanceOf("HtmlNode\\Dependency\\Text", $d->text());
 		$this->assertInstanceOf(get_class($d), $d->text("bar"));
-		
-		// Test untextable
+
 		try {
 			Node::make("input")->text("foo");
 		}

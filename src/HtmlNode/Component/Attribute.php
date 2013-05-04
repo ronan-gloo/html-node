@@ -5,10 +5,13 @@ namespace HtmlNode\Component;
 use
 	HtmlNode\Collection\Attribute as Collection,
 	HtmlNode\Util,
-	HtmlNode\Selector,
-	InvalidArgumentException
+	HtmlNode\Selector
 ;
 
+/**
+ * Class Attribute
+ * @package HtmlNode\Component
+ */
 trait Attribute {
 		
 	/**
@@ -25,7 +28,7 @@ trait Attribute {
 	 * @access protected
 	 * @param mixed $name
 	 * @param mixed $val (default: null)
-	 * @return void
+	 * @return $this
 	 */
 	public function attr($name = null, $val = null)
 	{
@@ -39,7 +42,7 @@ trait Attribute {
 			return $this->attributes->find($name);
 		}
 		// Setter
-		if (! is_array($name))
+		if (is_scalar($name))
 		{
 			$name = [$name => $val];
 		}
@@ -48,14 +51,16 @@ trait Attribute {
 		{
 			switch($key)
 			{
-				case Collection::KEY_STYLE:
+				case Collection::key_style:
 				$this->css($value);
 				break;
-				case Collection::KEY_CLASS:
+
+                case Collection::key_class:
 				$this->attributes[$key] = $this->parseClass($value);
 				break;
-				case Collection::KEY_DATA:
-				case Collection::KEY_ARIA:
+
+                case Collection::key_data:
+				case Collection::key_aria:
 				$this->$key($value);
 				break;
 				default:
@@ -65,33 +70,30 @@ trait Attribute {
 		}
 		return $this;
 	}
-		
-	/**
-	 * Delete an attribute.
-	 * 
-	 * @access public
-	 * @param mixed $name
-	 * @return void
-	 */
-	public function addAttrIf($attr, $left, $right = null)
+
+    /**
+     * Delete an attribute
+     * @param $attr
+     * @param $left
+     * @param null $right
+     * @return $this
+     */
+    public function addAttrIf($attr, $left, $right = null)
 	{
-		$numa = func_num_args();
+		$num = func_num_args();
 		
-		if (($left and $numa === 2) xor ($numa === 3 and ($left === $right)))
+		if (($left and $num === 2) xor ($num === 3 and ($left === $right)))
 		{
 			$this->attr($attr, $left);
 		}
 		return $this;
 	}
 
-	/**
-	 * Delete an attribute.
-	 * 
-	 * @access public
-	 * @param mixed $name
-	 * @return void
-	 */
-	public function removeAttr($attrs)
+    /**
+     * @param $attrs
+     * @return $this
+     */
+    public function removeAttr($attrs)
 	{
 		! is_array($attrs) and $attrs = [$attrs];
 
@@ -101,15 +103,14 @@ trait Attribute {
 		}
 		return $this;
 	}
-		
-	/**
-	 * new Class / classes.
-	 * @access public
-	 * @return void
-	 */
-	public function addClass($data)
+
+    /**
+     * @param $data
+     * @return $this
+     */
+    public function addClass($data)
 	{
-		$classes =& $this->attributes->eq(Collection::KEY_CLASS);
+		$classes =& $this->attributes->eq(Collection::key_class);
 		
 		foreach ($this->parseClass($data) as $class)
 		{
@@ -120,14 +121,14 @@ trait Attribute {
 		}
 		return $this;
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $class
-	 * @param mixed $bool
-	 * @return $this
-	 */
-	public function addClassIf($class, $left, $right = null)
+
+    /**
+     * @param $class
+     * @param $left
+     * @param null $right
+     * @return $this
+     */
+    public function addClassIf($class, $left, $right = null)
 	{
 		$numa = func_num_args();
 		
@@ -137,18 +138,16 @@ trait Attribute {
 		}
 		return $this;
 	}
-	
-	/**
-	 * Remove class / classes.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function removeClass($data)
-	{
-		$classes =& $this->attributes->eq(Collection::KEY_CLASS);
 
-		foreach ($this->parseClass($data) as $key => $class)
+    /**
+     * @param $data
+     * @return $this
+     */
+    public function removeClass($data)
+	{
+		$classes =& $this->attributes->eq(Collection::key_class);
+
+		foreach ($this->parseClass($data) as $class)
 		{
 			$index = array_search($class, $classes);
 			
@@ -159,14 +158,14 @@ trait Attribute {
 		}
 		return $this;
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $class
-	 * @param mixed $bool
-	 * @return $this
-	 */
-	public function removeClassIf($class, $left, $right = null)
+
+    /**
+     * @param $class
+     * @param $left
+     * @param null $right
+     * @return $this
+     */
+    public function removeClassIf($class, $left, $right = null)
 	{
 		$numa = func_num_args();
 		
@@ -191,45 +190,40 @@ trait Attribute {
 		return $this->removeClass($old)->addClass($new);
 	}
 
-	/**
-	 * Shortcut to assign data-* attributes.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function data($key = null, $val = null)
+    /**
+     * @param null $key
+     * @param null $val
+     * @return mixed
+     */
+    public function data($key = null, $val = null)
 	{
 		// We need to keep the args number, in order to check for Set / Get methods
 		return call_user_func_array(
 			[$this, "recursiveAttr"],
-			array_merge([Collection::KEY_DATA], func_get_args())
+			array_merge([Collection::key_data], func_get_args())
 		);
 	}
-	
-	/**
-	 * Shortcut to assign aria-* attributes.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function aria($key = null, $val = null)
+
+    /**
+     * @param null $key
+     * @param null $val
+     * @return mixed
+     */
+    public function aria($key = null, $val = null)
 	{
 		return call_user_func_array(
 			[$this, "recursiveAttr"],
-			array_merge([Collection::KEY_ARIA], func_get_args())
+			array_merge([Collection::key_aria], func_get_args())
 		);
 	}
-	
-	/**
-	 * Set / get Récursive.
-	 * 
-	 * @access protected
-	 * @param mixed $ns
-	 * @param mixed $key
-	 * @param mixed $val
-	 * @return void
-	 */
-	protected function recursiveAttr($ns, $key = null, $val = null)
+
+    /**
+     * @param $ns
+     * @param null $key
+     * @param null $val
+     * @return $this
+     */
+    protected function recursiveAttr($ns, $key = null, $val = null)
 	{
 		if (! $key)
 		{
@@ -247,68 +241,53 @@ trait Attribute {
 		
 		return $this;
 	}
-	
-	/**
-	 * Check against tagname, id, class or pseudo
-	 * 
-	 * @access public
-	 * @param mixed $attr
-	 * @return void
-	 */
-	public function is($attr)
+
+    /**
+     * Check against tagname, id, class or pseudo
+     * @param $attr
+     * @return bool
+     */
+    public function is($attr)
 	{
 		return Selector\Selector::pseudo($this, $attr);
 	}
 
-	/**
-	 * Check against tagname or attribute.
-	 * 
-	 * @access public
-	 * @param mixed $attr
-	 * @return void
-	 */
-	public function not($attr)
+
+    /**
+     * Check against tagname or attribute
+     * @param $attr
+     * @return bool
+     */
+    public function not($attr)
 	{
 		return ! Selector\Selector::pseudo($this, $attr);
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $class
-	 * @return void
-	 */
-	public function hasClass($class)
+
+    /**
+     * @param $class
+     * @return bool
+     */
+    public function hasClass($class)
 	{
-		return in_array($class, $this->attributes[Collection::KEY_CLASS]);
+		return in_array($class, $this->attributes[Collection::key_class]);
 	}
-	
-	/**
-	 * parseCssClass function.
-	 * 
-	 * @access protected
-	 * @param mixed $str
-	 * @return void
-	 */
-	protected function parseClass($data)
+
+    /**
+     * @param $data
+     * @return array
+     */
+    protected function parseClass($data)
 	{
-		$splitted = [];
+		$split = [];
 		
 		! is_array($data) and $data = [$data];
 		
 		foreach ($data as $val)
 		{
-			$splitted = array_merge($splitted, preg_split('/[\s,]+/', $val));
+            $split = array_merge($split, preg_split('/[\s,]+/', $val));
 		}
 		
-		foreach ($splitted as $key => $val)
-		{
-			if (! is_string($val))
-			{
-				unset($splitted[$key]);
-			}
-		}
-		
-		return $splitted;
+		return $split;
 	}
 
 }

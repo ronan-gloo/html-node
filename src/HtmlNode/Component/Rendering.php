@@ -8,20 +8,24 @@ use
 	HtmlNode\NodeInterface
 ;
 
+/**
+ * Class Rendering
+ * @package HtmlNode\Component
+ */
 trait Rendering {
 
-	/**
-	 * Node children
-	 * @access public
-	 * @return void
-	 */
-	public function html($data = null)
+    /**
+     * @param null $data
+     * @return $this
+     */
+    public function html($data = null)
 	{
 		if (is_null($data))
 		{
 			return Manager::compiler()
 				->node($this)
-				->children();
+				->children()
+                ->html();
 		}
 		
 		if ($data instanceof Collection)
@@ -45,36 +49,31 @@ trait Rendering {
 		return $this;
 	}
 
-	/**
-	 * Node html + text
-	 * @access public
-	 * @return void
-	 */
-	public function contents()
+    /**
+     * @return mixed
+     */
+    public function contents()
 	{
 		return Manager::compiler()
 			->node($this)
-			->contents();
+			->contents()
+            ->html();
 	}
 
-	/**
-	 * @access public
-	 * @return void
-	 */
-	public function render()
+    /**
+     * @return string
+     */
+    public function render()
 	{
 		return Manager::compiler()
 			->node($this)
 			->compile();
 	}
-	
-	/**
-	 * Only node, no text and html
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function self()
+
+    /**
+     * @return mixed
+     */
+    public function self()
 	{
 		$compiler = Manager::compiler()->node($this);
 		
@@ -84,12 +83,11 @@ trait Rendering {
 		
 		return $compiler->html();
 	}
-	
-	/**
-	 * @access public
-	 * @return void
-	 */
-	public function __toString()
+
+    /**
+     * @return string
+     */
+    public function __toString()
 	{
 		return $this->render();
 	}

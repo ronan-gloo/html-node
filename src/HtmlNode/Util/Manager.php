@@ -17,109 +17,53 @@ class Manager {
 	
 	/**
 	 * Node Templates registry
-	 * 
 	 * (default value: [])
-	 * 
 	 * @var mixed
 	 * @access protected
-	 * @static
 	 */
 	protected static $registry = [];
 	
 	/**
 	 * Singleton elements
-	 * 
 	 * (default value: [])
-	 * 
 	 * @var mixed
-	 * @access protected
-	 * @static
 	 */
 	protected static $singletons = [];
 	
 	/**
-	 * Node dependencies
-	 * 
-	 * (default value: [])
-	 * 
-	 * @var mixed
-	 * @access protected
-	 * @static
-	 */
-	protected static $dependencies = [];
-	
-	/**
-	 * 
 	 * (default value: null)
-	 * 
 	 * @var mixed
-	 * @access protected
-	 * @static
 	 */
 	protected static $compiler = null;
-	
-	/**
-	 * Register a new element.
-	 * 
-	 * @access public
-	 * @static
-	 * @param mixed $name
-	 * @param Closure $c
-	 * @return void
-	 */
-	public static function register($name, $resolver, $singleton = false)
+
+    /**
+     * Register a new element
+     * @param $name
+     * @param $resolver
+     * @param bool $singleton
+     */
+    public static function register($name, $resolver, $singleton = false)
 	{
 		static::$registry[$name] = compact("singleton", "resolver");
 	}
-	
-	/**
-	 * Register a singleton: the callback will only be caled
-	 * once, then stored for further calls
-	 * 
-	 * @access public
-	 * @static
-	 * @return void
-	 */
-	public static function once($name, $resolver)
+
+    /**
+     * Register a singleton: the callback will only be caled
+     * once, then stored for further calls
+     * @param $name
+     * @param $resolver
+     */
+    public static function once($name, $resolver)
 	{
 		static::register($name, $resolver, true);
 	}
-	
-	/**
-	 * Inject prototyped dependencies and create a new node,
-	 * or register a prototype if $dependecies are provided
-	 * 
-	 * @access public
-	 * @static
-	 * @param mixed $class: the clas name provided
-	 * @param mixed $dependecies
-	 * @return void or new Node instance
-	 */
-	public static function node($class)
-	{
-		if (! static::$dependencies)
-		{
-			static::$dependencies = [
-				'text' 			=> new Dependency\Text,
-				'attributes'=> new Collection\Attribute,
-				'children' 	=> new Collection\Node
-			];
-		}
-		foreach(static::$dependencies as $dep)
-		{
-			$deps[] = clone $dep;
-		}
-		return new $class($deps[0], $deps[1], $deps[2]);
-	}
-	
-	/**
-	 * Set / get the node compiler.
-	 * 
-	 * @access public
-	 * @static
-	 * @return void
-	 */
-	public static function compiler(CompilerInterface $compiler = null)
+
+    /**
+     * Set / get the node compiler
+     * @param CompilerInterface $compiler
+     * @return mixed|null
+     */
+    public static function compiler(CompilerInterface $compiler = null)
 	{
 		if ($compiler)
 		{
@@ -138,21 +82,20 @@ class Manager {
 	 * @access public
 	 * @static
 	 * @param mixed $name
-	 * @return void
+	 * @return boolean
 	 */
 	public static function registered($name)
 	{
 		return isset(static::$registry[$name]);
 	}
-	
-	/**
-	 * Get a registered Node, then run the callback.
-	 * 
-	 * @access public
-	 * @static
-	 * @return void
-	 */
-	public static function resolve($name, $args = [])
+
+    /**
+     * Get a registered Node, then run the callback
+     * @param $name
+     * @param array $args
+     * @return bool|mixed
+     */
+    public static function resolve($name, $args = [])
 	{
 		// Look at the registry first
 		if (! isset(static::$registry[$name]))

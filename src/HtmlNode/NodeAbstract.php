@@ -8,6 +8,10 @@ use
 	OutOfBoundsException
 ;
 
+/**
+ * Class NodeAbstract
+ * @package HtmlNode
+ */
 abstract class NodeAbstract implements NodeInterface {
 	
 	use	Component\Attribute,
@@ -18,31 +22,44 @@ abstract class NodeAbstract implements NodeInterface {
 			Component\Tag,
 			Component\Text,
 			Component\Traversing;
-		
-	/**
-	 * Class Constructor.
-	 * 
-	 * @access public
-	 * @param mixed $tag (default: null)
-	 * @param array $attrs (default: array())
-	 * @return void
-	 */
-	public function __construct(Dependency\Text $text, Collection\Attribute $attrs, Collection\Node $children)
-	{		
+
+
+    /**
+     * @var array
+     */
+    protected static $dependencies = null;
+
+    /**
+     * @param string $tag
+     * @param string $text
+     * @param array $attrs
+     */
+    public function __construct($tag = 'div', $text = '', array $attrs = [])
+	{
 		// link dependencies
-		$this->text				= $text;
-		$this->attributes = $attrs;
-		$this->children		= $children;
+        if (null === static::$dependencies)
+        {
+            static::$dependencies = [
+                'text' 		=> new Dependency\Text,
+                'attributes'=> new Collection\Attribute,
+                'children' 	=> new Collection\Node
+            ];
+        }
+		$this->text		    = clone static::$dependencies['text'];
+		$this->attributes   = clone static::$dependencies['attributes'];
+		$this->children     = clone static::$dependencies['children'];
+
+        $tag	and $this->tag($tag);
+        $attrs 	and $this->attr($attrs);
+        $text	and $this->text->set($text);
 	}
-	
-	/**
-	 * Catch property then check if its a dependency
-	 * 
-	 * @access public
-	 * @param mixed $key
-	 * @return void
-	 */
-	public function __get($key)
+
+    /**
+     * @param $key
+     * @return mixed
+     * @throws \OutOfBoundsException
+     */
+    public function __get($key)
 	{
 		if (isset($this->$key) and $this->$key instanceof Dependency\Node)
 		{	

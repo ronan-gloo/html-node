@@ -6,10 +6,9 @@ use HtmlNode\Collection;
 
 class AttributeCollectionTest extends \PHPUnit_Framework_TestCase
 {
-	public function testhasAttributes()
+	public function testHasAttributes()
 	{
 		$col = new Collection\Attribute();
-		$this->assertClassHasAttribute("keys", get_class($col));
 		$this->assertSame($col->get(), [
 			'style' => [], 'class' => [], 'data' => [], 'aria' => []
 		]);

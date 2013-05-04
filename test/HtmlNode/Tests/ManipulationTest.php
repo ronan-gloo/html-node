@@ -29,6 +29,41 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
     {
     	$this->assertNull($d1->wrap($d2)->unwrap()->parent());
     }
+
+    /** @dataProvider getManipulationTests */
+    public function testDetach($d1, $d2)
+    {
+    	$this->assertNull($d1->wrap($d2)->detach()->parent());
+    }
+
+    /**
+     * @dataProvider getManipulationTests
+     * @expectedException \LogicException
+     */
+    public function testCreateNodeOnAutoClose($d1)
+    {
+        $d1->tag('input')->append('div');
+    }
+
+    /**
+     * @dataProvider getManipulationTests
+     * @expectedException \InvalidArgumentException
+     */
+    public function testCreateNodeWithClosure($d1, $d2)
+    {
+        $d1->append([]);
+    }
+
+    /**
+     * @dataProvider getManipulationTests
+     */
+    public function testCreateInvalidNode($d1, $d2)
+    {
+        $d1->append(function() use($d2) {
+            return 'div';
+        });
+        $this->assertNotEmpty($d1->find('div'));
+    }
     
      /** @dataProvider getManipulationTests */
     public function testAppend($d1, $d2, $d3, $d4)

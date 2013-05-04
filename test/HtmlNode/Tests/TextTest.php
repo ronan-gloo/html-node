@@ -15,6 +15,12 @@ class TextTest extends \PHPUnit_Framework_TestCase
 		$this->assertClassHasAttribute("position", get_class($text));
 	}
 
+    public function testConstructor()
+    {
+       $text = new Dependency\Text('hey');
+       $this->assertSame("hey", $text->get());
+    }
+
 	/**
 	 * @dataProvider getTextdata
 	 */

@@ -7,73 +7,74 @@ use
 	HtmlNode\Util;
 ;
 
+/**
+ * Class Collection
+ * @package HtmlNode\Collection
+ */
 class Collection implements CollectionInterface {
 	
 	use CollectionAccess;
-	
-	/**
-	 * Storage
-	 * 
-	 * @var mixed
-	 * @access protected
-	 */
-	protected $items;
-	
-	/**
-	 * @param array $items (default: [])
-	 */
-	public function __construct($items = [])
+
+    /**
+     * @var array
+     */
+    protected $items;
+
+    /**
+     * @param array $items
+     */
+    public function __construct($items = [])
 	{
 		$this->items = $items;
 	}
-		
-	/**
-	 * @access public
-	 */
-	public function first()
+
+    /**
+     * @return mixed
+     */
+    public function first()
 	{
 		return reset($this->items);
 	}
-	
-	/**
-	 * @access public
-	 */
-	public function last()
+
+    /**
+     * @return mixed
+     */
+    public function last()
 	{
 		return end($this->items);
 	}
-	
-	/**
-	 * @access public
-	 */
-	public function length()
+
+    /**
+     * @return int
+     */
+    public function length()
 	{
 		return count($this->items);
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $value
-	 */
-	public function has($item)
+
+    /**
+     * @param $item
+     * @return bool
+     */
+    public function has($item)
 	{
 		return in_array($item, $this->items, true);
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $key
-	 */
-	public function own($key)
+
+    /**
+     * @param mixed $key
+     * @return bool
+     */
+    public function own($key)
 	{
 		return array_key_exists($key, $this->items);
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $key
-	 */
-	public function search($item)
+
+    /**
+     * @param mixed $item
+     * @return null
+     */
+    public function search($item)
 	{
 		if ($key = array_search($item, $this->items, true))
 		{
@@ -81,19 +82,20 @@ class Collection implements CollectionInterface {
 		}
 		return null;
 	}
-	
-	/**
-	 * @access public
-	 */
-	public function get()
+
+    /**
+     * @return array
+     */
+    public function get()
 	{
 		return $this->items;
 	}
-	
-	/**
-	 * @access public
-	 */
-	public function &eq($index)
+
+    /**
+     * @param $index
+     * @return null
+     */
+    public function &eq($index)
 	{
 		if ($exists = array_key_exists($index, $this->items))
 		{
@@ -102,78 +104,80 @@ class Collection implements CollectionInterface {
 		$exists = null;
 		return $exists;
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $item
-	 */
-	public function indexOf($item)
+
+    /**
+     * @param $item
+     * @return mixed
+     */
+    public function indexOf($item)
 	{
 		return array_search($item, $this->items, true);
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $key
-	 */
-	public function find($key)
+
+    /**
+     * @param $key
+     * @return mixed
+     */
+    public function find($key)
 	{
 		if (array_key_exists($key, $this->items))
 		{
 			return $this->items[$key];
 		}
 	}
-	
-	
-	/**
-	 * @param mixed $key
-	 * @param mixed $val
-	 */
-	public function set($key, $val = null)
+
+    /**
+     * @param mixed $key
+     * @param null $val
+     * @return mixed
+     */
+    public function set($key, $val = null)
 	{		
-		return !! $this->items[$key] = $val;
+		return !! ($this->items[$key] = $val);
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $items
-	 */
-	public function exchange($items)
+
+    /**
+     * @param mixed $items
+     * @return $this
+     */
+    public function exchange($items)
 	{
 		$this->items = $items;
 		return $this;
 	}
-	
-	/**
-	 * @access public
-	 */
-	public function copy()
+
+    /**
+     * @return static
+     */
+    public function copy()
 	{
 		return new static(unserialize(serialize($this->items)));
 	}
 
-	/**
-	 * @access public
-	 */
-	public function prepend($data)
+    /**
+     * @param $data
+     * @return bool
+     */
+    public function prepend($data)
 	{
 		return !! array_unshift($this->items, $data);
 	}
-	
-	/**
-	 * @access public
-	 */
-	public function append($data)
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function append($data)
 	{
-		return !! $this->items[] = $data;
+		return !! ($this->items[] = $data);
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $element
-	 * @param mixed $new
-	 */
-	public function insertBefore($element, $new)
+
+    /**
+     * @param mixed $element
+     * @param mixed $new
+     * @return bool
+     */
+    public function insertBefore($element, $new)
 	{
 		if (($pos = array_keys($this->items, $element, true)) !== []) 
 		{
@@ -182,13 +186,13 @@ class Collection implements CollectionInterface {
 		}
 		return false;
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $element
-	 * @param mixed $new
-	 */
-	public function insertAfter($element, $new)
+
+    /**
+     * @param mixed $element
+     * @param mixed $new
+     * @return bool
+     */
+    public function insertAfter($element, $new)
 	{
 		if ($pos = array_keys($this->items, $element, true))
 		{
@@ -196,13 +200,13 @@ class Collection implements CollectionInterface {
 		}
 		return false;
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $new
-	 * @param mixed $pos
-	 */
-	public function insert($new, $pos)
+
+    /**
+     * @param mixed $new
+     * @param $pos
+     * @return bool
+     */
+    public function insert($new, $pos)
 	{
 		! is_array($new) and $new = [$new];
 
@@ -214,12 +218,12 @@ class Collection implements CollectionInterface {
 		
 		return true;
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $key
-	 */
-	public function delete($key)
+
+    /**
+     * @param mixed $key
+     * @return bool
+     */
+    public function delete($key)
 	{
 		if (isset($this->items[$key]))
 		{
@@ -229,11 +233,11 @@ class Collection implements CollectionInterface {
 		return false;
 	}
 
-	/**
-	 * @access public
-	 * @param mixed $value
-	 */
-	public function remove($item)
+    /**
+     * @param $item
+     * @return bool
+     */
+    public function remove($item)
 	{
 		$key = array_search($item, $this->items, true);
 		
@@ -243,13 +247,13 @@ class Collection implements CollectionInterface {
 		}
 		return $out;
 	}
-	
-	/**
-	 * @access public
-	 * @param mixed $offset
-	 * @param mixed $length (default: null)
-	 */
-	public function slice($offset, $length = null)
+
+    /**
+     * @param $offset
+     * @param null $length
+     * @return $this
+     */
+    public function slice($offset, $length = null)
   {
 	  $this->items = array_slice($this->items, $offset, $length);
 	  
@@ -263,12 +267,12 @@ class Collection implements CollectionInterface {
 	{
 		return ! $this->items = [];
 	}
-	
-	/**
-	 * @access public
-	 * @param Closure $c
-	 */
-	public function each(Closure $c)
+
+    /**
+     * @param callable $c
+     * @return $this
+     */
+    public function each(Closure $c)
 	{
 		foreach ($this->items as $key => &$val)
 		{
@@ -276,12 +280,12 @@ class Collection implements CollectionInterface {
 		}
 		return $this;
 	}
-	
-	/**
-	 * @access public
-	 * @param Closure $c
-	 */
-	public function filter($c = "")
+
+    /**
+     * @param string $c
+     * @return $this
+     */
+    public function filter($c = "")
 	{
 		if ($c instanceof Closure)
 		{

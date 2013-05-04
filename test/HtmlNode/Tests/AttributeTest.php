@@ -19,12 +19,18 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->assertInstanceOf(get_class($d), $d->attr($attrs));
 		$this->assertSame("email", $d->attr("name"));
+
+        $d->attr('key', 'val');
+        $this->assertSame('val', $d->attr('key'));
+
+        $d->attr('style', ['display' => 'none']);
+        $this->assertSame(['display' => 'none'], $d->attr('style'));
 	}
 
 	/**
 	 * @dataProvider getAttributeTests
 	 */
-	public function testAddAttrIf($d, $attrs)
+	public function testAddAttrIf($d)
 	{
 		// test nothing set
 		$this->assertInstanceOf(get_class($d), $d->addAttrIf(["value2" => "v1"], false));
@@ -69,6 +75,48 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
 		}
 	}
 
+    /**
+     * @dataProvider getClassesTests
+     */
+    public function testAddClassIf($node)
+    {
+        // test class is added with 2 args
+        $node->addClassIf('go', false);
+        $this->assertNotContains('go', $node->attr('class'));
+
+        $node->addClassIf('back', true);
+        $this->assertContains('back', $node->attr('class'));
+
+        // test class is added with 3 args
+        $node->addClassIf('panda', 2, 1);
+        $this->assertNotContains('panda', $node->attr('class'));
+
+        $node->addClassIf('panda', 0, 0);
+        $this->assertContains('panda', $node->attr('class'));
+    }
+
+    /**
+     * @dataProvider getClassesTests
+     */
+    public function testRemoveClassIf($node)
+    {
+        $node->addClass(['go', 'back', 'panda']);
+
+        // test class is added with 2 args
+        $node->removeClassIf('go', false);
+        $this->assertContains('go', $node->attr('class'));
+
+        $node->removeClassIf('back', true);
+        $this->assertNotContains('back', $node->attr('class'));
+
+        // test class is added with 3 args
+        $node->removeClassIf('panda', 2, 1);
+        $this->assertContains('panda', $node->attr('class'));
+
+        $node->removeClassIf('panda', 0, 0);
+        $this->assertNotContains('panda', $node->attr('class'));
+    }
+
 	/**
 	 * @dataProvider getClassesTests
 	 */
@@ -99,7 +147,7 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider getClassesTests
 	 */
-	public function testSwitchClass($d, $classes)
+	public function testSwitchClass($d)
 	{
 		$this->assertInstanceOf(get_class($d), $d->switchClass("foo", "bar"));
 		
@@ -125,6 +173,21 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
 		$this->assertSame("foo3", $d->data("foo.foo2.bar2"));
 		
 		$this->assertContains($array, $d->data());
+	}
+    /**
+	 * @dataProvider getDataTests
+	 */
+	public function testAria($d, $key, $val, $array)
+	{
+		$this->assertInstanceOf(get_class($d), $d->aria($key, $val));
+		$this->assertInstanceOf(get_class($d), $d->aria("foo", $array));
+
+		$this->assertSame($val, $d->aria($key));
+		$this->assertSame($array, $d->aria("foo"));
+
+		$this->assertSame("foo3", $d->aria("foo.foo2.bar2"));
+
+		$this->assertContains($array, $d->aria());
 	}
 
 	/**
@@ -153,18 +216,24 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
 	
   public function getAttributeTests()
   {
+      /** @var \HtmlNode\Node $node */
+      $node = Node::make("div");
     return [
-    	[Node::make("div"),
+    	[$node,
     	["class" => "test", "data" => "val", "name" => "email", "id" => "foo", "enabled" => "enabled"],
     ]];
   }
   public function getClassesTests()
   {
-    return [[Node::make("div"), ["foo", "bar"]], [Node::make("div", "text"), "foo bar"]];
+      /** @var \HtmlNode\Node $node */
+      $node = Node::make("div");
+    return [[$node, ["foo", "bar"]], [Node::make("div", "text"), "foo bar"]];
   }
   public function getDataTests()
   {
-    return [[Node::make("div"), "foo1", "bar1", ["foo2" => ["bar2" => "foo3"]]]];
+      /** @var \HtmlNode\Node $node */
+      $node = Node::make("div");
+    return [[$node, "foo1", "bar1", ["foo2" => ["bar2" => "foo3"]]]];
   }
 }
 

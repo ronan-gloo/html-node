@@ -11,28 +11,31 @@ use
  * TODO: supports selectors ...etc
  */
 class Finder {
-	
-	protected $node;
-	protected $results;
-	
-	/**
-	 * Set up the node to visits.
-	 * 
-	 * @access public
-	 * @param Node $node
-	 * @return void
-	 */
-	public function __construct(NodeInterface $node)
+
+    /**
+     * @var \HtmlNode\NodeInterface
+     */
+    protected $node;
+    /**
+     * @var
+     */
+    protected $results;
+
+    /**
+     * @param NodeInterface $node
+     */
+    public function __construct(NodeInterface $node)
 	{
 		$this->node		= $node;
 		$this->result	= new Collection;
 	}
 
-	/**
-	 * @access public
-	 * @return void
-	 */
-	public function children($input, $loop = true)
+    /**
+     * @param $input
+     * @param bool $loop
+     * @return Collection
+     */
+    public function children($input, $loop = true)
 	{
 		$iterator = function($nodes) use(&$iterator, $input, $loop)
 		{
@@ -55,12 +58,13 @@ class Finder {
 		
 		return $this->result;
 	}
-	
-	/**
-	 * @access public
-	 * @return void
-	 */
-	public function parents($input, $loop = true)
+
+    /**
+     * @param $input
+     * @param bool $loop
+     * @return Collection
+     */
+    public function parents($input, $loop = true)
 	{
 		if ($node = $this->node->parent())
 		{
@@ -82,13 +86,11 @@ class Finder {
 		}
 		return $this->result;
 	}
-	
-	/**
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function result()
+
+    /**
+     * @return Collection
+     */
+    public function result()
 	{
 		return $this->result;
 	}

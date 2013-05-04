@@ -5,11 +5,14 @@ namespace HtmlNode;
 use
 	HtmlNode\Collection,
 	HtmlNode\Dependency,
-	OutOfBoundsException,
-	LogicException,
-	BadMethodCallException
+	BadMethodCallException,
+    InvalidArgumentException
 ;
 
+/**
+ * Class Node
+ * @package HtmlNode
+ */
 class Node extends NodeAbstract {
 	
 	/**
@@ -19,17 +22,14 @@ class Node extends NodeAbstract {
 	 */
 	protected $text;
 
-	/**
-	 * ASk to the manager if $m is registered,
-	 * then returns it
-	 * 
-	 * @access public
-	 * @static
-	 * @param mixed $m
-	 * @param mixed $args
-	 * @return void
-	 */
-	public static function __callStatic($m, $args)
+    /**
+     * @param $m
+     * @param $args
+     * @return bool|mixed
+     * @throws \InvalidArgumentException
+     * @throws \BadMethodCallException
+     */
+    public static function __callStatic($m, $args)
 	{
 		if (Util\Manager::registered($m))
 		{
@@ -38,39 +38,28 @@ class Node extends NodeAbstract {
 			{
 				return $node;
 			}
+            throw new InvalidArgumentException("$m is not a valid node");
 		}
 		// Nothing to do more...
 		throw new BadMethodCallException("Method $m does not exists");
 	}
-	
-	/**
-	 * @access public
-	 * @static
-	 * @param mixed $name
-	 * @param mixed $data
-	 */
-	public static function macro($name, $data, $once = false)
+
+    /**
+     * @param $name
+     * @param $data
+     * @param bool $once
+     */
+    public static function macro($name, $data, $once = false)
 	{
-		return Util\Manager::register($name, $data, $once);
+		Util\Manager::register($name, $data, $once);
 	}
-	
-	/**
-	 * 
-	 * @access public
-	 * @static
-	 * @param mixed $tag (default: null)
-	 * @param mixed $contents (default: null)
-	 * @param array $attrs (default: array())
-	 * @return void
-	 */
-	public static function make($tag = null, $text = null, $attrs = [])
+
+    /**
+     * @return object
+     */
+    public static function make()
 	{
-		$node = Util\Manager::node(get_called_class());
-		
-		$tag		and $node->tag($tag);
-		$attrs 	and $node->attr($attrs);
-		$text		and $node->text($text);
-		
-		return $node;
+        return (new \ReflectionClass(get_called_class()))
+            ->newInstanceArgs(func_get_args());
 	}
 }

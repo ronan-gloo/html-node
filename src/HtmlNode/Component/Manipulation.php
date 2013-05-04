@@ -10,15 +10,19 @@ use
 	LogicException
 ;
 
+/**
+ * Class Manipulation
+ * @package HtmlNode\Component
+ */
 trait Manipulation {
 	
 	/**
 	 * Parent Node
 	 * 
 	 * @var mixed
-	 * @access protected
+	 * @access public
 	 */
-	protected $parent = null;
+	public $parent = null;
 	
 	/**
 	 * Childs nodes
@@ -28,21 +32,22 @@ trait Manipulation {
 	 * @var mixed
 	 * @access protected
 	 */
-	protected $children = [];
-	
-	/**
-	 * Wrap a node, a tag str or throught a callback.
-	 * 
-	 * @access public
-	 * @param string $tag (default: "")
-	 * @return void
-	 */
-	public function wrap($input = null, $text = null, $attrs = [])
+	public $children = [];
+
+
+    /**
+     * Wrap a node, a tag str or with a callback
+     * @param null $input
+     * @param null $text
+     * @param array $attrs
+     * @return $this
+     */
+    public function wrap($input = null, $text = null, $attrs = [])
 	{
 		$node = $this->createNodeWith($input, $text, $attrs, false);
 		
 		// register current node node to the parent childs
-		$node->children()->append($this);
+		$node->children->append($this);
 		
 		// setup the current parent
 		$this->parent = $node;
@@ -52,28 +57,25 @@ trait Manipulation {
 	
 	/**
 	 * Remove the current element from the node target.
-	 * 
-	 * @access public
-	 * @return void
+	 * @return $this
 	 */
 	public function unwrap()
 	{
 		if ($this->parent)
 		{
-			$this->parent->children()->remove($this);
+			$this->parent->children->remove($this);
 			$this->parent = null;
 		}
 		return $this;
 	}
-	
-	/**
-	 * Append a new element
-	 * 
-	 * @access public
-	 * @param Node $node
-	 * @return void
-	 */
-	public function append($input = null, $text = null, $attrs = [])
+
+    /**
+     * @param null $input
+     * @param null $text
+     * @param array $attrs
+     * @return $this
+     */
+    public function append($input = null, $text = null, $attrs = [])
 	{
 		$node	= $this->createNodeWith($input, $text, $attrs);
 		$this->children->append($node);
@@ -81,33 +83,30 @@ trait Manipulation {
 				
 		return $this;
 	}
-	
-	/**
-	 * Append to target $node
-	 * 
-	 * @access public
-	 * @param Node $node
-	 * @return void
-	 */
-	public function appendTo(NodeInterface $node)
+
+    /**
+     * @param NodeInterface $node
+     * @return Manipulation
+     */
+    public function appendTo(NodeInterface $node)
 	{
 		$clone = clone $this;
 		
-		if ($node->children()->append($clone))
+		if ($node->children->append($clone))
 		{
 			$clone->parent = $node;
 		}
 		return $clone;
 	}
-	
-	/**
-	 * Prepend a child.
-	 * 
-	 * @access public
-	 * @param Node $node
-	 * @return void
-	 */
-	public function prepend($input = null, $text = null, $attrs = [])
+
+
+    /**
+     * @param null $input
+     * @param null $text
+     * @param array $attrs
+     * @return $this
+     */
+    public function prepend($input = null, $text = null, $attrs = [])
 	{
 		$node = $this->createNodeWith($input, $text, $attrs);
 		$this->children->prepend($node);
@@ -121,16 +120,15 @@ trait Manipulation {
 		return $this;
 	}
 
-	/**
-	 * @access public
-	 * @param Node $node
-	 * @return void
-	 */
-	public function prependTo(NodeInterface $node)
+    /**
+     * @param NodeInterface $node
+     * @return Manipulation
+     */
+    public function prependTo(NodeInterface $node)
 	{
 		$clone = clone $this;
 		
-		if ($node->children()->prepend($clone))
+		if ($node->children->prepend($clone))
 		{
 			$clone->parent = $node;
 		}
@@ -156,7 +154,7 @@ trait Manipulation {
 		
 		$clone = clone $this;
 		
-		$parent->children()->insertBefore($node, $clone);
+		$parent->children->insertBefore($node, $clone);
 		
 		$clone->parent = $node->parent;
 				
@@ -182,38 +180,32 @@ trait Manipulation {
 
 		$clone = clone $this;
 		
-		$parent->children()->insertAfter($node, $clone);
+		$parent->children->insertAfter($node, $clone);
 		$clone->parent = $node->parent;
 		
 		return $clone;
 	}
-	
-	/**
-	 * Replace the current node with $node in the collection.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function replaceWith(NodeInterface $node)
+
+    /**
+     * @param NodeInterface $node
+     * @return $this
+     */
+    public function replaceWith(NodeInterface $node)
 	{
 		if ($parent = $this->parent and $node !== $this)
 		{
-			$parent->children()[$this->index()] = $node;
+			$parent->children[$this->index()] = $node;
 			$node->parent = $parent;
 			$this->parent = null;
 		}
 		
 		return $this;
 	}
-			
-	/**
-	 * Delete a node from it parents and its reference
-	 * in the master collection
-	 * 
-	 * @access public
-	 * @return $this
-	 */
-	public function detach()
+
+    /**
+     *
+     */
+    public function detach()
 	{
 		//Util\Master::delete($this);
 		return $this->unwrap();
@@ -236,22 +228,24 @@ trait Manipulation {
 		$this->parent = null;
 		
 		// and clone dependecies
-		$this->text				= clone $this->text;
-		$this->attributes	= clone $this->attributes;
+		$this->text = clone $this->text;
+		$this->attributes = clone $this->attributes;
 	}
-	
-	/**
-	 * Try to create a new node.
-	 * The method accepts:
-	 * - string: the tag name
-	 * - closure: return a string or a Node object
-	 * - Node: instance of Node 
-	 * 
-	 * @access protected
-	 * @param mixed $input
-	 * @return Node or thrown InvalidArgumentException
-	 */
-	protected function createNodeWith($input, $text, $attrs, $checkClose = true)
+
+    /**
+     * Try to create a new node. The method accepts:
+     * - string: the tag name
+     * - closure: return a string or a Node object
+     * - Node: instance of Node
+     * @param $input
+     * @param $text
+     * @param $attrs
+     * @param bool $checkClose
+     * @return NodeInterface
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
+     */
+    protected function createNodeWith($input, $text, $attrs, $checkClose = true)
 	{
 		// Do not append / prepend autoclosed elements
 		if ($checkClose === true and in_array($this->tagname, static::$autoclosed))
@@ -266,7 +260,7 @@ trait Manipulation {
 		}
 		
 		// Get the closure results
-		elseif ($input instanceof NodeInterface)
+	    if ($input instanceof NodeInterface)
 		{
 			$input = clone $input;
 		}

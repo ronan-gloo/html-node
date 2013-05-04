@@ -106,7 +106,7 @@ trait Seek {
 	{
 		if ($nodes->length() and $input)
 		{
-			foreach ($nodes as $key => $node)
+			foreach ($nodes as $node)
 			{
 				$node->not($input) and $nodes->remove($node);
 			}

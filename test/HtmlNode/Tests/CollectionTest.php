@@ -9,11 +9,31 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider getData
 	 */
-	public function testtestHasAttribute($col)
+	public function testHasAttribute($col)
 	{
-		$this->assertClassHasAttribute("items", get_class($col));
+		$this->assertClassHasAttribute('items', get_class($col));
 	}
-	
+
+    /**
+     * @dataProvider getData
+     */
+    public function testOffsetUnset($col)
+    {
+        $this->assertTrue($col->offsetUnset(2));
+        $this->assertFalse($col->offsetUnset(-1));
+        $this->assertNull($col->eq(2));
+    }
+
+    /**
+     * @dataProvider getData
+     */
+    public function testOffset($col)
+    {
+        $this->assertFalse($col->offsetExists('dooo !'));
+        $col->set('do');
+        $this->assertTrue($col->offsetExists('do'));
+    }
+
 	/**
 	 * @dataProvider getData
 	 */
@@ -67,7 +87,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider getData
 	 */
-	public function testSet($col, $data)
+	public function testSet($col)
 	{
 		$this->assertTrue($col->set("key", "val"));
 		$this->assertSame("val", $col->eq("key"));
@@ -142,7 +162,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider getData
 	 */
-	public function testInsert($col, $data)
+	public function testInsert($col)
 	{
 		// Index doesn't exists
 		$this->assertTrue($col->insert("new", -1));
@@ -155,7 +175,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider getData
 	 */
-	public function testDelete($col, $data)
+	public function testDelete($col)
 	{
 		$this->assertTrue($col->delete(2));
 		$this->assertFalse($col->delete(-1));
@@ -211,7 +231,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider getData
 	 */
-	public function testEach($col, $data)
+	public function testEach($col)
 	{
 		$return = $col->each(function($key, $val){
 			return ($key === 2)  ? false : true;
@@ -222,7 +242,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider getData
 	 */
-	public function testFilter($col, $data)
+	public function testFilter($col)
 	{
 		$this->assertInstanceOf(get_class($col), $col->filter());
 		$this->assertEmpty(

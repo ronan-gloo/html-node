@@ -3,6 +3,7 @@
 namespace HtmlNode\Tests;
 
 use HtmlNode\Collection\Collection;
+use HtmlNode\Compiler;
 
 class ManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -27,6 +28,28 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
 		$class::register("input2", "test", true);
 		$this->assertTrue($class::registered("input2"));
 	}
+
+    /**
+     * @dataProvider getClass
+     */
+    public function testAddCompiler($class)
+    {
+        $compiler = new Compiler();
+        $class::compiler($compiler);
+
+        $this->assertEquals($compiler, $class::compiler());
+    }
+
+    /**
+     * @dataProvider getClass
+     */
+    public function compilerReturnsClone($class)
+    {
+        $compiler = new Compiler();
+        $class::compiler($compiler);
+
+        $this->assertNotSame($compiler, $class::compiler());
+    }
 	
 	/**
 	 * @dataProvider getClass

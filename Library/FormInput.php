@@ -2,6 +2,12 @@
 
 namespace HtmlNode\Library;
 
+use HtmlNode\Node;
+
+/**
+ * Trait FormInput
+ * @package HtmlNode\Library
+ */
 trait FormInput {
 		
 	/**
@@ -16,17 +22,15 @@ trait FormInput {
 		// force default input type if no exists
 		! isset($attrs["type"]) and $attrs["type"] = "text";
 		
-		return static::make("input", null, compact("name", "value") + $attrs);
+		return new Node("input", null, compact("name", "value") + $attrs);
 	}
 
-	/**
-	 * Set / Get value attribute for form elements
-	 * 
-	 * @access public
-	 * @param mixed $value
-	 * @return void
-	 */
-	public function val($value = null)
+    /**
+     * Set / Get value attribute for form elements
+     * @param null $value
+     * @return $this
+     */
+    public function val($value = null)
 	{
 		if (func_num_args() === 0)
 		{
