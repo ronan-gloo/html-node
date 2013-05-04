@@ -8,11 +8,11 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="true"
-         bootstrap="test/bootstrap.php"
+         bootstrap="tests/bootstrap.php"
 >
   <testsuites>
     <testsuite name="HtmlNode Test Suite">
-      <directory>./test/HtmlNode/</directory>
+      <directory>tests/HtmlNode/</directory>
     </testsuite>
   </testsuites>
     <logging>
@@ -22,9 +22,9 @@
     </logging>
   <filter>
     <whitelist>
-      <directory suffix=".php">./src/HtmlNode/</directory>
+      <directory suffix=".php">src/HtmlNode/</directory>
         <exclude>
-            <directory suffix=".php">./src/Library/</directory>
+            <directory suffix=".php">src/Library/</directory>
         </exclude>
     </whitelist>
   </filter>
