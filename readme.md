@@ -3,13 +3,13 @@
 [![Build Status](https://travis-ci.org/ronan-gloo/html-node.png)](https://travis-ci.org/ronan-gloo/html-node)
 
 HtmlNode is a "bootsrap library" to create and manipulate html elements in PHP.  
-**This Library is written in PHP 5.4, there is no support for previous versions.** 
+**Requires PHP 5.4+** 
 
 #### Creation and options
 
 Create your first node:
 
-    $node = Node::make("h1", "Hello World", ["class" => "title"]);
+    $node = new Node("h1", "Hello World", ["class" => "title"]);
     
     
 
@@ -128,7 +128,7 @@ Note that **the moved node is a clone**, the original node modifications wil not
 
 You can also insert nodes to the parent, with `insertBefore()` or `insertAfter()` methods:
 
-    $new = Node::make("h3")->insertAfter($appended);
+    $new = (new Node("h3"))->insertAfter($appended);
     // Detach node from $parent
     $new->detach();
     
@@ -136,7 +136,7 @@ You can also insert nodes to the parent, with `insertBefore()` or `insertAfter()
 
 Replace a node with an other:
 
-    $new = Node::make("h3");
+    $new = new Node("h3");
     $node->replaceWith($new);
     
     
