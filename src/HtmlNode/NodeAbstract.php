@@ -24,12 +24,6 @@ abstract class NodeAbstract implements NodeInterface {
 			Component\Text,
 			Component\Traversing;
 
-
-    /**
-     * @var array
-     */
-    protected static $dependencies = null;
-
     /**
      * @param string $tag
      * @param string $text
@@ -37,24 +31,11 @@ abstract class NodeAbstract implements NodeInterface {
      */
     public function __construct($tag = 'div', $text = '', array $attrs = [])
 	{
-		// link dependencies
-        if (null === static::$dependencies)
-        {
-            static::$dependencies = [
-                'text' 		=> new Dependency\Text,
-                'attributes'=> new Collection\Attribute,
-                'children' 	=> new Collection\Node
-            ];
-        }
-		$this->text		    = clone static::$dependencies['text'];
-		$this->attributes   = clone static::$dependencies['attributes'];
-		$this->children     = clone static::$dependencies['children'];
+		$this->text = (new Dependency\Text($text))->node($this);
+		$this->attributes = new Collection\Attribute($attrs);
+		$this->children = new Collection\Node;
 
-        $this->text->node($this);
-
-        $tag	and $this->tag($tag);
-        $attrs 	and $this->attr($attrs);
-        $text	and $this->text->set($text);
+        $this->tag($tag);
 	}
 
     /**

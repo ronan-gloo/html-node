@@ -55,11 +55,26 @@ class CompilerTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('<div bla="do">', $this->compiler->open()->html());
     }
 
-    public function testChildren()
+    public function testChildrenWithText()
     {
-        $node = (new Node('div'))->appendTo($this->node);
+        (new Node('div'))->appendTo($this->node);
         $this->node->text('test');
         $this->assertEquals('<div></div>test', $this->compiler->children()->html());
+    }
+
+    public function testChildrenMoveText()
+    {
+        (new Node('div'))->appendTo($this->node);
+        $this->node->text('test');
+        $this->node->text->first();
+        $this->assertEquals('test<div></div>', $this->compiler->children()->html());
+    }
+
+    public function testChildrenNoText()
+    {
+        (new Node('div'))->appendTo($this->node);
+        $this->node->text('test');
+        $this->assertEquals('<div></div>', $this->compiler->children(false)->html());
     }
 
 }

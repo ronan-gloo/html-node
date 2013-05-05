@@ -22,6 +22,7 @@ class AttributeCollectionTest extends \PHPUnit_Framework_TestCase
 		
 		$this->assertEquals("subvalue2", $col->findRecursive("foo.level2.sublevel2"));
 		$this->assertSame($data['foo'], $col->findRecursive("foo"));
+        $this->assertNull($col->findRecursive("dot.dot"));
 
 	}
 	/**

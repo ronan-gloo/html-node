@@ -77,20 +77,20 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
     /** @dataProvider getManipulationTests */
     public function testAppendTo($d1, $d2)
     {
-    	// copy
     	$d5 = $d2->appendTo($d1);
 	    $this->assertNotSame($d5, $d2);
-	    // appended
 	    $this->assertSame($d5, $d1->children()->first());
     }
 
     /** @dataProvider getManipulationTests */
     public function testPrepend($d1, $d2, $d3, $d4)
     {
-    	// returns same object
-	    $this->assertSame($d1->append($d2), $d1);
-	    // appended is new copy
-	    $this->assertNotSame($d3->append($d4)->children()->first(), $d4);
+        $d1->text('heu');
+
+        $this->assertEquals(0, $d1->text->position());
+	    $this->assertSame($d1->prepend($d2), $d1);
+        $this->assertEquals(1, $d1->text->position());
+	    $this->assertNotSame($d3->prepend($d4)->children()->first(), $d4);
     }
 
     /** @dataProvider getManipulationTests */

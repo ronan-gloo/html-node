@@ -35,7 +35,7 @@ class NodeTest extends \PHPUnit_Framework_TestCase
 		
 		$this->assertEquals($node->tag(), "div");
 		$this->assertEquals($node->text(), "foo");
-		$this->assertEquals($node->attr("class"), ["test"]);
+		$this->assertEquals($node->attr("class"), "test");
 	}
 	
 	/**

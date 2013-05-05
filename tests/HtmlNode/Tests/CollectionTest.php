@@ -34,6 +34,14 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($col->offsetExists('do'));
     }
 
+    /**
+     * @dataProvider getData
+     */
+    public function testCount($col)
+    {
+        $this->assertEquals(count($col), $col->length());
+    }
+
 	/**
 	 * @dataProvider getData
 	 */

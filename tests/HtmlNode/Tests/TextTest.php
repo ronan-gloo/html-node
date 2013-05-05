@@ -29,6 +29,15 @@ class TextTest extends \PHPUnit_Framework_TestCase
        $this->assertSame("hey", $text->get());
     }
 
+    public function testNodeReturn()
+    {
+        $text = new Dependency\Text('hey');
+        $node = new Node();
+        $this->assertNull($text->node());
+        $this->assertSame($text, $text->node($node));
+        $this->assertSame($node, $text->node());
+    }
+
 	/**
 	 * @dataProvider getTextdata
 	 */

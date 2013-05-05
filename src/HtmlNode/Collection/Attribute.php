@@ -71,10 +71,10 @@ class Attribute extends Collection {
 			{
 				$k = array_shift($keys);
 
-				if ( ! isset($items[$k]) or ! is_array($items[$k]))
-				{
-					$items[$k] = [];
-				}
+//				if ( ! isset($items[$k]) or ! is_array($items[$k]))
+//				{
+//					$items[$k] = [];
+//				}
 				$items =& $items[$k];
 			}
 			$items[array_shift($keys)] = $value;
