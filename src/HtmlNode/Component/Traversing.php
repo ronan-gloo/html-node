@@ -128,6 +128,4 @@ trait Traversing {
 	{
 		return $this->children->length() > 0;
 	}
-
-	
 }

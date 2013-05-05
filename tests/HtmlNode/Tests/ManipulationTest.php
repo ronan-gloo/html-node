@@ -166,7 +166,7 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
     /** @dataProvider getManipulationTests */
     public function testClone($d1, $d2)
     {
-    	$orig	 = $d1->appendTo($d2)->append($d2);
+    	$orig = $d1->appendTo($d2)->append($d2);
     	$clone = clone $orig;
     	
     	// Parent reset
