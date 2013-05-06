@@ -32,19 +32,15 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testAddAttrIf($d)
 	{
-		// test nothing set
 		$this->assertInstanceOf(get_class($d), $d->addAttrIf(["value2" => "v1"], false));
 		$this->assertNull($d->attr("value1"));
 
-		// test nothing set
 		$this->assertInstanceOf(get_class($d), $d->addAttrIf(["value2" => "v2"], false, true));
 		$this->assertNull($d->attr("value2"));
 
-		// test is set
 		$this->assertInstanceOf(get_class($d), $d->addAttrIf(["value3" => "v3"], true));
 		$this->assertSame("v3", $d->attr("value3"));
 
-		// test is set
 		$this->assertInstanceOf(get_class($d), $d->addAttrIf(["value4" => "v4"], true, true));
 		$this->assertSame("v4", $d->attr("value4"));
 	}
@@ -87,7 +83,6 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
         $node->addClassIf('back', true);
         $this->assertContains('back', $node->attr('class'));
 
-        // test class is added with 3 args
         $node->addClassIf('panda', 2, 1);
         $this->assertNotContains('panda', $node->attr('class'));
 
@@ -102,14 +97,12 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
     {
         $node->addClass(['go', 'back', 'panda']);
 
-        // test class is added with 2 args
         $node->removeClassIf('go', false);
         $this->assertContains('go', $node->attr('class'));
 
         $node->removeClassIf('back', true);
         $this->assertNotContains('back', $node->attr('class'));
 
-        // test class is added with 3 args
         $node->removeClassIf('panda', 2, 1);
         $this->assertContains('panda', $node->attr('class'));
 
@@ -141,7 +134,8 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
 		
 		$d->addClass($classes);
 		$d->removeClass($classes);
-		$this->assertEmpty($d->attr("class"));
+
+        $this->assertEmpty($d->attr("class"));
 	}
 	
 	/**
@@ -166,12 +160,9 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->assertInstanceOf(get_class($d), $d->data($key, $val));
 		$this->assertInstanceOf(get_class($d), $d->data("foo", $array));
-		
 		$this->assertSame($val, $d->data($key));
 		$this->assertSame($array, $d->data("foo"));
-		
 		$this->assertSame("foo3", $d->data("foo.foo2.bar2"));
-		
 		$this->assertContains($array, $d->data());
 	}
     /**
@@ -181,12 +172,9 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->assertInstanceOf(get_class($d), $d->aria($key, $val));
 		$this->assertInstanceOf(get_class($d), $d->aria("foo", $array));
-
 		$this->assertSame($val, $d->aria($key));
 		$this->assertSame($array, $d->aria("foo"));
-
 		$this->assertSame("foo3", $d->aria("foo.foo2.bar2"));
-
 		$this->assertContains($array, $d->aria());
 	}
 
@@ -214,26 +202,26 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
 	}
 	
 	
-  public function getAttributeTests()
-  {
-      /** @var \HtmlNode\Node $node */
-      $node = Node::make("div");
-    return [
-    	[$node,
-    	["class" => "test", "data" => "val", "name" => "email", "id" => "foo", "enabled" => "enabled"],
-    ]];
-  }
-  public function getClassesTests()
-  {
-      /** @var \HtmlNode\Node $node */
-      $node = Node::make("div");
-    return [[$node, ["foo", "bar"]], [Node::make("div", "text"), "foo bar"]];
-  }
-  public function getDataTests()
-  {
-      /** @var \HtmlNode\Node $node */
-      $node = Node::make("div");
-    return [[$node, "foo1", "bar1", ["foo2" => ["bar2" => "foo3"]]]];
-  }
+    public function getAttributeTests()
+    {
+        /** @var \HtmlNode\Node $node */
+        $node = Node::make("div");
+        return [
+            [$node,
+            ["class" => "test", "data" => "val", "name" => "email", "id" => "foo", "enabled" => "enabled"],
+        ]];
+    }
+    public function getClassesTests()
+    {
+        /** @var \HtmlNode\Node $node */
+        $node = Node::make("div");
+        return [[$node, ["foo", "bar"]], [Node::make("div", "text"), "foo bar"]];
+    }
+    public function getDataTests()
+    {
+        /** @var \HtmlNode\Node $node */
+        $node = Node::make("div");
+        return [[$node, "foo1", "bar1", ["foo2" => ["bar2" => "foo3"]]]];
+    }
 }
 

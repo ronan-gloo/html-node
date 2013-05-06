@@ -45,8 +45,8 @@ class FinderTest extends \PHPUnit_Framework_TestCase
 	
 	public function getData()
 	{
-		$parent = Node::make('section');
-		$node		= Node::make("div")->appendTo($parent);
+		$parent = new Node('section');
+		$node   = (new Node("div"))->appendTo($parent);
 		foreach (range(1,5) as $v) $node->append("h$v");
 		
 		$colInstance = 'HtmlNode\Collection\Collection';

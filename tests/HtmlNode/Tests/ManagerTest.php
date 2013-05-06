@@ -86,8 +86,7 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
 			return new \stdClass;
 		});
 		$std = $class::resolve("bar", []);
-		
-		// Test singleton
+
 		$this->assertNotSame($std, $class::resolve("bar", []));
 	}
 	
@@ -101,10 +100,8 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
 		});
 		
 		$std = $class::resolve("input", []);
-		
-		// Returns the input
+
 		$this->assertInstanceOf("stdClass", $std);
-		// Test singleton
 		$this->assertSame($std, $class::resolve("input", []));
 	}
 

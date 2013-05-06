@@ -7,7 +7,7 @@ use HtmlNode\Node;
 class ManipulationTest extends \PHPUnit_Framework_TestCase
 {
 		/** @dataProvider getManipulationTests */
-    public function testAtrributes($node)
+    public function testAttributes($node)
     {
     	$this->assertClassHasAttribute('children', get_class($node));
     	$this->assertClassHasAttribute('parent', get_class($node));
@@ -17,10 +17,8 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
     public function testWrapNewInstance($d1, $d2)
     {
 	    $this->assertInstanceOf(get_class($d1), $d1->wrap($d2));
-	    // Has parent after wrap ?
     	$this->assertInstanceOf(get_class($d1), $d1->parent());
 	    $this->assertInstanceOf(get_class($d1), $d1->wrap("input"));
-    	// This should be a copy
     	$this->assertNotEquals($d1->wrap($d2), $d2->children()->first());
     }
 
@@ -49,7 +47,7 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
      * @dataProvider getManipulationTests
      * @expectedException \InvalidArgumentException
      */
-    public function testCreateNodeWithClosure($d1, $d2)
+    public function testCreateInvalidNode($d1)
     {
         $d1->append([]);
     }
@@ -57,9 +55,9 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider getManipulationTests
      */
-    public function testCreateInvalidNode($d1, $d2)
+    public function testCreateNodeWithClosure($d1)
     {
-        $d1->append(function() use($d2) {
+        $d1->append(function() {
             return 'div';
         });
         $this->assertNotEmpty($d1->find('div'));
@@ -68,9 +66,7 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
      /** @dataProvider getManipulationTests */
     public function testAppend($d1, $d2, $d3, $d4)
     {
-    	// returns same object
 	    $this->assertSame($d1->append($d2), $d1);
-	    // appended is new copy
 	    $this->assertNotSame($d3->append($d4)->children()->first(), $d4);
     }
     
@@ -94,7 +90,7 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @dataProvider getManipulationTests */
-    public function testPrependTo($d1, $d2, $d3, $d4)
+    public function testPrependTo($d1, $d2, $d3)
     {
     	// copy
         $d3 = $d3->appendTo($d1);
@@ -133,7 +129,7 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
     public function testInsertAfter($d1, $d2, $d3)
     {
     	$second = $d2->appendTo($d1);
-    	$first 	= $d3->insertAfter($second);
+    	$d3->insertAfter($second);
     	$d1->text("ho");
     	$third 	= $d3->insertAfter($second);
     	
@@ -154,12 +150,9 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
     {
     	$orig = $d2->appendTo($d1);
     	$orig->replaceWith($d3);
-    	
-    	// Parent removed
+
     	$this->assertNull($orig->parent());
-    	// Parent added
     	$this->assertNotNull($d3->parent());
-    	// item in collection
     	$this->assertContains($d3, $d1->children());
     }
 
@@ -168,14 +161,10 @@ class ManipulationTest extends \PHPUnit_Framework_TestCase
     {
     	$orig = $d1->appendTo($d2)->append($d2);
     	$clone = clone $orig;
-    	
-    	// Parent reset
+
     	$this->assertNull($clone->parent());
-    	// Childs cloned
     	$this->assertNotSame($orig->children(), $clone->children());
-    	// text instance cloned
     	$this->assertNotSame($orig->text(), $clone->text());
-    	// Attrs style same
     	$this->assertSame($orig->attr(), $clone->attr());
     }
 
