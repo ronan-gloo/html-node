@@ -8,6 +8,7 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="true"
+         verbose="true"
          bootstrap="tests/bootstrap.php"
 >
   <testsuites>
